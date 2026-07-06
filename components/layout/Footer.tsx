@@ -11,7 +11,7 @@ export const Footer = () => {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <FooterBrand />
           <FooterNav />
-           <FooterContact />
+          <FooterContact />
         </div>
         <FooterBottomBar />
       </div>
