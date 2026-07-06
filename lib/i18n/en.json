@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "proyectos": "projects",
+    "servicios": "services",
+    "stack": "stack",
+    "experiencia": "experience",
+    "contacto": "contact",
+    "languageSwitcher": "Language Selector"
+  }
+}
