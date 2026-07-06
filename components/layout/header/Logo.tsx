@@ -1,4 +1,4 @@
-import { profile } from '@/content/portfolio'
+import { profileStatic as profile } from '@/content/profile'
 
 export const Logo = () => {
     return (

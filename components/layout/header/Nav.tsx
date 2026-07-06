@@ -1,17 +1,9 @@
 "use client";
 
-import { useTranslation } from "@/lib/i18n/context";
+import { useNavLinks } from "@/hooks/use-nav-links";
 
 export const Nav = () => {
-  const { t } = useTranslation();
-
-  const links = [
-    { href: "#proyectos", label: t.nav.proyectos },
-    { href: "#servicios", label: t.nav.servicios },
-    { href: "#stack", label: t.nav.stack },
-    { href: "#experiencia", label: t.nav.experiencia },
-    { href: "#contacto", label: t.nav.contacto },
-  ];
+  const links = useNavLinks();
 
   return (
     <nav aria-label="Navegación principal" className="hidden md:block">

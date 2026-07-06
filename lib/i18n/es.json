@@ -5,6 +5,18 @@
     "stack": "stack",
     "experiencia": "experiencia",
     "contacto": "contacto",
-    "languageSwitcher": "Selector de idioma"
+    "languageSwitcher": "Selector de idioma",
+    "disponible": "Disponible"
+  },
+  "profile": {
+    "role": "Ingeniero en Sistemas · Full Stack",
+    "status": "Disponible para empleo fijo y proyectos freelance"
+  },
+  "footer": {
+    "status": "disponible",
+    "builtWith": "construido con criterio",
+    "titleContact": "contacto directo",
+    "titleNav": "navegación",
+    "descargar": "descargar"
   }
 }

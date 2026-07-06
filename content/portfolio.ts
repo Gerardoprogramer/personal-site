@@ -1,20 +1,4 @@
 
-interface propsProfile {
-    name: string,
-    role: string,
-    location: string,
-    status: string,
-    email: string
-}
-
-export const profile: propsProfile = {
-    name: "Gerardo Martínez Monge",
-    role: "Ingeniero en Sistemas · Full Stack",
-    location: "Liberia, Costa Rica",
-    status: "Disponible para empleo fijo y proyectos freelance",
-    email: "hola@gerardomartinez.dev",
-};
-
 interface propsSocials {
     github: string,
     linkedin: string,
