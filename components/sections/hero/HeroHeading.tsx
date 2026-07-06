@@ -1,10 +1,15 @@
+'use client';
+
+import { useTranslation } from "@/lib/i18n/context";
 
 export const HeroHeading = () => {
+    const { t } = useTranslation();
+
     return (
         <h1 className="font-display text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-[64px]">
-            Diseño y construyo software que resiste{" "}
+            {t.hero.title}{" "}
             <span className="relative whitespace-nowrap text-primary text-glow">
-                producción
+                {t.hero.subtitle}
                 <svg
                     aria-hidden="true"
                     viewBox="0 0 200 8"

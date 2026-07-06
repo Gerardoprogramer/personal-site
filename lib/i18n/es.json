@@ -18,5 +18,19 @@
     "titleContact": "contacto directo",
     "titleNav": "navegación",
     "descargar": "descargar"
+  },
+  "hero": {
+    "title": "Diseño y construyo software que resiste",
+    "subtitle": "producción",
+    "description": "Ingeniero en Sistemas Full Stack. Construyo desde ERPs con arquitectura hexagonal hasta landings con Lighthouse 100/100. Escribo código que otros ingenieros pueden mantener sin necesitar traducción.",
+    "actions": {
+      "contacto": "contratar servicios",
+      "perfil": "ver perfil profesional",
+      "descargar": "descargar"
+    },
+    "meta": {
+      "career": "ingeniería de sistemas",
+      "hour": "hora local"
+    }
   }
 }

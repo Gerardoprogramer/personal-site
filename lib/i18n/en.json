@@ -5,18 +5,32 @@
     "stack": "stack",
     "experiencia": "experience",
     "contacto": "contact",
-    "languageSwitcher": "Language Selector",
+    "languageSwitcher": "Language selector",
     "disponible": "Available"
   },
   "profile": {
     "role": "Systems Engineer · Full Stack",
-    "status": "Available for full-time employment and freelance projects"
+    "status": "Open to full-time roles and freelance projects"
   },
   "footer": {
     "status": "available",
-    "builtWith": "built with care",
+    "builtWith": "built with intent",
     "titleContact": "direct contact",
     "titleNav": "navigation",
     "descargar": "download"
+  },
+  "hero": {
+    "title": "I build software that",
+    "subtitle": "survives production",
+    "description": "Full Stack Software Engineer. I build everything from ERPs with Hexagonal Architecture to landing pages that achieve Lighthouse 100/100. I write code that other engineers can maintain without needing a translation.",
+    "actions": {
+      "contacto": "hire me",
+      "perfil": "view my profile",
+      "descargar": "download"
+    },
+    "meta": {
+      "career": "software engineering",
+      "hour": "local time"
+    }
   }
 }
