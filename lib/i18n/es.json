@@ -32,5 +32,17 @@
       "career": "ingeniería de sistemas",
       "hour": "hora local"
     }
+  },
+  "sobreMi": {
+    "eyebrow": "sobre mí",
+    "title": "Autodidacta con criterio de ingeniería, no solo tecleador de código.",
+    "paragraph1": "Me gradué de Informática Empresarial en la UCR en abril de 2025. Antes de eso ya había construido un ERP completo por mi cuenta, hecho pasantía en Funread y firmado contrato con 4thewords. La carrera fue el papel; los proyectos fueron el aprendizaje real.",
+    "paragraph2": "Trabajo bien cuando el problema es feo: sistemas legados, migraciones, race conditions, bugs viejos que nadie quiere tocar. Antes de escribir código intento entender qué se está intentando lograr — la mitad de las soluciones desaparecen cuando el problema queda bien planteado.",
+    "paragraph3_prefix": "Estoy abierto a",
+    "empleoFijo": "empleo fijo",
+    "paragraph3_middle": "y a tomar",
+    "proyectosFreelance": "proyectos freelance",
+    "paragraph3_suffix": "en paralelo. Ambos formatos me interesan por razones distintas y no compiten entre sí.",
+    "footnote": "// no es un lema. es literalmente el orden en que trabajo."
   }
 }

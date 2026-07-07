@@ -32,5 +32,17 @@
       "career": "software engineering",
       "hour": "local time"
     }
+  },
+  "sobreMi": {
+    "eyebrow": "about me",
+    "title": "Self-taught with engineering judgment, not just a code typist.",
+    "paragraph1": "I graduated in Business Informatics from UCR in April 2025. Before that, I had already built a full ERP on my own, done an internship at Funread, and signed a contract with 4thewords. The degree was the paperwork; the projects were the real learning.",
+    "paragraph2": "I do my best work when the problem is messy: legacy systems, migrations, race conditions, old bugs nobody wants to touch. Before writing code, I try to figure out what's actually being asked — half the solutions disappear once the problem is properly framed.",
+    "paragraph3_prefix": "I'm open to",
+    "empleoFijo": "full-time roles",
+    "paragraph3_middle": "and taking on",
+    "proyectosFreelance": "freelance projects",
+    "paragraph3_suffix": "in parallel. Both formats interest me for different reasons, and they don't compete with each other.",
+    "footnote": "// it's not a slogan. it's literally the order I work in."
   }
 }
