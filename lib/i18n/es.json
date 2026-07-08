@@ -9,7 +9,7 @@
     "disponible": "Disponible"
   },
   "profile": {
-    "role": "Ingeniero en Sistemas · Full Stack",
+    "role": "Informático Empresarial · Full Stack",
     "status": "Disponible para empleo fijo y proyectos freelance"
   },
   "footer": {
@@ -22,14 +22,14 @@
   "hero": {
     "title": "Diseño y construyo software que resiste",
     "subtitle": "producción",
-    "description": "Ingeniero en Sistemas Full Stack. Construyo desde ERPs con arquitectura hexagonal hasta landings con Lighthouse 100/100. Escribo código que otros ingenieros pueden mantener sin necesitar traducción.",
+    "description": "Informático Empresarial Full Stack. Construyo desde ERPs con arquitectura hexagonal hasta landings con Lighthouse 100/100. Escribo código que otros ingenieros pueden mantener sin necesitar traducción.",
     "actions": {
       "contacto": "contratar servicios",
       "perfil": "ver perfil profesional",
       "descargar": "descargar"
     },
     "meta": {
-      "career": "ingeniería de sistemas",
+      "career": "informática empresarial",
       "hour": "hora local"
     }
   },
@@ -44,5 +44,28 @@
     "proyectosFreelance": "proyectos freelance",
     "paragraph3_suffix": "en paralelo. Ambos formatos me interesan por razones distintas y no compiten entre sí.",
     "footnote": "// no es un lema. es literalmente el orden en que trabajo."
+  },
+  "badges": {
+    "demoRepo": "[ demo + repo ]",
+    "repoOnly": "[ repositorio ]",
+    "demoOnly": "[ demo ]",
+    "partial": "[ acceso parcial ]",
+    "confidential": "[ case study · nda ]",
+    "inDevelopment": "[ en desarrollo ]"
+  },
+  "projects": {
+    "eyebrow": "// proyectos",
+    "title": "Proyectos que muestran cómo pienso, no solo qué uso.",
+    "description": "Tres tipos de tarjeta según lo que puedo enseñar: público con links, acceso parcial, o case study bajo NDA con problema, decisiones y arquitectura.",
+    "view": {
+      "list": "vista lista",
+      "map": "explorar como mapa"
+    },
+    "registration": "registros",
+    "FeaturedTitle1": "// problema",
+    "FeaturedTitle2": "// decisiones técnicas",
+    "cardTitle1": "problema",
+    "cardTitle2": "decisiones",
+    "cardTitle3": "arquitectura"
   }
 }

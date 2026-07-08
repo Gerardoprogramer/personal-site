@@ -9,7 +9,7 @@
     "disponible": "Available"
   },
   "profile": {
-    "role": "Systems Engineer · Full Stack",
+    "role": "Business Informatics · Full Stack",
     "status": "Open to full-time roles and freelance projects"
   },
   "footer": {
@@ -22,14 +22,14 @@
   "hero": {
     "title": "I build software that",
     "subtitle": "survives production",
-    "description": "Full Stack Software Engineer. I build everything from ERPs with Hexagonal Architecture to landing pages that achieve Lighthouse 100/100. I write code that other engineers can maintain without needing a translation.",
+    "description": "Full Stack Business Informatics graduate. I build everything from ERPs with Hexagonal Architecture to landing pages that achieve Lighthouse 100/100. I write code that other engineers can maintain without needing a translation.",
     "actions": {
       "contacto": "hire me",
       "perfil": "view my profile",
       "descargar": "download"
     },
     "meta": {
-      "career": "software engineering",
+      "career": "business informatics",
       "hour": "local time"
     }
   },
@@ -44,5 +44,28 @@
     "proyectosFreelance": "freelance projects",
     "paragraph3_suffix": "in parallel. Both formats interest me for different reasons, and they don't compete with each other.",
     "footnote": "// it's not a slogan. it's literally the order I work in."
+  },
+  "badges": {
+    "demoRepo": "[ demo + repo ]",
+    "repoOnly": "[ repository ]",
+    "demoOnly": "[ demo ]",
+    "partial": "[ partial access ]",
+    "confidential": "[ case study · nda ]",
+    "inDevelopment": "[ in development ]"
+  },
+  "projects": {
+    "eyebrow": "// projects",
+    "title": "Projects that show how I think, not just what I use.",
+    "description": "Three project formats based on what I can share: public repositories, limited access, or NDA case studies covering the problem, technical decisions, and architecture.",
+    "view": {
+      "list": "list view",
+      "map": "map view"
+    },
+    "registration": "entries",
+    "FeaturedTitle1": "// problem",
+    "FeaturedTitle2": "// technical decisions",
+    "cardTitle1": "problem",
+    "cardTitle2": "decisions",
+    "cardTitle3": "architecture"
   }
 }
