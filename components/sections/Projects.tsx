@@ -6,6 +6,7 @@ import { getProjects } from "@/content/ProjectView";
 import { useTranslation } from "@/lib/i18n/context";
 import { FeaturedProject } from "./projects/FeaturedProject";
 import { ProjectCard } from "./projects/ProjectCard";
+import { ProjectsMap } from "./projects/ProjectsMap";
 
 export const Projects = () => {
     const [view, setView] = useState<"list" | "map">("list");
@@ -32,8 +33,8 @@ export const Projects = () => {
                             <button
                                 type="button"
                                 role="tab"
-                                /* aria-selected={view === "list"}
-                                onClick={() => setView("list")} */
+                                aria-selected={view === "list"}
+                                onClick={() => setView("list")}
                                 className={`relative flex items-center gap-2 px-3 py-2 transition-colors ${view === "list"
                                     ? "bg-primary/10 text-primary"
                                     : "text-muted-foreground hover:text-foreground"
@@ -44,8 +45,8 @@ export const Projects = () => {
                             <button
                                 type="button"
                                 role="tab"
-                                /* aria-selected={view === "map"}
-                                onClick={() => setView("map")} */
+                                aria-selected={view === "map"}
+                                onClick={() => setView("map")}
                                 className={`relative flex items-center gap-2 border-l border-border px-3 py-2 transition-colors ${view === "map"
                                     ? "bg-primary/10 text-primary"
                                     : "text-muted-foreground hover:text-foreground"
@@ -71,7 +72,7 @@ export const Projects = () => {
                     </div>
                 ) : (
                     <div className="mt-14">
-                        {/* <ProjectsMap projects={projects} /> */}
+                        <ProjectsMap projects={projects} />
                     </div>
                 )}
             </div>

@@ -15,7 +15,7 @@ export interface Project {
 export const projects: Project[] = [
     {
         slug: "erp-minisuper",
-        context: "personal",
+        context: "freelance",
         type: "confidential",
         featured: true,
         year: "2025",
