@@ -1,5 +1,6 @@
 import { DesktopMap } from "./DesktopMap"
 import type { ProjectView as Project } from "@/content/ProjectView";
+import { MobileMap } from "./MobileMap";
 
 type ProjectsMapProps = {
     projects: Project[];
@@ -19,6 +20,11 @@ export const ProjectsMap = ({ projects, selectedSlug, onSelectSlug }: ProjectsMa
 
 
             {/* Mobile: collapsible clusters */}
+            <MobileMap
+                projects={projects}
+                selectedSlug={selectedSlug}
+                onSelectSlug={onSelectSlug}
+            />
 
         </div>
     )

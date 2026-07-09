@@ -13,7 +13,7 @@ export const LanguageSwitcher = () => {
         <div
             role="group"
             aria-label={t.nav.languageSwitcher}
-            className="hidden items-stretch border border-border font-mono-tech text-[10px] uppercase tracking-widest sm:flex"
+            className="items-stretch border border-border font-mono-tech text-[10px] uppercase tracking-widest sm:flex"
         >
             <button
                 type="button"
