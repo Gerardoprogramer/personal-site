@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { LanguageProvider } from "@/lib/i18n/context";
 
 const geistSans = Geist({
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://gerardomm.dev"; // ajusta a tu dominio final
+const SITE_URL = "https://gerardomm.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: "Gerardo Martínez Monge",
     images: [
       {
-        url: "/og-image.png", // 1200x630, generar uno específico
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Gerardo Martínez Monge - Full Stack Developer",
@@ -95,7 +95,7 @@ const jsonLd = {
     addressLocality: "Liberia",
     addressCountry: "CR",
   },
-  email: "hola@gerardomartinez.dev", // ajusta al real
+  email: "hola@gerardomartinez.dev",
   sameAs: [
     "https://github.com/tu-usuario",
     "https://linkedin.com/in/tu-usuario",
@@ -116,8 +116,8 @@ const jsonLd = {
 
 export default async function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
 
-  const cookieStore = await cookies();
-  const initialLang = (cookieStore.get("language")?.value as "es" | "en") || "es";
+  const headersList = await headers();
+  const initialLang = (headersList.get("x-language") as "es" | "en") || "es";
 
   return (
     <html

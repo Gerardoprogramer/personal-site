@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import es from "./es.json";
 import en from "./en.json";
 
@@ -24,10 +25,17 @@ export function LanguageProvider({
     initialLang: Language;
 }) {
     const [language, setLanguageState] = useState<Language>(initialLang);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     const setLanguage = (lang: Language) => {
         document.cookie = `language=${lang}; path=/; max-age=31536000`;
         setLanguageState(lang);
+
+        const params = new URLSearchParams(searchParams.toString());
+        params.set("lang", lang);
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     };
 
     useEffect(() => {
@@ -35,9 +43,7 @@ export function LanguageProvider({
     }, [language]);
 
     return (
-        <LanguageContext.Provider
-            value={{ language, setLanguage, t: translations[language] }}
-        >
+        <LanguageContext.Provider value={{ language, setLanguage, t: translations[language] }}>
             {children}
         </LanguageContext.Provider>
     );
