@@ -34,9 +34,17 @@ const MAX_SPREAD = 130;
 const PAD_X = 20;
 const PAD_Y = 20;
 
+function round(n: number, decimals = 2): number {
+    const factor = 10 ** decimals;
+    return Math.round(n * factor) / factor;
+}
+
 function polar(cx: number, cy: number, r: number, deg: number) {
     const rad = (deg - 90) * (Math.PI / 180);
-    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+    return {
+        x: round(cx + r * Math.cos(rad)),
+        y: round(cy + r * Math.sin(rad)),
+    };
 }
 
 function maxRadiusInBounds(
@@ -148,9 +156,14 @@ function layoutCluster(cluster: ClusterPos, allProjects: Project[]): PositionedN
     });
 }
 
-export const DesktopMap = ({ projects }: { projects: Project[] }) => {
+type DesktopMapProps = {
+    projects: Project[];
+    selectedSlug: string | null;
+    onSelectSlug: (slug: string | null) => void;
+};
 
-    const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+export const DesktopMap = ({ projects, selectedSlug, onSelectSlug }: DesktopMapProps) => {
+
     const [overflowClusterId, setOverflowClusterId] = useState<ProjectContext | null>(null);
     const [hovered, setHovered] = useState<string | null>(null);
     const closeRef = useRef<HTMLButtonElement | null>(null);
@@ -165,7 +178,7 @@ export const DesktopMap = ({ projects }: { projects: Project[] }) => {
     useEffect(() => {
         function onKey(e: KeyboardEvent) {
             if (e.key === "Escape" && activeOverlay) {
-                setSelectedSlug(null);
+                onSelectSlug(null);
                 setOverflowClusterId(null);
                 lastFocusRef.current?.focus();
             }
@@ -201,7 +214,7 @@ export const DesktopMap = ({ projects }: { projects: Project[] }) => {
         : [];
 
     function closeOverlay() {
-        setSelectedSlug(null);
+        onSelectSlug(null);
         setOverflowClusterId(null);
         lastFocusRef.current?.focus();
     }
@@ -210,7 +223,6 @@ export const DesktopMap = ({ projects }: { projects: Project[] }) => {
         <div className="surface-card relative hidden overflow-hidden md:block">
             <div className="blueprint-grid absolute inset-0 opacity-60 mask-[radial-gradient(ellipse_at_center,black_30%,transparent_80%)]" />
 
-            {/* Corner tick marks */}
             <div className="pointer-events-none absolute left-3 top-3 h-3 w-3 border-l border-t border-primary/60" />
             <div className="pointer-events-none absolute right-3 top-3 h-3 w-3 border-r border-t border-primary/60" />
             <div className="pointer-events-none absolute bottom-3 left-3 h-3 w-3 border-b border-l border-primary/60" />
@@ -339,7 +351,7 @@ export const DesktopMap = ({ projects }: { projects: Project[] }) => {
                     function handleActivate(e: React.SyntheticEvent) {
                         lastFocusRef.current = e.currentTarget as unknown as HTMLElement;
                         if (node.kind === "project") {
-                            setSelectedSlug(node.project.slug);
+                            onSelectSlug(node.project.slug);
                         } else {
                             setOverflowClusterId(p.cluster.id);
                         }
@@ -463,7 +475,7 @@ export const DesktopMap = ({ projects }: { projects: Project[] }) => {
                                             onClick={(e) => {
                                                 lastFocusRef.current = e.currentTarget as unknown as HTMLElement;
                                                 setOverflowClusterId(null);
-                                                setSelectedSlug(project.slug);
+                                                onSelectSlug(project.slug);
                                             }}
                                             className="border border-border bg-(--color-surface-2) px-4 py-3 text-left font-mono-tech text-[11px] text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                                         >

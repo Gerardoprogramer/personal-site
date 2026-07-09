@@ -1,19 +1,32 @@
 'use client';
 
 import { SectionHeader } from "../shared/SectionHeader"
-import { useState } from "react"
 import { getProjects } from "@/content/ProjectView";
 import { useTranslation } from "@/lib/i18n/context";
 import { FeaturedProject } from "./projects/FeaturedProject";
 import { ProjectCard } from "./projects/ProjectCard";
 import { ProjectsMap } from "./projects/ProjectsMap";
+import { Pagination } from "@/components/shared/PaginationProps ";
+import { useProjectsViewState } from "@/hooks/useProjectsViewState";
+
+const PAGE_SIZE = 6;
 
 export const Projects = () => {
-    const [view, setView] = useState<"list" | "map">("list");
+    const { view, setView, page, setPage, selectedSlug, setSelectedSlug } = useProjectsViewState();
     const { language, t } = useTranslation();
     const projects = getProjects(language);
     const featured = projects.find((p) => p.featured)!;
     const rest = projects.filter((p) => !p.featured);
+
+    const totalPages = Math.max(1, Math.ceil(rest.length / PAGE_SIZE));
+    const safePage = Math.min(page, totalPages);
+    const start = (safePage - 1) * PAGE_SIZE;
+    const pageItems = rest.slice(start, start + PAGE_SIZE);
+
+    function handlePageChange(nextPage: number) {
+        setPage(nextPage);
+        document.getElementById("proyectos")?.scrollIntoView({ block: "start" });
+    }
 
     return (
         <section id="proyectos" className="py-24">
@@ -63,16 +76,25 @@ export const Projects = () => {
 
                 {view === "list" ? (
                     <div className="mt-14 space-y-6">
-                        <FeaturedProject project={featured} />
+                        {safePage === 1 ? <FeaturedProject project={featured} /> : null}
                         <div className="grid items-stretch gap-6 md:grid-cols-2">
-                            {rest.map((p) => (
+                            {pageItems.map((p) => (
                                 <ProjectCard key={p.slug} project={p} />
                             ))}
                         </div>
+                        <Pagination
+                            page={safePage}
+                            totalPages={totalPages}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 ) : (
                     <div className="mt-14">
-                        <ProjectsMap projects={projects} />
+                        <ProjectsMap
+                            projects={projects}
+                            selectedSlug={selectedSlug}
+                            onSelectSlug={setSelectedSlug}
+                        />
                     </div>
                 )}
             </div>
