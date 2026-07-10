@@ -134,5 +134,36 @@
       "built": "// built",
       "learned": "// learned"
     }
+  },
+  "contact": {
+    "header": {
+      "eyebrow": "// contact",
+      "title": "Tell me what you need to build.",
+      "description": "I usually reply the same day. If you prefer direct email, that works too."
+    },
+    "intents": {
+      "service": "I want to hire a service",
+      "position": "I want to offer a position",
+      "other": "Other"
+    },
+    "labels": {
+      "intention": "// intent",
+      "name": "name",
+      "email": "email",
+      "message": "message"
+    },
+    "placeholders": {
+      "name": "Your name",
+      "email": "you@email.com",
+      "service": "Project context, timeline, approximate budget…",
+      "position": "Role, stack, format (remote/hybrid), salary range…",
+      "other": "Tell me what you have in mind."
+    },
+    "help": "// no templates. read it before sending and get to the point.",
+    "directEmail": "or email me at",
+    "button": {
+      "send": "send message",
+      "sent": "message sent"
+    }
   }
 }

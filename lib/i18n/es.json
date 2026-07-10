@@ -134,5 +134,36 @@
       "built": "// construí",
       "learned": "// aprendí"
     }
+  },
+  "contact": {
+    "header": {
+      "eyebrow": "// contacto",
+      "title": "Cuéntame qué necesitas construir.",
+      "description": "Respondo por lo general el mismo día. Si prefieres correo directo, también funciona."
+    },
+    "intents": {
+      "service": "Quiero contratar un servicio",
+      "position": "Quiero ofrecer una posición",
+      "other": "Otro"
+    },
+    "labels": {
+      "intention": "// intención",
+      "name": "nombre",
+      "email": "correo",
+      "message": "mensaje"
+    },
+    "placeholders": {
+      "name": "Tu nombre",
+      "email": "tu@correo.com",
+      "service": "Contexto del proyecto, plazos, presupuesto aproximado…",
+      "position": "Rol, stack, formato (remoto/híbrido), rango salarial…",
+      "other": "Cuéntame en qué estás pensando."
+    },
+    "help": "// sin plantillas. léelo antes de enviar y ve al grano.",
+    "directEmail": "o escríbeme a",
+    "button": {
+      "send": "enviar mensaje",
+      "sent": "mensaje enviado"
+    }
   }
 }
