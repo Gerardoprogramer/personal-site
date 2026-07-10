@@ -70,5 +70,29 @@
   },
   "map": {
     "return": "Back to the map"
+  },
+  "services": {
+    "First": {
+      "title": "New Product Development",
+      "body": "From the initial conversation to a production-ready MVP. I choose the stack that solves the problem—not the one that's trending—and leave the codebase in a state where another engineer can pick it up without needing extra context."
+    },
+    "Second": {
+      "title": "System Maintenance",
+      "body": "Iterating on production systems without breaking what already works. Small, reversible changes, tests where they're missing, and documentation where it's needed most."
+    },
+    "Third": {
+      "title": "Bug Fixing",
+      "body": "Reproduce first, understand second, fix last. I enjoy tackling long-standing bugs nobody wants to touch and race conditions that only show up in production."
+    },
+    "Fourth": {
+      "title": "Migrations",
+      "body": "Data, framework, or full-stack migrations. I plan short maintenance windows, preserve backward compatibility, and avoid risky big-bang releases that disrupt operations."
+    },
+    "Header": {
+      "eyebrow": "// services",
+      "title": "How I work when you hire me for a project.",
+      "description": "This isn't a price list. It's how I approach each type of project. Pricing depends on the actual scope, not on a fixed rate card."
+    },
+    "disponible": "Available"
   }
 }

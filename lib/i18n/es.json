@@ -69,6 +69,30 @@
     "cardTitle3": "arquitectura"
   },
   "map": {
-  "return": "volver al mapa"
+    "return": "volver al mapa"
+  },
+  "services": {
+    "First": {
+      "title": "Desarrollo de productos nuevos",
+      "body": "De la conversación inicial al MVP en producción. Elijo el stack que resuelva el problema, no el que esté de moda, y dejo el código en un estado en el que otro ingeniero pueda continuar sin pedir contexto."
+    },
+    "Second": {
+      "title": "Mantenimiento de sistemas",
+      "body": "Iteración sobre sistemas ya en producción sin romper lo que funciona. Cambios pequeños, reversibles, con tests donde faltan y documentación donde duele."
+    },
+    "Third": {
+      "title": "Resolución de bugs",
+      "body": "Reproducir primero, entender después, corregir al final. Trabajo bien con bugs viejos que ya nadie quiere tocar y con condiciones de carrera que solo aparecen en producción."
+    },
+    "Fourth": {
+      "title": "Migraciones",
+      "body": "Migraciones de datos, de versión de framework o de stack completo. Planifico ventanas cortas, mantengo compatibilidad hacia atrás y evito el big bang que rompe la operación."
+    },
+    "Header": {
+      "eyebrow": "// servicios",
+      "title": "Cómo trabajo cuando me contratas por proyecto.",
+      "description": "No es un catálogo con precios. Es la forma en que abordo cada tipo de trabajo. El precio depende del alcance real, no de una tabla."
+    },
+    "disponible": "Disponible"
   }
 }
