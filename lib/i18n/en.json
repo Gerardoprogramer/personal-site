@@ -94,5 +94,45 @@
       "description": "This isn't a price list. It's how I approach each type of project. Pricing depends on the actual scope, not on a fixed rate card."
     },
     "disponible": "Available"
+  },
+  "Stack": {
+    "labeldata": "Data & Infra",
+    "labelsecond": "Secondary",
+    "Header": {
+      "eyebrow": "// stack",
+      "title": "The tools I use to solve real-world problems.",
+      "description": "Grouped by domain. Secondary technologies are included because I have experience with them, not because they are my go-to choice."
+    }
+  },
+  "experience": {
+    "4thewords": {
+      "role": "Full Stack Developer (professional services contract)",
+      "format": "Remote · Costa Rica",
+      "built": [
+        "Product features in Vue.js on top of a production Python backend.",
+        "Bug fixes through systematic reproduction, not blind patches.",
+        "Small performance improvements in database queries."
+      ],
+      "learned": "Working on a live product with real users changes the definition of \"done\": code that works correctly but breaks operations is not finished."
+    },
+    "funread": {
+      "role": "Backend Internship (Django)",
+      "format": "Internship · Costa Rica",
+      "built": [
+        "Endpoints and models using Django + DRF.",
+        "Safe migrations with backfills split into separate steps.",
+        "Integration tests covering critical workflows."
+      ],
+      "learned": "The first time your own merge reaches production teaches more discipline than a semester of theory."
+    },
+    "header": {
+      "eyebrow": "// experience",
+      "title": "Where I got my hands on production systems.",
+      "description": "Early in my career, but every role has a story: what I built and what I learned along the way."
+    },
+    "labels": {
+      "built": "// built",
+      "learned": "// learned"
+    }
   }
 }

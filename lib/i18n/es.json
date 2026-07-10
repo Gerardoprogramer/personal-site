@@ -94,5 +94,45 @@
       "description": "No es un catálogo con precios. Es la forma en que abordo cada tipo de trabajo. El precio depende del alcance real, no de una tabla."
     },
     "disponible": "Disponible"
+  },
+  "Stack": {
+    "labeldata": "Datos & Infra",
+    "labelsecond": "Secundario",
+    "Header": {
+      "eyebrow": "// stack",
+      "title": "Herramientas con las que resuelvo problemas reales.",
+      "description": "Agrupadas por dominio. El stack secundario aparece porque lo conozco, no porque sea mi primer recurso."
+    }
+  },
+  "experience": {
+    "4thewords": {
+      "role": "Desarrollador Full Stack (contrato de servicios profesionales)",
+      "format": "Remoto · Costa Rica",
+      "built": [
+        "Features de producto en Vue.js sobre un backend Python en producción.",
+        "Corrección de bugs con reproducción sistemática, no parches ciegos.",
+        "Pequeñas mejoras de rendimiento en consultas de base de datos."
+      ],
+      "learned": "Trabajar en un producto vivo con usuarios reales cambia la definición de \"terminado\": el código correcto que rompe la operación no está terminado."
+    },
+    "funread": {
+      "role": "Pasantía Backend (Django)",
+      "format": "Pasantía · Costa Rica",
+      "built": [
+        "Endpoints y modelos en Django + DRF.",
+        "Migraciones seguras con backfill en pasos separados.",
+        "Tests de integración sobre los flujos críticos."
+      ],
+      "learned": "La primera vez que un merge propio llega a producción enseña más disciplina que un semestre de teoría."
+    },
+    "header": {
+      "eyebrow": "// experiencia",
+      "title": "Dónde puse las manos en producción.",
+      "description": "Poca antigüedad, pero cada rol tiene contexto: qué construí y qué me llevé."
+    },
+    "labels": {
+      "built": "// construí",
+      "learned": "// aprendí"
+    }
   }
 }
