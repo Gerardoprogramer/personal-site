@@ -9,7 +9,6 @@ import { FaCheck } from "react-icons/fa6";
 
 export const Contact = () => {
     const { t } = useTranslation();
-    
     const [intent, setIntent] = useState("servicio");
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
