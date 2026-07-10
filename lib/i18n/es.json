@@ -67,5 +67,8 @@
     "cardTitle1": "problema",
     "cardTitle2": "decisiones",
     "cardTitle3": "arquitectura"
+  },
+  "map": {
+  "return": "volver al mapa"
   }
 }

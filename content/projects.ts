@@ -23,7 +23,7 @@ export const projects: Project[] = [
         impact: [
             { labelKey: "modulos", value: "6" },
             { labelKey: "endpoints", value: "31" },
-            { labelKey: "arquitectura", value: "DDD + Hexagonal + CQRS" },
+            { labelKey: "architecture", value: "DDD + Hexagonal + CQRS" },
         ],
     },
     {

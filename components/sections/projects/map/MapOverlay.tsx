@@ -1,3 +1,4 @@
+import { useTranslation } from '@/lib/i18n/context';
 import { ReactNode } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 
@@ -10,12 +11,9 @@ type MapOverlayProps = {
     children: ReactNode;
 };
 
-export function MapOverlay({
-    ariaLabel, closeRef, onClose,
-    maxWidthClassName = "max-w-xl",
-    position = "absolute",
-    children,
-}: MapOverlayProps) {
+export function MapOverlay({ ariaLabel, closeRef, onClose, maxWidthClassName = "max-w-xl", position = "absolute", children, }: MapOverlayProps) {
+    const { t } = useTranslation();
+
     return (
         <div
             className={
@@ -39,7 +37,7 @@ export function MapOverlay({
                         onClick={onClose}
                         className="sticky top-0 z-10 mb-3 inline-flex items-center gap-2 border-b border-border bg-background/90 pb-0.5 font-mono-tech text-[11px] uppercase tracking-widest text-muted-foreground backdrop-blur-sm transition-colors hover:border-primary hover:text-primary"
                     >
-                        <FaArrowLeft /> volver al mapa
+                        <FaArrowLeft /> {t.map.return}
                     </button>
                     {children}
                 </div>

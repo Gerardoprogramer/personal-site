@@ -80,7 +80,7 @@ export const FeaturedProject = ({ project }: { project: Project }) => {
                         {project.architecture ? (
                             <div>
                                 <div className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground">
-                                    arquitectura
+                                    {t.projects.cardTitle3}
                                 </div>
                                 <div className="mt-1 font-display text-sm font-medium">
                                     {project.architecture}

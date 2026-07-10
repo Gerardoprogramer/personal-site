@@ -9,7 +9,7 @@ export function MapFrame({ projectCount }: { projectCount: number }) {
             <div className="pointer-events-none absolute bottom-3 right-3 h-3 w-3 border-b border-r border-primary/60" />
 
             <div className="pointer-events-none absolute left-6 top-6 font-mono-tech text-[10px] uppercase tracking-widest text-primary">
-                fig.02 — proyectos / map
+                fig.02 — projects / map
             </div>
             <div className="pointer-events-none absolute right-6 top-6 font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground">
                 {projectCount.toString().padStart(2, "0")} · nodos
