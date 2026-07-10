@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://gerardomm.dev";
+const SITE_URL = "https://gerardomartinez.dev";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    apple: "/apple-icon.png",
   },
 };
 
@@ -97,8 +97,8 @@ const jsonLd = {
   },
   email: "hola@gerardomartinez.dev",
   sameAs: [
-    "https://github.com/tu-usuario",
-    "https://linkedin.com/in/tu-usuario",
+    "https://github.com/Gerardoprogramer",
+    "https://www.linkedin.com/in/gerardomartinezmonge",
   ],
   knowsAbout: [
     "Python",

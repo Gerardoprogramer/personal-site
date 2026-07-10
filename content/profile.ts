@@ -11,7 +11,7 @@ interface propsProfile {
 export const profileStatic = {
     name: "Gerardo Martínez Monge",
     location: "Liberia, Costa Rica",
-    email: "gerardoalonso.martinezmonge@gmail.com",
+    email: "hola@gerardomartinez.dev",
 };
 
 export function getProfile(t: Translations): propsProfile {
