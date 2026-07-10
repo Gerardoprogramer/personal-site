@@ -21,15 +21,15 @@ const SITE_URL = "https://gerardomartinez.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Gerardo Martínez Monge | Ingeniero en Sistemas · Full Stack Developer",
+    default: "Gerardo Martínez Monge | Informático Empresarial · Full Stack Developer",
     template: "%s | Gerardo Martínez Monge",
   },
   description:
-    "Ingeniero en Sistemas Full Stack en Costa Rica. Construyo ERPs con arquitectura hexagonal y DDD, sistemas backend con Python/FastAPI/Django, y frontend con React/Next.js. Disponible para empleo fijo y proyectos freelance.",
+    "Informático Empresarial Full Stack en Costa Rica. Construyo ERPs con arquitectura hexagonal y DDD, sistemas backend con Python/FastAPI/Django, y frontend con React/Next.js. Disponible para empleo fijo y proyectos freelance.",
   keywords: [
     "Gerardo Martínez Monge",
     "Full Stack Developer Costa Rica",
-    "Ingeniero en Sistemas",
+    "Informático Empresarial",
     "Python developer",
     "FastAPI",
     "Django developer",
@@ -89,7 +89,7 @@ const jsonLd = {
   "@type": "Person",
   name: "Gerardo Martínez Monge",
   url: SITE_URL,
-  jobTitle: "Ingeniero en Sistemas · Full Stack Developer",
+  jobTitle: "Informático Empresarial · Full Stack Developer",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Liberia",
