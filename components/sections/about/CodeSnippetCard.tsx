@@ -35,7 +35,7 @@ export const CodeSnippetCard = () => {
                                 <span
                                     className={
                                         line.trim().startsWith("#")
-                                            ? "text-muted-foreground/60"
+                                            ? "text-muted-foreground/80"
                                             : line.includes("def ") || line.includes("return")
                                                 ? "text-primary"
                                                 : "text-foreground"

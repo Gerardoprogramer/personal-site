@@ -9,7 +9,7 @@ export const About = () => {
         >
             <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-16">
                 <AboutText />
-                <div className="lg:pt-14">
+                <div className="lg:pt-14 min-w-0">
                     <CodeSnippetCard />
                 </div>
             </div>

@@ -132,7 +132,7 @@ export const Contact = () => {
                                 required
                                 type="text"
                                 autoComplete="name"
-                                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary"
+                                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-primary"
                                 placeholder={t.contact.placeholders.name}
                             />
                         </div>
@@ -149,7 +149,7 @@ export const Contact = () => {
                                 required
                                 type="email"
                                 autoComplete="email"
-                                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary"
+                                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-primary"
                                 placeholder={t.contact.placeholders.email}
                             />
                         </div>
@@ -168,7 +168,7 @@ export const Contact = () => {
                             required
                             minLength={10}
                             rows={5}
-                            className="mt-2 w-full rounded-md border border-border bg-surface-2/40 px-3 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary"
+                            className="mt-2 w-full rounded-md border border-border bg-surface-2/40 px-3 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-primary"
                             placeholder={
                                 intent === "posicion"
                                     ? t.contact.placeholders.position
