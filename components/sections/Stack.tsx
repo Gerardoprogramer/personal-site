@@ -20,7 +20,7 @@ export const Stack = () => {
                     {stackGroups(t).map((group) => (
                         <div
                             key={group.id}
-                            className={`surface-card p-6 ${group.secondary ? "opacity-70" : ""}`}
+                            className={`surface-card p-6 ${group.secondary ? "opacity-80" : ""}`}
                         >
                             <div className="flex items-center justify-between">
                                 <div className="font-mono-tech text-[10px] uppercase tracking-widest text-primary">
