@@ -11,6 +11,8 @@ export const Contact = () => {
     const { t } = useTranslation();
     const [intent, setIntent] = useState("servicio");
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+    const MAX_MESSAGE = 2000;
+    const [messageLength, setMessageLength] = useState(0);
 
     const intents = [
         { value: "servicio", label: t.contact.intents.service },
@@ -131,6 +133,7 @@ export const Contact = () => {
                                 name="name"
                                 required
                                 type="text"
+                                maxLength={100}
                                 autoComplete="name"
                                 className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-primary"
                                 placeholder={t.contact.placeholders.name}
@@ -167,7 +170,9 @@ export const Contact = () => {
                             name="message"
                             required
                             minLength={10}
+                            maxLength={MAX_MESSAGE}
                             rows={5}
+                            onChange={(e) => setMessageLength(e.target.value.length)}
                             className="mt-2 w-full rounded-md border border-border bg-surface-2/40 px-3 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-primary"
                             placeholder={
                                 intent === "posicion"
@@ -177,6 +182,9 @@ export const Contact = () => {
                                         : t.contact.placeholders.other
                             }
                         />
+                        <div className="mt-1 text-right font-mono-tech text-[10px] text-muted-foreground">
+                            {messageLength}/{MAX_MESSAGE}
+                        </div>
                     </div>
 
                     <div
