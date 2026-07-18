@@ -165,5 +165,24 @@
       "send": "enviar mensaje",
       "sent": "mensaje enviado"
     }
+  },
+  "meta": {
+    "title": "Gerardo Martínez Monge | Informático Empresarial · Full Stack Developer",
+    "description": "Informático Empresarial Full Stack en Costa Rica. Construyo ERPs con arquitectura hexagonal y DDD, sistemas backend con Python/FastAPI/Django, y frontend con React/Next.js. Disponible para empleo fijo y proyectos freelance.",
+    "ogDescription": "Diseño y construyo software que resiste producción. ERPs, sistemas backend y frontend con arquitectura sólida.",
+    "twitterDescription": "Diseño y construyo software que resiste producción.",
+    "keywords": [
+      "Gerardo Martínez Monge",
+      "Desarrollador Full Stack Costa Rica",
+      "Informático Empresarial",
+      "Desarrollador Python",
+      "FastAPI",
+      "Desarrollador Django",
+      "Desarrollador React",
+      "Desarrollador Next.js",
+      "Domain-Driven Design",
+      "Arquitectura Hexagonal",
+      "Desarrollador freelance Costa Rica"
+    ]
   }
 }

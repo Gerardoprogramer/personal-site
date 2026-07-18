@@ -165,5 +165,24 @@
       "send": "send message",
       "sent": "message sent"
     }
+  },
+  "meta": {
+    "title": "Gerardo Martínez Monge | Full Stack Developer & Business Informatics Engineer",
+    "description": "Full Stack Business Informatics engineer based in Costa Rica. I build ERPs with Hexagonal Architecture and DDD, backend systems with Python/FastAPI/Django, and frontends with React/Next.js. Open to full-time roles and freelance projects.",
+    "ogDescription": "I design and build software that survives production. ERPs, backend systems, and frontends with solid architecture.",
+    "twitterDescription": "I design and build software that survives production.",
+    "keywords": [
+      "Gerardo Martínez Monge",
+      "Full Stack Developer Costa Rica",
+      "Business Informatics Engineer",
+      "Python Developer",
+      "FastAPI",
+      "Django Developer",
+      "React Developer",
+      "Next.js Developer",
+      "Domain-Driven Design",
+      "Hexagonal Architecture",
+      "Freelance Developer Costa Rica"
+    ]
   }
 }

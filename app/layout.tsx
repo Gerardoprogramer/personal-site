@@ -5,6 +5,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { headers } from "next/headers";
 import { LanguageProvider } from "@/lib/i18n/context";
+import es from "@/lib/i18n/es.json";
+import en from "@/lib/i18n/en.json";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,106 +20,113 @@ const geistMono = Geist_Mono({
 
 const SITE_URL = "https://gerardomartinez.dev";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "Gerardo Martínez Monge | Informático Empresarial · Full Stack Developer",
-    template: "%s | Gerardo Martínez Monge",
-  },
-  description:
-    "Informático Empresarial Full Stack en Costa Rica. Construyo ERPs con arquitectura hexagonal y DDD, sistemas backend con Python/FastAPI/Django, y frontend con React/Next.js. Disponible para empleo fijo y proyectos freelance.",
-  keywords: [
-    "Gerardo Martínez Monge",
-    "Full Stack Developer Costa Rica",
-    "Informático Empresarial",
-    "Python developer",
-    "FastAPI",
-    "Django developer",
-    "React developer",
-    "Next.js developer",
-    "Domain-Driven Design",
-    "Arquitectura Hexagonal",
-    "Desarrollador freelance Costa Rica",
-  ],
-  authors: [{ name: "Gerardo Martínez Monge", url: SITE_URL }],
-  creator: "Gerardo Martínez Monge",
-  openGraph: {
-    type: "website",
-    locale: "es_CR",
-    url: SITE_URL,
-    title: "Gerardo Martínez Monge | Full Stack Developer",
-    description:
-      "Diseño y construyo software que resiste producción. ERPs, sistemas backend y frontend con arquitectura sólida.",
-    siteName: "Gerardo Martínez Monge",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Gerardo Martínez Monge - Full Stack Developer",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Gerardo Martínez Monge | Full Stack Developer",
-    description:
-      "Diseño y construyo software que resiste producción.",
-    images: ["/og-image.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+const dictionaries = { es, en };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const lang = (headersList.get("x-language") as "es" | "en") || "es";
+  const dict = dictionaries[lang].meta;
+  const ogLocale = lang === "es" ? "es_CR" : "en_US";
+  const canonicalUrl = `${SITE_URL}/?lang=${lang}`;
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: dict.title,
+      template: "%s | Gerardo Martínez Monge",
+    },
+    description: dict.description,
+    keywords: dict.keywords,
+    authors: [{ name: "Gerardo Martínez Monge", url: SITE_URL }],
+    creator: "Gerardo Martínez Monge",
+    openGraph: {
+      type: "website",
+      locale: ogLocale,
+      url: canonicalUrl,
+      title: dict.title,
+      description: dict.ogDescription,
+      siteName: "Gerardo Martínez Monge",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Gerardo Martínez Monge - Full Stack Developer",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.title,
+      description: dict.twitterDescription,
+      images: ["/og-image.png"],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  alternates: {
-    canonical: SITE_URL,
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-icon.png",
-  },
-};
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        es: `${SITE_URL}/?lang=es`,
+        en: `${SITE_URL}/?lang=en`,
+        "x-default": SITE_URL,
+      },
+    },
+    icons: {
+      icon: "/favicon.ico",
+      apple: "/apple-icon.png",
+    },
+  };
+}
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Gerardo Martínez Monge",
-  url: SITE_URL,
-  jobTitle: "Informático Empresarial · Full Stack Developer",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Liberia",
-    addressCountry: "CR",
-  },
-  email: "hola@gerardomartinez.dev",
-  sameAs: [
-    "https://github.com/Gerardoprogramer",
-    "https://www.linkedin.com/in/gerardomartinezmonge",
-  ],
-  knowsAbout: [
-    "Python",
-    "FastAPI",
-    "Django",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Vue.js",
-    "PostgreSQL",
-    "Domain-Driven Design",
-    "Arquitectura Hexagonal",
-  ],
-};
+function buildJsonLd(lang: "es" | "en") {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Gerardo Martínez Monge",
+    url: SITE_URL,
+    jobTitle:
+      lang === "es"
+        ? "Informático Empresarial · Full Stack Developer"
+        : "Full Stack Developer · Business Informatics Engineer",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Liberia",
+      addressCountry: "CR",
+    },
+    email: "hola@gerardomartinez.dev",
+    sameAs: [
+      "https://github.com/Gerardoprogramer",
+      "https://www.linkedin.com/in/gerardomartinezmonge",
+    ],
+    knowsAbout: [
+      "Python",
+      "FastAPI",
+      "Django",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Vue.js",
+      "PostgreSQL",
+      "Domain-Driven Design",
+      "Hexagonal Architecture",
+    ],
+  };
+}
 
-export default async function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
-
+export default async function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   const headersList = await headers();
   const initialLang = (headersList.get("x-language") as "es" | "en") || "es";
+  const jsonLd = buildJsonLd(initialLang);
 
   return (
     <html

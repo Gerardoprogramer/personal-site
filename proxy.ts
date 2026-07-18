@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const SUPPORTED = ["es", "en"] as const;
 type Lang = (typeof SUPPORTED)[number];
+const DEFAULT_LANG: Lang = "es";
 
 function isSupported(value: string | undefined): value is Lang {
     return !!value && (SUPPORTED as readonly string[]).includes(value);
@@ -10,12 +11,12 @@ function isSupported(value: string | undefined): value is Lang {
 export function proxy(request: NextRequest) {
     const langParam = request.nextUrl.searchParams.get("lang") ?? undefined;
     const cookieLang = request.cookies.get("language")?.value;
-    const acceptLang = request.headers.get("accept-language");
+
 
     const resolved: Lang =
         (isSupported(langParam) && langParam) ||
         (isSupported(cookieLang) && cookieLang) ||
-        (acceptLang?.toLowerCase().startsWith("en") ? "en" : "es");
+        DEFAULT_LANG;
 
     const requestHeaders = new Headers(request.headers);
     requestHeaders.set("x-language", resolved);
