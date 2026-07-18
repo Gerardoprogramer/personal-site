@@ -123,7 +123,7 @@ function buildJsonLd(lang: "es" | "en") {
   };
 }
 
-const GA_MEASUREMENT_ID = "G-ZN99W31GTF";
+const GA_MEASUREMENT_ID = "G-EYVSL76CFW";
 
 export default async function RootLayout({
   children,
