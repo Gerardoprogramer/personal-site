@@ -184,5 +184,39 @@
       "Arquitectura Hexagonal",
       "Desarrollador freelance Costa Rica"
     ]
+  },
+  "cookies": {
+    "message": "Uso cookies para entender cómo se usa este sitio (Google Analytics). No comparto ni vendo tus datos.",
+    "accept": "Aceptar",
+    "reject": "Rechazar",
+    "linkText": "política de privacidad"
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "lastUpdated": "Última actualización: julio 2026",
+    "intro": "Este sitio es mi portfolio personal. Esta página explica qué información se recolecta cuando lo visitás y cómo la uso.",
+    "sections": [
+      {
+        "heading": "Qué datos se recolectan",
+        "body": "Uso Google Analytics para entender cómo se usa este sitio: qué páginas se visitan, cuánto tiempo se pasa en cada una, desde qué país o dispositivo entrás, y de qué sitio venís (por ejemplo LinkedIn o Google). No recolecto tu nombre, correo, ni ningún dato que te identifique directamente, salvo que me lo envíes vos mismo a través del formulario de contacto."
+      },
+      {
+        "heading": "Cómo se usa esta información",
+        "body": "Uso estos datos únicamente para entender qué contenido es útil y mejorar el sitio. No vendo, comparto ni cedo esta información a terceros con fines publicitarios."
+      },
+      {
+        "heading": "Formulario de contacto",
+        "body": "Si completás el formulario de contacto, el nombre, correo y mensaje que enviás se usan exclusivamente para responderte. No se agregan a ninguna lista de correo ni se usan para otro fin."
+      },
+      {
+        "heading": "Cookies",
+        "body": "Este sitio usa una cookie técnica para recordar tu elección sobre Analytics (aceptar o rechazar), y las cookies propias de Google Analytics si diste tu consentimiento. Podés cambiar tu decisión en cualquier momento desde el enlace de \"preferencias de cookies\" en el pie de página."
+      },
+      {
+        "heading": "Tus derechos",
+        "body": "Podés pedirme en cualquier momento que te confirme qué datos tengo sobre vos (normalmente ninguno más allá de lo que hayas escrito en el formulario) o que los elimine, escribiendo a hola@gerardomartinez.dev."
+      }
+    ],
+    "contact": "Si tenés dudas sobre esta política, escribime directamente a"
   }
 }

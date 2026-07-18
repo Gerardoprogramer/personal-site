@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { headers } from "next/headers";
 import { LanguageProvider } from "@/lib/i18n/context";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
 
@@ -121,6 +123,8 @@ function buildJsonLd(lang: "es" | "en") {
   };
 }
 
+const GA_MEASUREMENT_ID = "G-EYVSL76CFW";
+
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -131,6 +135,7 @@ export default async function RootLayout({
   return (
     <html
       lang={initialLang}
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
@@ -138,12 +143,28 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              analytics_storage: 'denied'
+            });
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <LanguageProvider initialLang={initialLang}>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <CookieConsent />
         </LanguageProvider>
       </body>
     </html>

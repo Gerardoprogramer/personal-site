@@ -5,7 +5,7 @@ import { getProfile } from "@/content/profile";
 import { useTranslation } from "@/lib/i18n/context";
 
 export const FooterContact = () => {
-    const { t } = useTranslation();
+    const { t, language } = useTranslation();
     const profile = getProfile(t);
 
     return (
@@ -40,6 +40,18 @@ export const FooterContact = () => {
                     >
                         {t.footer.descargar} cv (.pdf)
                     </a>
+                </li>
+                <li>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            localStorage.removeItem("cookie-consent");
+                            window.location.reload();
+                        }}
+                        className="transition-colors hover:text-primary text-left"
+                    >
+                        {language === "es" ? "preferencias de cookies" : "cookie preferences"}
+                    </button>
                 </li>
             </ul>
         </div>

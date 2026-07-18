@@ -184,5 +184,39 @@
       "Hexagonal Architecture",
       "Freelance Developer Costa Rica"
     ]
+  },
+  "cookies": {
+    "message": "I use cookies to understand how this site is used (Google Analytics). I don't share or sell your data.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "linkText": "privacy policy"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: July 2026",
+    "intro": "This site is my personal portfolio. This page explains what information is collected when you visit it and how I use it.",
+    "sections": [
+      {
+        "heading": "What data is collected",
+        "body": "I use Google Analytics to understand how this site is used: which pages are visited, how much time is spent on each, what country or device you're browsing from, and where you came from (e.g. LinkedIn or Google). I don't collect your name, email, or any directly identifying information, unless you send it to me yourself through the contact form."
+      },
+      {
+        "heading": "How this information is used",
+        "body": "I use this data only to understand what content is useful and to improve the site. I don't sell, share, or transfer this information to third parties for advertising purposes."
+      },
+      {
+        "heading": "Contact form",
+        "body": "If you fill out the contact form, the name, email, and message you send are used exclusively to reply to you. They are not added to any mailing list or used for any other purpose."
+      },
+      {
+        "heading": "Cookies",
+        "body": "This site uses a technical cookie to remember your choice about Analytics (accept or reject), and Google Analytics' own cookies if you gave your consent. You can change your decision at any time from the \"cookie preferences\" link in the footer."
+      },
+      {
+        "heading": "Your rights",
+        "body": "You can ask me at any time to confirm what data I have about you (usually none beyond what you've written in the contact form) or to delete it, by writing to hola@gerardomartinez.dev."
+      }
+    ],
+    "contact": "If you have questions about this policy, email me directly at"
   }
 }
