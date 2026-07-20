@@ -1,4 +1,13 @@
 export const ArchDiagram = () => {
+    const nodes = [
+        { x: 80, y: 90, label: "POS", delay: 0.2 },
+        { x: 320, y: 90, label: "STOCK", delay: 0.35 },
+        { x: 80, y: 310, label: "ORD", delay: 0.5 },
+        { x: 320, y: 310, label: "EMP", delay: 0.65 },
+        { x: 200, y: 40, label: "WS", delay: 0.15 },
+        { x: 200, y: 360, label: "DB", delay: 0.8 },
+    ];
+
     return (
         <div
             className="surface-card blueprint-grid relative aspect-square w-full overflow-hidden p-6"
@@ -9,7 +18,8 @@ export const ArchDiagram = () => {
             <div className="absolute bottom-3 left-3 h-3 w-3 border-b border-l border-primary/60" />
             <div className="absolute bottom-3 right-3 h-3 w-3 border-b border-r border-primary/60" />
 
-            <div className="absolute left-6 top-6 font-mono-tech text-[10px] uppercase tracking-widest text-primary">
+            <div className="absolute left-6 top-6 flex items-center gap-1.5 font-mono-tech text-[10px] uppercase tracking-widest text-primary">
+                <span className="inline-block size-1 rounded-full bg-primary" style={{ animation: "pulse-dot 2s ease-in-out infinite" }} />
                 fig.01 — erp
             </div>
 
@@ -38,14 +48,30 @@ export const ArchDiagram = () => {
                     <line x1="200" y1="340" x2="200" y2="200" />
                 </g>
 
-                {[
-                    { x: 80, y: 90, label: "POS", delay: 0.2 },
-                    { x: 320, y: 90, label: "STOCK", delay: 0.35 },
-                    { x: 80, y: 310, label: "ORD", delay: 0.5 },
-                    { x: 320, y: 310, label: "EMP", delay: 0.65 },
-                    { x: 200, y: 40, label: "WS", delay: 0.15 },
-                    { x: 200, y: 360, label: "DB", delay: 0.8 },
-                ].map((n) => (
+                <g fill="var(--color-primary)" style={{ animation: "node-in 0.4s ease-out 2.2s both" }}>
+                    {nodes.map((n, i) => (
+                        <circle key={n.label} r="2.5" opacity="0">
+                            <animateMotion
+                                path={`M${n.x},${n.y} L200,200`}
+                                dur="2.4s"
+                                begin={`${2.4 + i * 0.35}s`}
+                                repeatCount="indefinite"
+                                calcMode="spline"
+                                keySplines="0.4 0 0.2 1"
+                            />
+                            <animate
+                                attributeName="opacity"
+                                values="0;1;1;0"
+                                keyTimes="0;0.1;0.85;1"
+                                dur="2.4s"
+                                begin={`${2.4 + i * 0.35}s`}
+                                repeatCount="indefinite"
+                            />
+                        </circle>
+                    ))}
+                </g>
+
+                {nodes.map((n) => (
                     <g
                         key={n.label}
                         style={{
@@ -86,6 +112,7 @@ export const ArchDiagram = () => {
                         fill="oklch(0.85 0.16 195 / 0.08)"
                         stroke="var(--color-primary)"
                         strokeWidth="1.2"
+                        style={{ filter: "drop-shadow(0 0 10px oklch(0.85 0.16 195 / 0.25))" }}
                     />
                     <text
                         x="200"
