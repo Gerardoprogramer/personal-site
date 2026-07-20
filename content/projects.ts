@@ -18,7 +18,7 @@ export const projects: Project[] = [
         context: "freelance",
         type: "confidential",
         featured: true,
-        year: "2025",
+        year: "2026",
         stack: ["Java", "Spring Boot", "Next.js", "TypeScript", "PostgreSQL", "WebSocket", "Docker"],
         impact: [
             { labelKey: "modulos", value: "6" },
@@ -30,7 +30,7 @@ export const projects: Project[] = [
         slug: "strata-ai-workspace",
         context: "personal",
         type: "in-development",
-        year: "2025 — en curso",
+        year: "2026 — en curso",
         stack: ["Next.js", "TypeScript", "FastAPI", "Python", "PostgreSQL", "pgvector", "RAG", "OpenAI", "LlamaIndex"],
         links: [
             { labelKey: "frontend", href: "https://github.com/Gerardoprogramer/strata-web", kind: "frontend" },
@@ -41,7 +41,7 @@ export const projects: Project[] = [
         slug: "biblioteca-stripe",
         context: "personal",
         type: "public",
-        year: "2024 — 2025",
+        year: "2026",
         stack: ["Java", "Spring Boot", "Next.js", "TypeScript", "PostgreSQL", "Stripe"],
         impact: [{ labelKey: "endpoints", value: "69" }],
         links: [
@@ -73,7 +73,7 @@ export const projects: Project[] = [
         slug: "selvatica-landing",
         context: "personal",
         type: "public",
-        year: "2025",
+        year: "2026",
         stack: ["Next.js", "TypeScript", "Tailwind CSS"],
         impact: [
             { labelKey: "performance", value: "100" },
@@ -90,7 +90,7 @@ export const projects: Project[] = [
         slug: "backend-4thewords",
         context: "profesional",
         type: "confidential",
-        year: "2024 — 2025",
+        year: "2025",
         stack: ["Vue.js", "Python", "MySQL", "Docker", "Redis"],
     },
     {
