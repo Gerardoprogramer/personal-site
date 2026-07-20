@@ -110,6 +110,7 @@ export const ProjectCard = ({ project, full = false, }: { project: Project; full
                             <a
                                 key={l.labelKey}
                                 href={l.href}
+                                aria-label={`${l.labelKey} — ${project.title}`}
                                 className="inline-flex items-center gap-1 font-mono-tech text-xs text-foreground transition-colors hover:text-primary"
                             >
                                 {l.labelKey}{" "}

@@ -28,38 +28,38 @@ export const Nav = () => {
   const [activeIndicator, setActiveIndicator] = useState({ left: 0, width: 0, opacity: 0 });
   const [hoverIndicator, setHoverIndicator] = useState<{ left: number; width: number } | null>(null);
 
-useEffect(() => {
-  const sections = links
-    .map((l) => document.querySelector(l.href))
-    .filter(Boolean) as Element[];
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.querySelector(l.href))
+      .filter(Boolean) as Element[];
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries.find((e) => e.isIntersecting);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((e) => e.isIntersecting);
 
-      if (!visible || !navRef.current) {
-        setActiveIndicator((prev) => ({ ...prev, opacity: 0 }));
-        return;
-      }
+        if (!visible || !navRef.current) {
+          setActiveIndicator((prev) => ({ ...prev, opacity: 0 }));
+          return;
+        }
 
-      const activeLink = navRef.current.querySelector(
-        `[data-nav-link="#${visible.target.id}"]`
-      ) as HTMLElement | null;
+        const activeLink = navRef.current.querySelector(
+          `[data-nav-link="#${visible.target.id}"]`
+        ) as HTMLElement | null;
 
-      if (activeLink) {
-        setActiveIndicator({
-          left: activeLink.offsetLeft,
-          width: activeLink.offsetWidth,
-          opacity: 1,
-        });
-      }
-    },
-    { rootMargin: "-45% 0px -45% 0px" }
-  );
+        if (activeLink) {
+          setActiveIndicator({
+            left: activeLink.offsetLeft,
+            width: activeLink.offsetWidth,
+            opacity: 1,
+          });
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px" }
+    );
 
-  sections.forEach((s) => observer.observe(s));
-  return () => observer.disconnect();
-}, [links]);
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [links]);
 
   const handleHover = (el: HTMLElement) => {
     setHoverIndicator({ left: el.offsetLeft, width: el.offsetWidth });
@@ -70,18 +70,20 @@ useEffect(() => {
 
   return (
     <nav aria-label="Navegación principal" className="hidden md:block">
-      <ul ref={navRef} className="relative flex items-center gap-1 font-mono-tech text-xs text-muted-foreground">
-        {links.map((l, i) => (
-          <li key={l.href}>
-            <NavLink
-              href={l.href}
-              label={l.label}
-              index={i}
-              onHover={handleHover}
-              onLeave={() => setHoverIndicator(null)}
-            />
-          </li>
-        ))}
+      <div className="relative">
+        <ul ref={navRef} className="flex items-center gap-1 font-mono-tech text-xs text-muted-foreground">
+          {links.map((l, i) => (
+            <li key={l.href}>
+              <NavLink
+                href={l.href}
+                label={l.label}
+                index={i}
+                onHover={handleHover}
+                onLeave={() => setHoverIndicator(null)}
+              />
+            </li>
+          ))}
+        </ul>
         <span
           className="pointer-events-none absolute bottom-0 h-px bg-primary transition-all duration-300 ease-out"
           style={{
@@ -91,7 +93,7 @@ useEffect(() => {
             boxShadow: "0 0 8px var(--color-primary)",
           }}
         />
-      </ul>
+      </div>
     </nav>
   );
 };
