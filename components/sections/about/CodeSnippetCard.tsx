@@ -18,8 +18,8 @@ export const CodeSnippetCard = () => {
                 <div className="flex items-center justify-between border-b border-border bg-surface-2 px-4 py-2.5">
                     <div className="flex items-center gap-1.5">
                         <span className="size-2.5 rounded-full bg-muted-foreground/30" />
-                        <span className="size-2.5 rounded-full bg-muted-foreground/30" />
-                        <span className="size-2.5 rounded-full bg-primary/70" />
+                        <span className="size-2.5 rounded-full bg-muted-foreground/60" />
+                        <span className="size-2.5 rounded-full bg-primary/90" />
                     </div>
                     <span className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground">
                         how_i_work.py
@@ -48,7 +48,7 @@ export const CodeSnippetCard = () => {
                     </code>
                 </pre>
             </div>
-            <p className="mt-4 font-mono-tech text-[11px] uppercase tracking-widest text-muted-foreground">
+            <p className="mt-6 font-mono-tech text-[11px] uppercase tracking-widest text-muted-foreground">
                 {t.sobreMi.footnote}
             </p>
         </>
