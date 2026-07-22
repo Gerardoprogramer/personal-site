@@ -2,6 +2,7 @@ import type { ProjectView as Project } from "@/content/ProjectView";
 import { TypeBadge } from "@/components/shared/TypeBadge";
 import { ContextTag } from "@/components/shared/ContextTag";
 import { StackChips } from "@/components/shared/StackChips";
+import { GalleryButton } from "./GalleryButton";
 import { useTranslation } from "@/lib/i18n/context";
 
 export const FeaturedProject = ({ project }: { project: Project }) => {
@@ -102,11 +103,21 @@ export const FeaturedProject = ({ project }: { project: Project }) => {
                                         </span>
                                     </a>
                                 ))}
+
+                                {project.gallery?.length ? (
+                                    <GalleryButton images={project.gallery} projectTitle={project.title} />
+                                ) : null}
                             </div>
                         ) : project.note ? (
-                            <p className="font-mono-tech text-[11px] italic text-muted-foreground">
-                                {project.note}
-                            </p>
+                            <>
+                                <p className="font-mono-tech text-[11px] italic text-muted-foreground">
+                                    {project.note}
+                                </p>
+
+                                {project.gallery?.length ? (
+                                    <GalleryButton images={project.gallery} projectTitle={project.title} />
+                                ) : null}
+                            </>
                         ) : null}
                     </div>
                 </div>

@@ -4,6 +4,7 @@ import { ContextTag } from "@/components/shared/ContextTag";
 import { StackChips } from "@/components/shared/StackChips";
 import { useTranslation } from "@/lib/i18n/context";
 import { RxArrowTopRight } from "react-icons/rx";
+import { GalleryButton } from '@/components/sections/projects/GalleryButton'
 
 export const ProjectCard = ({ project, full = false, }: { project: Project; full?: boolean; }) => {
     const { t } = useTranslation();
@@ -119,11 +120,21 @@ export const ProjectCard = ({ project, full = false, }: { project: Project; full
                                 </span>
                             </a>
                         ))}
+
+                        {project.gallery?.length ? (
+                            <GalleryButton images={project.gallery} projectTitle={project.title} />
+                        ) : null}
                     </div>
                 ) : project.note ? (
-                    <p className="font-mono-tech text-[11px] italic text-muted-foreground">
-                        {project.note}
-                    </p>
+                    <>
+                        <p className="font-mono-tech text-[11px] italic text-muted-foreground">
+                            {project.note}
+                        </p>
+
+                        {project.gallery?.length ? (
+                            <GalleryButton images={project.gallery} projectTitle={project.title} />
+                        ) : null}
+                    </>
                 ) : null}
             </div>
         </article>

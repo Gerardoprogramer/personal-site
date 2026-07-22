@@ -10,7 +10,12 @@ export interface Project {
     stack: string[];
     impact?: { labelKey: string; value: string }[];
     links?: { labelKey: string; href: string; kind: "demo" | "repo" | "frontend" | "backend" }[];
+    gallery?: {
+        src: string;
+    }[];
 }
+
+const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 
 export const projects: Project[] = [
     {
@@ -24,6 +29,26 @@ export const projects: Project[] = [
             { labelKey: "modulos", value: "6" },
             { labelKey: "endpoints", value: "31" },
             { labelKey: "architecture", value: "DDD + Hexagonal + CQRS" },
+        ],
+        gallery: [
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784644870/Dashboard_eb0jbt.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784644978/POS_qwrw49.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784644952/Inventario_qiliep.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784644967/Pedido_fzbhgz.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784644936/Empleado_gbhgn9.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784644985/Sugerido_lp4qj7.png`,
+            },
         ],
     },
     {
@@ -59,6 +84,7 @@ export const projects: Project[] = [
         links: [
             { labelKey: "frontend", href: "https://github.com/Gerardoprogramer/Trendora", kind: "frontend" },
             { labelKey: "backend", href: "https://github.com/Gerardoprogramer/Trendora-Backend", kind: "backend" },
+            { labelKey: "demo", href: "https://trendoragm.netlify.app/", kind: "demo" },
         ],
     },
     {
@@ -68,6 +94,19 @@ export const projects: Project[] = [
         year: "2024",
         stack: ["C#", "ASP.NET", "Entity Framework", "SQL Server", "Razor Views"],
         links: [{ labelKey: "repositorio", href: "https://github.com/Gerardoprogramer/Restaurante", kind: "repo" }],
+        gallery: [
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679477/InicioSeccion_mfjetf.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679447/CrearCuenta_lc6fft.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679506/Medidas_znbk6b.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679467/Ingredientes_nkhh3o.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679555/Platillos_n74xyk.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679458/DetallePlatillo_vsq7re.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679523/Menu_cnoper.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679489/ItemMenu_kwub4h.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679536/MenuCompleto_ickty4.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679541/Mesas_qu4t9g.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1784679549/OrdenarMesa_tvptvy.png` },
+        ],
     },
     {
         slug: "selvatica-landing",

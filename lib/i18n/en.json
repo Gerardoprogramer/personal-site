@@ -218,5 +218,9 @@
       }
     ],
     "contact": "If you have questions about this policy, email me directly at"
+  },
+  "modalproject": {
+    "Screenshots" : "Screenshots",
+    "View": "View screenshots"
   }
 }

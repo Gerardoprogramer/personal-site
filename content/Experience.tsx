@@ -13,7 +13,7 @@ export const experience = (t: Translations): Experience[] => [
     {
         company: "4thewords",
         role: t.experience["4thewords"].role,
-        period: "2024 — 2025",
+        period: "2025",
         format: t.experience["4thewords"].format,
         built: t.experience["4thewords"].built,
         learned: t.experience["4thewords"].learned,

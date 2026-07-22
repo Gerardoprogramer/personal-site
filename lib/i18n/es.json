@@ -218,5 +218,9 @@
       }
     ],
     "contact": "Si tenés dudas sobre esta política, escribime directamente a"
+  },
+  "modalproject": {
+    "Screenshots": "Capturas",
+    "View": "Ver capturas"
   }
 }

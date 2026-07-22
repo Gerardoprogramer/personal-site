@@ -11,15 +11,11 @@ type ProjectsMapProps = {
 export const ProjectsMap = ({ projects, selectedSlug, onSelectSlug }: ProjectsMapProps) => {
     return (
         <div className="relative">
-            {/* Desktop: SVG tree */}
             <DesktopMap
                 projects={projects}
                 selectedSlug={selectedSlug}
                 onSelectSlug={onSelectSlug}
             />
-
-
-            {/* Mobile: collapsible clusters */}
             <MobileMap
                 projects={projects}
                 selectedSlug={selectedSlug}

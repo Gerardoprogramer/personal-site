@@ -1,4 +1,18 @@
-export const projectsContent = {
+import type { Language } from "@/lib/i18n/context";
+
+export interface ProjectContent {
+  title: string;
+  tagline: string;
+  problem: string;
+  decisions: string[];
+  architecture?: string;
+  note?: string;
+  gallery?: {
+    caption: string;
+  }[];
+}
+
+export const projectsContent: Record<Language, Record<string, ProjectContent>> = {
   es: {
     "erp-minisuper": {
       title: "La Central ERP",
@@ -12,6 +26,14 @@ export const projectsContent = {
       ],
       architecture: "Spring Boot + Next.js, DDD + Hexagonal + CQRS, event-driven",
       note: "Código bajo NDA. Detalles de implementación disponibles bajo solicitud.",
+      gallery: [
+        { caption: "Dashboard con ventas en tiempo real, stock bajo y sugerencias pendientes de un vistazo." },
+        { caption: "Punto de venta con escaneo de código de barras y cálculo automático de IVA por producto." },
+        { caption: "Control de inventario con categorías, stock y precios centralizados." },
+        { caption: "Pedidos inteligentes: predicción de demanda por producto para saber cuánto reordenar y cuándo." },
+        { caption: "Gestión de empleados con roles, PINs de acceso y estado activo/inactivo." },
+        { caption: "Sugerencias de producto: el equipo registra lo que los clientes piden y no está en catálogo." },
+      ]
     },
     "strata-ai-workspace": {
       title: "Strata AI Research Workspace",
@@ -60,6 +82,41 @@ export const projectsContent = {
         "Frontend con Razor Views (ASP.NET MVC) consumiendo la capa de servicios directamente, sin necesitar un framework SPA.",
       ],
       architecture: "ASP.NET, arquitectura en 5 capas",
+      gallery: [
+        {
+          caption: "Inicio de sesión con opción de recordarme y recuperación de contraseña.",
+        },
+        {
+          caption: "Registro de nuevos usuarios con validación de usuario, correo y contraseña.",
+        },
+        {
+          caption: "Catálogo de medidas (taza, cucharada, litro, etc.) para estandarizar recetas.",
+        },
+        {
+          caption: "Catálogo de ingredientes centralizado, base para armar cualquier platillo del menú.",
+        },
+        {
+          caption: "Platillos del menú con su precio de venta y valor aproximado de costo por ingredientes.",
+        },
+        {
+          caption: "Ingredientes asociados a cada platillo, con su medida y costo aproximado individual.",
+        },
+        {
+          caption: "Administración del menú: alta de platillos por categoría, precio e imagen.",
+        },
+        {
+          caption: "Detalle de un platillo del menú con su categoría, precio e imagen.",
+        },
+        {
+          caption: "Menú completo agrupado por categorías, listo para mostrar a los clientes.",
+        },
+        {
+          caption: "Gestión de mesas: alta, edición y habilitación/deshabilitación según disponibilidad.",
+        },
+        {
+          caption: "Toma de órdenes por mesa, con control de estado ocupada/disponible en tiempo real.",
+        },
+      ],
     },
     "selvatica-landing": {
       title: "Selvática",
@@ -111,6 +168,14 @@ export const projectsContent = {
       ],
       architecture: "Spring Boot + Next.js, DDD + Hexagonal + CQRS, event-driven",
       note: "Code under NDA. Implementation details available on request.",
+      gallery: [
+        { caption: "Dashboard with real-time sales, low-stock alerts, and pending suggestions at a glance." },
+        { caption: "Point of sale with barcode scanning and automatic VAT calculation for each product." },
+        { caption: "Inventory management with centralized categories, stock levels, and pricing." },
+        { caption: "Smart ordering: demand forecasting by product to know what to reorder and when." },
+        { caption: "Employee management with roles, PIN-based access, and active/inactive status." },
+        { caption: "Product suggestions: staff can log items customers request that aren't yet in the catalog." },
+      ]
     },
     "strata-ai-workspace": {
       title: "Strata AI Research Workspace",
@@ -159,6 +224,41 @@ export const projectsContent = {
         "Razor Views (ASP.NET MVC) frontend consuming the service layer directly, without needing an SPA framework.",
       ],
       architecture: "ASP.NET, 5-layer architecture",
+      gallery: [
+        {
+          caption: "Sign-in page with a remember me option and password recovery.",
+        },
+        {
+          caption: "User registration with username, email, and password validation.",
+        },
+        {
+          caption: "Measurement catalog (cup, tablespoon, liter, etc.) to standardize recipes.",
+        },
+        {
+          caption: "Centralized ingredient catalog used as the foundation for every menu item.",
+        },
+        {
+          caption: "Menu items with selling price and estimated ingredient cost.",
+        },
+        {
+          caption: "Ingredients linked to each menu item, including measurements and estimated individual costs.",
+        },
+        {
+          caption: "Menu management: create and organize dishes by category, price, and image.",
+        },
+        {
+          caption: "Menu item details showing its category, price, and image.",
+        },
+        {
+          caption: "Complete menu grouped by category, ready to be displayed to customers.",
+        },
+        {
+          caption: "Table management: create, edit, enable, or disable tables based on availability.",
+        },
+        {
+          caption: "Table ordering with real-time occupied/available status tracking.",
+        },
+      ],
     },
     "selvatica-landing": {
       title: "Selvática",
