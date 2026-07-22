@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useTranslation } from "@/lib/i18n/context";
 import Image from "next/image";
 import { RxCross2, RxChevronLeft, RxChevronRight } from "react-icons/rx";
+import { getBlurPlaceholder } from "@/lib/cloudinary";
 
 type GalleryItem = { src: string; caption?: string };
 
@@ -65,7 +66,7 @@ export const GalleryModal = ({ images, projectTitle, onClose, }: { images: Galle
                     </button>
                 </div>
 
-                <div className="surface-card relative h-[60vh] max-h-130 overflow-hidden">
+                <div className="surface-card relative h-[60vh] max-h-130 overflow-hidden bg-surface-2">
                     <Image
                         key={`${current.src}-bg`}
                         src={current.src}
@@ -74,6 +75,8 @@ export const GalleryModal = ({ images, projectTitle, onClose, }: { images: Galle
                         aria-hidden="true"
                         sizes="(max-width: 768px) 100vw, 768px"
                         className="object-cover scale-110 opacity-40 blur-2xl"
+                        placeholder="blur"
+                        blurDataURL={getBlurPlaceholder(current.src)}
                     />
                     <Image
                         key={current.src}
@@ -83,6 +86,8 @@ export const GalleryModal = ({ images, projectTitle, onClose, }: { images: Galle
                         className="object-contain"
                         sizes="(max-width: 768px) 100vw, 768px"
                         priority={index === 0}
+                        placeholder="blur"
+                        blurDataURL={getBlurPlaceholder(current.src)}
                     />
                     {images.length > 1 && (
                         <div className="hidden">
