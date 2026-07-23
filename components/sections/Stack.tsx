@@ -16,17 +16,18 @@ export const Stack = () => {
                     description={t.Stack.Header.description}
                 />
 
-                <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-14 grid items-start gap-4 md:grid-cols-2 lg:grid-cols-4">
                     {stackGroups(t).map((group) => (
                         <div
                             key={group.id}
-                            className={`surface-card p-6 ${group.secondary ? "opacity-80" : ""}`}
+                            className={`surface-card group p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-black/20 ${group.secondary ? "opacity-80 hover:opacity-100" : ""
+                                }`}
                         >
                             <div className="flex items-center justify-between">
                                 <div className="font-mono-tech text-[10px] uppercase tracking-widest text-primary">
                                     {group.label}
                                 </div>
-                                <div className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground">
+                                <div className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground transition-colors duration-300 group-hover:text-primary">
                                     {group.items.length.toString().padStart(2, "0")}
                                 </div>
                             </div>
@@ -36,12 +37,12 @@ export const Stack = () => {
                                     return (
                                         <li
                                             key={item}
-                                            className="flex items-center gap-3 text-sm text-foreground"
+                                            className="flex items-center gap-3 text-sm text-foreground transition-transform duration-200 hover:translate-x-1"
                                         >
                                             {Icon ? (
                                                 <Icon
                                                     aria-hidden="true"
-                                                    className={`size-4 shrink-0 ${group.secondary
+                                                    className={`size-4 shrink-0 transition-colors duration-200 ${group.secondary
                                                         ? "text-muted-foreground/70"
                                                         : "text-primary"
                                                         }`}
