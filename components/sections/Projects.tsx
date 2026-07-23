@@ -8,6 +8,7 @@ import { ProjectCard } from "./projects/ProjectCard";
 import { ProjectsMap } from "./projects/ProjectsMap";
 import { Pagination } from "@/components/shared/PaginationProps ";
 import { useProjectsViewState } from "@/hooks/useProjectsViewState";
+import { Reveal } from "../shared/Reveal";
 
 const PAGE_SIZE = 6;
 
@@ -76,10 +77,16 @@ export const Projects = () => {
 
                 {view === "list" ? (
                     <div className="mt-14 space-y-6">
-                        {safePage === 1 ? <FeaturedProject project={featured} /> : null}
+                        {safePage === 1 ? (
+                            <Reveal>
+                                <FeaturedProject project={featured} />
+                            </Reveal>
+                        ) : null}
                         <div className="grid items-stretch gap-6 md:grid-cols-2">
-                            {pageItems.map((p) => (
-                                <ProjectCard key={p.slug} project={p} />
+                            {pageItems.map((p, i) => (
+                                <Reveal key={p.slug} delay={i * 80}>
+                                    <ProjectCard project={p} />
+                                </Reveal>
                             ))}
                         </div>
                         <Pagination

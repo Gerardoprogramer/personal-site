@@ -1,6 +1,7 @@
 'use client'
 
 import { SectionHeader } from "../shared/SectionHeader"
+import { Reveal } from "../shared/Reveal"
 import { experience } from "@/content/Experience"
 import { useTranslation } from "@/lib/i18n/context"
 
@@ -13,11 +14,13 @@ export const Experience = () => {
             className="relative border-y border-border bg-surface/40 py-24"
         >
             <div className="mx-auto max-w-6xl px-6">
-                <SectionHeader
-                    eyebrow={t.experience.header.eyebrow}
-                    title={t.experience.header.title}
-                    description={t.experience.header.description}
-                />
+                <Reveal>
+                    <SectionHeader
+                        eyebrow={t.experience.header.eyebrow}
+                        title={t.experience.header.title}
+                        description={t.experience.header.description}
+                    />
+                </Reveal>
 
                 <ol className="relative mt-14 space-y-6 pl-8 sm:pl-12">
                     <span
@@ -27,7 +30,7 @@ export const Experience = () => {
                     {experience(t).map((exp, i) => {
                         const isCurrent = i === 0;
                         return (
-                            <li key={exp.company} className="relative">
+                            <Reveal key={exp.company} delay={i * 120} className="relative">
                                 <span
                                     aria-hidden="true"
                                     className="absolute -left-6.5 top-8 flex size-3 items-center justify-center sm:-left-8.5"
@@ -98,7 +101,7 @@ export const Experience = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </Reveal>
                         );
                     })}
                 </ol>
