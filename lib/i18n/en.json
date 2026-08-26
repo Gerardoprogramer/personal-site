@@ -44,16 +44,21 @@
     }
   },
   "sobreMi": {
-    "eyebrow": "about me",
-    "title": "I learned by building a full ERP before I had the degree.",
-    "paragraph1": "I graduated in Business Informatics from UCR in April 2025. Before that, I had already built a full ERP on my own, done an internship at Funread, and signed a contract with 4thewords. The degree was the paperwork; the projects were the real learning.",
-    "paragraph2": "I do my best work when the problem is messy: legacy systems, migrations, race conditions, old bugs nobody wants to touch. Before writing code, I try to figure out what's actually being asked — half the solutions disappear once the problem is properly framed.",
-    "paragraph3_prefix": "I'm open to",
-    "empleoFijo": "full-time roles",
-    "paragraph3_middle": "and taking on",
-    "proyectosFreelance": "freelance projects",
-    "paragraph3_suffix": "in parallel. Both formats interest me for different reasons, and they don't compete with each other.",
-    "footnote": "// it's not a slogan. it's literally the order I work in."
+    "pageLabel": "about me",
+    "paragraph1": "I don't usually sell this with a punchy hook. I code, I read, and I adapt to whoever I'm working with — that's pretty much everything you need to know before seeing the work.",
+    "paragraph2Prefix": "I built a",
+    "paragraph2Anchor": "full ERP on my own",
+    "paragraph2Suffix": ". I'm still expanding it — it's not a project I closed, it's something I still touch.",
+    "paragraph3": "I read a lot, and it shows in how I work: I'd rather understand the whole problem before writing the first line of code.",
+    "paragraph4": "Open to full-time roles or freelance work. Both interest me for different reasons.",
+    "noteTag": "note",
+    "noteText": "the ERP is still alive. current version: v2 — last touched this week.",
+    "metaLocationLabel": "Location",
+    "metaLocation": "Costa Rica",
+    "metaFormatLabel": "Format",
+    "metaFormat": "full-time or freelance",
+    "metaStatusLabel": "Status",
+    "metaStatus": "always building"
   },
   "badges": {
     "demoRepo": "[ demo + repo ]",

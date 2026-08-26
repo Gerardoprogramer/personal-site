@@ -44,16 +44,21 @@
     }
   },
   "sobreMi": {
-    "eyebrow": "sobre mí",
-    "title": "Aprendí construyendo un ERP completo antes de tener el título.",
-    "paragraph1": "Me gradué de Informática Empresarial en la UCR en abril de 2025. Antes de eso ya había construido un ERP completo por mi cuenta, hecho pasantía en Funread y firmado contrato con 4thewords. La carrera fue el papel; los proyectos fueron el aprendizaje real.",
-    "paragraph2": "Trabajo bien cuando el problema es feo: sistemas legados, migraciones, race conditions, bugs viejos que nadie quiere tocar. Antes de escribir código intento entender qué se está intentando lograr — la mitad de las soluciones desaparecen cuando el problema queda bien planteado.",
-    "paragraph3_prefix": "Estoy abierto a",
-    "empleoFijo": "empleo fijo",
-    "paragraph3_middle": "y a tomar",
-    "proyectosFreelance": "proyectos freelance",
-    "paragraph3_suffix": "en paralelo. Ambos formatos me interesan por razones distintas y no compiten entre sí.",
-    "footnote": "// no es un lema. es literalmente el orden en que trabajo."
+    "pageLabel": "sobre mí",
+    "paragraph1": "No suelo vender esto con una frase de efecto. Programo, leo, y me adapto a con quién esté trabajando — eso es prácticamente todo lo que hace falta saber antes de ver el trabajo.",
+    "paragraph2Prefix": "Construí un",
+    "paragraph2Anchor": "ERP completo por mi cuenta",
+    "paragraph2Suffix": ". Sigo expandiéndolo — no es un proyecto que cerré, es algo que todavía toco.",
+    "paragraph3": "Leo bastante, y se nota en cómo trabajo: prefiero entender el problema completo antes de escribir la primera línea.",
+    "paragraph4": "Abierto a empleo fijo o freelance. Ambos me sirven, por razones distintas.",
+    "noteTag": "nota",
+    "noteText": "el ERP sigue vivo. versión actual: v2 — última revisión esta semana.",
+    "metaLocationLabel": "Ubicación",
+    "metaLocation": "Costa Rica",
+    "metaFormatLabel": "Formato",
+    "metaFormat": "fijo o freelance",
+    "metaStatusLabel": "Estado",
+    "metaStatus": "construyendo, siempre"
   },
   "badges": {
     "demoRepo": "[ demo + repo ]",
