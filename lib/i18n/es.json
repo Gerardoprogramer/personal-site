@@ -22,7 +22,7 @@
   "hero": {
     "title": "Diseño y construyo software que resiste",
     "subtitle": "producción",
-    "description": "Informático Empresarial Full Stack. Construyo desde ERPs con arquitectura hexagonal hasta landings con Lighthouse 100/100. Escribo código que otros ingenieros pueden mantener sin necesitar traducción.",
+    "description": "Full Stack Developer. Construyo desde ERPs con arquitectura hexagonal hasta landings con Lighthouse 100/100. Escribo código que otros ingenieros pueden mantener sin necesitar traducción.",
     "actions": {
       "contacto": "contratar servicios",
       "perfil": "ver perfil profesional",
@@ -31,11 +31,21 @@
     "meta": {
       "career": "informática empresarial",
       "hour": "hora local"
+    },
+    "panel": {
+      "title": "estado",
+      "availability": "disponibilidad",
+      "availabilityValue": "disponible para trabajar",
+      "response": "tiempo de respuesta",
+      "responseValue": "< 24h",
+      "shipped": "entregado",
+      "shippedValue": "7 sistemas en producción",
+      "stack": "stack actual"
     }
   },
   "sobreMi": {
     "eyebrow": "sobre mí",
-    "title": "Autodidacta con criterio de ingeniería, no solo tecleador de código.",
+    "title": "Aprendí construyendo un ERP completo antes de tener el título.",
     "paragraph1": "Me gradué de Informática Empresarial en la UCR en abril de 2025. Antes de eso ya había construido un ERP completo por mi cuenta, hecho pasantía en Funread y firmado contrato con 4thewords. La carrera fue el papel; los proyectos fueron el aprendizaje real.",
     "paragraph2": "Trabajo bien cuando el problema es feo: sistemas legados, migraciones, race conditions, bugs viejos que nadie quiere tocar. Antes de escribir código intento entender qué se está intentando lograr — la mitad de las soluciones desaparecen cuando el problema queda bien planteado.",
     "paragraph3_prefix": "Estoy abierto a",

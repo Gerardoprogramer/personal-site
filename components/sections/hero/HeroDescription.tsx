@@ -7,7 +7,7 @@ export const HeroDescription = () => {
 
     return (
         <>
-            <p className="mt-8 max-w-[54ch] text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p className="mt-8 max-w-[56ch] text-pretty text-lg leading-relaxed text-foreground/80 sm:text-xl">
                 {t.hero.description}
             </p>
         </>

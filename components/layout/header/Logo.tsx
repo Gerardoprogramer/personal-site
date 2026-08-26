@@ -48,7 +48,7 @@ export const Logo = () => {
                     gerardo
                 </text>
                 <text
-                    x="90"
+                    x="97"
                     y="21"
                     className="font-display text-sm font-semibold tracking-tight"
                     style={{ fill: "var(--color-primary)" }}

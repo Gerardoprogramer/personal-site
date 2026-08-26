@@ -2,18 +2,26 @@
 
 import { useTranslation } from "@/lib/i18n/context"
 
-export const AvailabilityBadge = () => {
+interface AvailabilityBadgeProps {
+    compact?: boolean;
+}
+
+export const AvailabilityBadge = ({ compact = false }: AvailabilityBadgeProps) => {
     const { t } = useTranslation();
 
     return (
-        <div className="hidden items-center gap-1.5 font-mono-tech text-[10px] uppercase tracking-widest text-primary md:flex">
-            <span className="text-muted-foreground/50">[</span>
+        <div
+            className={
+                compact
+                    ? "flex items-center gap-1.5"
+                    : "flex items-center gap-1.5 text-[11px] tracking-wide text-accent"
+            }
+        >
             <span
-                className="size-1.5 rounded-full bg-primary shrink-0"
+                className="size-1.5 shrink-0 rounded-full bg-accent"
                 style={{ animation: "pulse-dot 2s ease-in-out infinite" }}
             />
-            {t.nav.disponible}
-            <span className="text-muted-foreground/50">]</span>
+            {!compact && t.nav.disponible}
         </div>
     )
 }

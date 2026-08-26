@@ -22,7 +22,7 @@
   "hero": {
     "title": "I build software that",
     "subtitle": "survives production",
-    "description": "Full Stack Business Informatics graduate. I build everything from ERPs with Hexagonal Architecture to landing pages that achieve Lighthouse 100/100. I write code that other engineers can maintain without needing a translation.",
+    "description": "Full Stack Developer. I build everything from ERPs with Hexagonal Architecture to landing pages that achieve Lighthouse 100/100. I write code that other engineers can maintain without needing a translation.",
     "actions": {
       "contacto": "hire me",
       "perfil": "view my profile",
@@ -31,11 +31,21 @@
     "meta": {
       "career": "business informatics",
       "hour": "local time"
+    },
+    "panel": {
+      "title": "status",
+      "availability": "availability",
+      "availabilityValue": "open to work",
+      "response": "response time",
+      "responseValue": "< 24h",
+      "shipped": "shipped",
+      "shippedValue": "7 production systems",
+      "stack": "current stack"
     }
   },
   "sobreMi": {
     "eyebrow": "about me",
-    "title": "Self-taught with engineering judgment, not just a code typist.",
+    "title": "I learned by building a full ERP before I had the degree.",
     "paragraph1": "I graduated in Business Informatics from UCR in April 2025. Before that, I had already built a full ERP on my own, done an internship at Funread, and signed a contract with 4thewords. The degree was the paperwork; the projects were the real learning.",
     "paragraph2": "I do my best work when the problem is messy: legacy systems, migrations, race conditions, old bugs nobody wants to touch. Before writing code, I try to figure out what's actually being asked — half the solutions disappear once the problem is properly framed.",
     "paragraph3_prefix": "I'm open to",
@@ -220,7 +230,7 @@
     "contact": "If you have questions about this policy, email me directly at"
   },
   "modalproject": {
-    "Screenshots" : "Screenshots",
+    "Screenshots": "Screenshots",
     "View": "View screenshots"
   }
 }

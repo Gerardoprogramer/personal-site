@@ -1,6 +1,7 @@
 import { AboutText } from "./about/AboutText ";
 import { CodeSnippetCard } from "./about/CodeSnippetCard";
 import { Reveal } from "../shared/Reveal";
+import { BackgroundLetter } from "../shared/BackgroundLetter";
 
 export const About = () => {
     return (
@@ -8,6 +9,7 @@ export const About = () => {
             id="sobre-mi"
             className="relative border-y border-border bg-surface/40 py-24"
         >
+            <BackgroundLetter letter="E" />
             <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-16">
                 <Reveal>
                     <AboutText />

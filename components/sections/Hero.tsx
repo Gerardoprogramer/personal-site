@@ -1,33 +1,28 @@
-import { HeroMeta } from "./hero/HeroMeta";
 import { HeroHeading } from "./hero/HeroHeading";
 import { HeroDescription } from "./hero/HeroDescription";
 import { HeroActions } from "./hero/HeroActions";
-import { HeroStats } from "./hero/HeroStats";
-import { ArchDiagram } from "./hero/ArchDiagram";
+import { HeroPanel } from "./hero/HeroPanel";
+import { BackgroundLetter } from "../shared/BackgroundLetter";
 
 export const Hero = () => {
     return (
         <section
             id="top"
-            className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32"
+            className="relative overflow-hidden pt-24 pb-24 md:pt-32 md:pb-32"
         >
             <div
                 aria-hidden="true"
-                className="blueprint-grid pointer-events-none absolute inset-0 opacity-100 mask-[radial-gradient(ellipse_at_top,black_20%,transparent_75%)]"
+                className="blueprint-grid pointer-events-none absolute inset-0 opacity-50 mask-[radial-gradient(ellipse_at_top,black_20%,transparent_75%)]"
             />
+            <BackgroundLetter letter="G" />
 
-            <div className="relative mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16">
-                <div>
-                    <HeroMeta />
+            <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 sm:px-10 lg:grid-cols-[1fr_300px] lg:px-16">
+                <div className="max-w-4xl">
                     <HeroHeading />
                     <HeroDescription />
                     <HeroActions />
-                    <HeroStats />
                 </div>
-
-                <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-                    <ArchDiagram />
-                </div>
+                <HeroPanel />
             </div>
         </section>
     )
