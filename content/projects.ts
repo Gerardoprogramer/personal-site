@@ -52,17 +52,6 @@ export const projects: Project[] = [
         ],
     },
     {
-        slug: "strata-ai-workspace",
-        context: "personal",
-        type: "in-development",
-        year: "2026 — en curso",
-        stack: ["Next.js", "TypeScript", "FastAPI", "Python", "PostgreSQL", "pgvector", "RAG", "OpenAI", "LlamaIndex"],
-        links: [
-            { labelKey: "frontend", href: "https://github.com/Gerardoprogramer/strata-web", kind: "frontend" },
-            { labelKey: "backend", href: "https://github.com/Gerardoprogramer/strata-api", kind: "backend" },
-        ],
-    },
-    {
         slug: "biblioteca-stripe",
         context: "personal",
         type: "public",

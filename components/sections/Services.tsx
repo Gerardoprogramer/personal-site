@@ -17,9 +17,10 @@ export const Services = () => {
             <div className="mx-auto max-w-6xl px-6">
                 <Reveal>
                     <SectionHeader
-                        eyebrow={t.services.Header.eyebrow}
+                        eyebrow={t.projects.eyebrow.replace("// ", "")}
                         title={t.services.Header.title}
                         description={t.services.Header.description}
+                        index="02"
                     />
                 </Reveal>
 
