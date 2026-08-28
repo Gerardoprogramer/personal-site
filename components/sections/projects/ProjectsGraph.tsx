@@ -28,7 +28,7 @@ export const ProjectsGraph = ({ selectedSlug, onSelect }: Props) => {
         setPositions(initial);
     }, []);
 
-    if (!graph) return <div ref={stageRef} className="h-[460px] border border-border" />;
+    if (!graph) return <div ref={stageRef} className="h-115 border border-border" />;
 
     const relatedTo = (id: string) => {
         const set = new Set([id]);
@@ -55,7 +55,7 @@ export const ProjectsGraph = ({ selectedSlug, onSelect }: Props) => {
 
     return (
         <div>
-            <div ref={stageRef} className="relative h-[460px] overflow-hidden border border-border bg-surface/30">
+            <div ref={stageRef} className="relative h-115 overflow-hidden border border-border bg-surface/30">
                 <svg className="pointer-events-none absolute inset-0 h-full w-full">
                     {graph.edges.map((e, i) => {
                         const from = positions[e.from];
@@ -82,7 +82,7 @@ export const ProjectsGraph = ({ selectedSlug, onSelect }: Props) => {
                             className={`absolute flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-1.5 transition-opacity ${dimmed ? "opacity-25" : ""}`}
                         >
                             <div className={`size-16 rounded-full border bg-background transition-colors ${isSelected ? "border-accent bg-accent/10" : "border-border"}`} />
-                            <span className="max-w-[110px] text-center font-mono-tech text-[11px] text-foreground">{content?.title ?? n.id}</span>
+                            <span className="max-w-27.5 text-center font-mono-tech text-[11px] text-foreground">{content?.title ?? n.id}</span>
                         </div>
                     );
                 })}

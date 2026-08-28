@@ -4,18 +4,21 @@ import { SectionHeader } from "../shared/SectionHeader";
 import { Reveal } from "../shared/Reveal";
 import { stackGroups, ICONS } from "@/content/stack";
 import { useTranslation } from "@/lib/i18n/context";
+import { BackgroundLetter } from "../shared/BackgroundLetter";
 
 export const Stack = () => {
     const { t } = useTranslation();
 
     return (
-        <section id="stack" className="py-24">
+        <section id="stack" className="relative overflow-hidden py-24">
+            <BackgroundLetter letter="R" />
             <div className="mx-auto max-w-6xl px-6">
                 <Reveal>
                     <SectionHeader
-                        eyebrow={t.Stack.Header.eyebrow}
+                        eyebrow={t.Stack.Header.eyebrow.replace("// ", "")}
                         title={t.Stack.Header.title}
                         description={t.Stack.Header.description}
+                        index="03"
                     />
                 </Reveal>
 

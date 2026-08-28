@@ -97,7 +97,7 @@
     },
     "Third": {
       "title": "Resolución de bugs",
-      "body": "Reproducir primero, entender después, corregir al final. Trabajo bien con bugs viejos que ya nadie quiere tocar y con condiciones de carrera que solo aparecen en producción."
+      "body": "Reproducir primero, entender después, corregir al final. Antes de tocar código, necesito ver el error pasar frente a mis ojos — no confío en una hipótesis hasta confirmarla."
     },
     "Fourth": {
       "title": "Migraciones",
@@ -107,8 +107,7 @@
       "eyebrow": "// servicios",
       "title": "Cómo trabajo cuando me contratas por proyecto.",
       "description": "No es un catálogo con precios. Es la forma en que abordo cada tipo de trabajo. El precio depende del alcance real, no de una tabla."
-    },
-    "disponible": "Disponible"
+    }
   },
   "Stack": {
     "labeldata": "Datos & Infra",

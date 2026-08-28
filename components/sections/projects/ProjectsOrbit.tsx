@@ -42,7 +42,7 @@ export const ProjectsOrbit = ({ selectedSlug, onSelect }: Props) => {
     return (
         <div>
             <div
-                className="relative mx-auto h-[280px] w-[280px] touch-pan-y"
+                className="relative mx-auto h-70 w-70 touch-pan-y"
                 onPointerDown={handlePointerDown}
                 onPointerUp={handlePointerUp}
             >
@@ -52,7 +52,7 @@ export const ProjectsOrbit = ({ selectedSlug, onSelect }: Props) => {
                     <div
                         key={tech}
                         style={{ left: x - 26, top: y - 26 }}
-                        className="absolute flex h-[52px] w-[52px] items-center justify-center rounded-full border border-border bg-background px-1 text-center font-mono-tech text-[9px] leading-tight text-muted-foreground"
+                        className="absolute flex h-13 w-13 items-center justify-center rounded-full border border-border bg-background px-1 text-center font-mono-tech text-[9px] leading-tight text-muted-foreground"
                     >
                         {tech}
                     </div>
@@ -61,7 +61,7 @@ export const ProjectsOrbit = ({ selectedSlug, onSelect }: Props) => {
                 <button
                     onClick={() => onSelect(isSelected ? null : active.slug)}
                     style={{ left: 140 - 52, top: 140 - 52 }}
-                    className={`absolute flex h-[104px] w-[104px] items-center justify-center rounded-full border p-2 text-center font-mono-tech text-[11.5px] transition-colors ${isSelected ? "border-accent bg-accent/15 text-foreground" : "border-accent/60 bg-accent/10 text-foreground"
+                    className={`absolute flex h-26 w-26 items-center justify-center rounded-full border p-2 text-center font-mono-tech text-[11.5px] transition-colors ${isSelected ? "border-accent bg-accent/15 text-foreground" : "border-accent/60 bg-accent/10 text-foreground"
                         }`}
                 >
                     {activeContent.title}

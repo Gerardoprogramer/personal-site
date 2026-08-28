@@ -97,7 +97,7 @@
     },
     "Third": {
       "title": "Bug Fixing",
-      "body": "Reproduce first, understand second, fix last. I enjoy tackling long-standing bugs nobody wants to touch and race conditions that only show up in production."
+      "body": "Reproduce first, understand second, fix last. Before touching any code, I need to see the error happen myself — I don't trust a hypothesis until I've confirmed it."
     },
     "Fourth": {
       "title": "Migrations",
@@ -107,8 +107,7 @@
       "eyebrow": "// services",
       "title": "How I work when you hire me for a project.",
       "description": "This isn't a price list. It's how I approach each type of project. Pricing depends on the actual scope, not on a fixed rate card."
-    },
-    "disponible": "Available"
+    }
   },
   "Stack": {
     "labeldata": "Data & Infra",
