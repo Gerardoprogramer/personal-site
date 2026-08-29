@@ -6,6 +6,7 @@ import { profileStatic as profile } from "@/content/profile";
 import { useTranslation } from "@/lib/i18n/context";
 import { FaArrowRight } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
+import { BackgroundLetter } from "../shared/BackgroundLetter";
 
 export const Contact = () => {
     const { t } = useTranslation();
@@ -52,13 +53,15 @@ export const Contact = () => {
     };
 
     return (
-        <section id="contacto" className="py-24">
+        <section id="contacto" className="relative overflow-hidden py-24">
+            <BackgroundLetter letter="O" />
             <div className="mx-auto max-w-3xl px-6">
                 <SectionHeader
                     align="center"
-                    eyebrow={t.contact.header.eyebrow}
+                    eyebrow={t.contact.header.eyebrow.replace("// ", "")}
                     title={t.contact.header.title}
                     description={t.contact.header.description}
+                    index="05"
                 />
 
                 <form

@@ -3,6 +3,7 @@
 import { SectionHeader } from "../shared/SectionHeader"
 import { Reveal } from "../shared/Reveal"
 import { experience } from "@/content/Experience"
+import { BackgroundLetter } from "../shared/BackgroundLetter"
 import { useTranslation } from "@/lib/i18n/context"
 
 export const Experience = () => {
@@ -11,14 +12,16 @@ export const Experience = () => {
     return (
         <section
             id="experiencia"
-            className="relative border-y border-border bg-surface/40 py-24"
+            className="relative overflow-hidden border-y border-border bg-surface/40 py-24"
         >
+            <BackgroundLetter letter="D" />
             <div className="mx-auto max-w-6xl px-6">
                 <Reveal>
                     <SectionHeader
-                        eyebrow={t.experience.header.eyebrow}
+                        eyebrow={t.experience.header.eyebrow.replace("// ", "")}
                         title={t.experience.header.title}
                         description={t.experience.header.description}
+                        index="04"
                     />
                 </Reveal>
 
