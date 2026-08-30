@@ -39,7 +39,7 @@ export const ProjectDetailPanel = ({ project, content }: Props) => {
 
     return (
         <div className="grid border border-border md:grid-cols-[260px_1fr]">
-            <div className="relative h-[200px] border-b border-border md:h-auto md:border-b-0 md:border-r">
+            <div className="relative h-50 border-b border-border md:h-auto md:border-b-0 md:border-r">
                 <ImageCarousel images={images} alt={content.title} emptyLabel={l.noGallery} />
             </div>
 

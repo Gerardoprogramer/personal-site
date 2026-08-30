@@ -77,7 +77,7 @@ export const ImageCarousel = ({ images, alt, emptyLabel }: Props) => {
                         className="relative h-[80vh] w-full max-w-4xl"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <Image src={images[index]} alt={`${alt} ${index + 1}`} fill className="object-contain" sizes="100vw" />
+                        <Image src={images[index]} alt={`${alt} ${index + 1}`} fill className="object-contain" sizes="(max-width: 896px) 100vw, 896px" />
 
                         {images.length > 1 && (
                             <>

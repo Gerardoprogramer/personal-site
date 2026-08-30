@@ -63,6 +63,47 @@ export const projects: Project[] = [
             { labelKey: "frontend", href: "https://github.com/Gerardoprogramer/library-management-system-next", kind: "frontend" },
             { labelKey: "backend", href: "https://github.com/Gerardoprogramer/Library-Management-System", kind: "backend" },
         ],
+        gallery: [
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125175/13_tuqvwn.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125168/12_zooxeq.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125163/11_tvcc0d.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125156/10_smclpx.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125149/09_pviokl.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125143/08_m0ii8v.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125135/07_agqujt.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125130/06_ra7wni.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125114/05_a4gst2.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125107/04_spsjnh.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125100/03_cuzu1u.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125082/02_bogsa1.png`,
+            },
+            {
+                src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788125068/01_x6ojvc.png`,
+            },
+        ]
     },
     {
         slug: "trendora-ecommerce",
@@ -113,6 +154,13 @@ export const projects: Project[] = [
             { labelKey: "demo", href: "https://selvatica.vercel.app", kind: "demo" },
             { labelKey: "repositorio", href: "https://github.com/Gerardoprogramer/selvatica", kind: "repo" },
         ],
+        gallery: [
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788127314/S-05_wcyoza.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788127306/S-04_avkwaa.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788127300/S-03_n9vhor.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788127294/S-02_ntdieb.png` },
+            { src: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/v1788127290/S-01_lr2prj.png` },
+        ]
     },
     {
         slug: "backend-4thewords",
