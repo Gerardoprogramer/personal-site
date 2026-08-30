@@ -48,14 +48,14 @@ export function CookieConsent() {
             role="dialog"
             aria-label={t.cookies.message}
         >
-            <p className="font-mono-tech text-xs text-primary mb-2 tracking-wide">
-        // cookies
+            <p className="font-mono-tech text-xs text-primary mb-2 tracking-wide uppercase">
+                cookies
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                 {t.cookies.message}{" "}
                 <a
                     href="/privacidad"
-                    className="text-primary hover:underline"
+                    className="text-accent hover:underline"
                 >
                     {t.cookies.linkText}
                 </a>

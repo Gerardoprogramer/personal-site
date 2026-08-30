@@ -74,7 +74,7 @@ export const Experience = () => {
                                         style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                                     >
                                         <div className="overflow-hidden">
-                                            <div className="grid gap-6 px-6 pb-7 pt-1 sm:grid-cols-2 sm:px-7 sm:pl-[124px]">
+                                            <div className="grid gap-6 px-6 pb-7 pt-1 sm:grid-cols-2 sm:px-7 sm:pl-31">
                                                 <div>
                                                     <div className="font-mono-tech text-[10px] uppercase tracking-widest text-accent">
                                                         {t.experience.labels.built}

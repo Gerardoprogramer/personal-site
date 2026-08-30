@@ -151,7 +151,7 @@
   },
   "contact": {
     "header": {
-      "eyebrow": "// contacto",
+      "eyebrow": "contacto",
       "title": "Cuéntame qué necesitas construir.",
       "description": "Respondo por lo general el mismo día. Si prefieres correo directo, también funciona."
     },
@@ -161,7 +161,7 @@
       "other": "Otro"
     },
     "labels": {
-      "intention": "// intención",
+      "intention": "intención",
       "name": "nombre",
       "email": "correo",
       "message": "mensaje"
@@ -173,7 +173,7 @@
       "position": "Rol, stack, formato (remoto/híbrido), rango salarial…",
       "other": "Cuéntame en qué estás pensando."
     },
-    "help": "// sin plantillas. léelo antes de enviar y ve al grano.",
+    "help": "sin plantillas. léelo antes de enviar y ve al grano.",
     "directEmail": "o escríbeme a",
     "button": {
       "send": "enviar mensaje",

@@ -93,7 +93,7 @@ export const Contact = () => {
                                     <label
                                         key={opt.value}
                                         className={`flex cursor-pointer items-center gap-3 rounded-md border px-4 py-3 text-sm transition-colors ${active
-                                            ? "border-primary bg-primary/10 text-foreground"
+                                            ? "border-accent bg-accent/10 text-foreground"
                                             : "border-border bg-surface-2/40 text-muted-foreground hover:border-primary/40"
                                             }`}
                                     >
@@ -107,11 +107,11 @@ export const Contact = () => {
                                         />
                                         <span
                                             aria-hidden="true"
-                                            className={`grid size-4 shrink-0 place-items-center rounded-full border ${active ? "border-primary" : "border-border"
+                                            className={`grid size-4 shrink-0 place-items-center rounded-full border ${active ? "border-accent" : "border-border"
                                                 }`}
                                         >
                                             {active ? (
-                                                <span className="size-1.5 rounded-full bg-primary" />
+                                                <span className="size-1.5 rounded-full bg-accent" />
                                             ) : null}
                                         </span>
                                         <span className="font-mono-tech text-xs leading-tight">
@@ -138,7 +138,7 @@ export const Contact = () => {
                                 type="text"
                                 maxLength={100}
                                 autoComplete="name"
-                                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-primary"
+                                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-accent"
                                 placeholder={t.contact.placeholders.name}
                             />
                         </div>
@@ -155,7 +155,7 @@ export const Contact = () => {
                                 required
                                 type="email"
                                 autoComplete="email"
-                                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-primary"
+                                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-accent"
                                 placeholder={t.contact.placeholders.email}
                             />
                         </div>
@@ -176,7 +176,7 @@ export const Contact = () => {
                             maxLength={MAX_MESSAGE}
                             rows={5}
                             onChange={(e) => setMessageLength(e.target.value.length)}
-                            className="mt-2 w-full rounded-md border border-border bg-surface-2/40 px-3 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-primary"
+                            className="mt-2 w-full rounded-md border border-border bg-surface-2/40 px-3 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-accent"
                             placeholder={
                                 intent === "posicion"
                                     ? t.contact.placeholders.position
@@ -204,7 +204,7 @@ export const Contact = () => {
                     <div className="mt-6 flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <a
                             href={`mailto:${profile.email}`}
-                            className="inline-flex items-center gap-2 font-mono-tech text-xs text-muted-foreground transition-colors hover:text-primary"
+                            className="inline-flex items-center gap-2 font-mono-tech text-xs text-muted-foreground transition-colors hover:text-accent"
                         >
                             {t.contact.directEmail}{" "}
                             <span className="text-foreground">{profile.email}</span>

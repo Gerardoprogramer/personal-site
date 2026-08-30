@@ -23,7 +23,7 @@ export const FooterBrand = () => {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="GitHub"
-                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
                 >
                     <FaGithub className="size-4" strokeWidth={1.5} aria-hidden="true" />
                 </a>
@@ -32,14 +32,14 @@ export const FooterBrand = () => {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="LinkedIn"
-                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
                 >
                     <FaLinkedin className="size-4" strokeWidth={1.5} aria-hidden="true" />
                 </a>
                 <a
                     href={socials.email}
                     aria-label="Enviar correo"
-                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
                 >
                     <FaEnvelope className="size-4" strokeWidth={1.5} aria-hidden="true" />
                 </a>
@@ -48,7 +48,7 @@ export const FooterBrand = () => {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="WhatsApp"
-                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
                 >
                     <FaWhatsapp className="size-4" strokeWidth={1.5} aria-hidden="true" />
                 </a>

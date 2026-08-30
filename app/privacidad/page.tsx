@@ -38,7 +38,7 @@ export default async function PrivacyPage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
             <Link
                 href="/"
-                className="font-mono-tech text-xs text-primary hover:underline mb-8 inline-block"
+                className="font-mono-tech text-xs text-muted-foreground hover:text-accent transition-colors mb-8 inline-block"
             >
                 {lang === "es" ? "← volver al inicio" : "← back to home"}
             </Link>
@@ -57,7 +57,7 @@ export default async function PrivacyPage() {
             <div className="space-y-8">
                 {t.sections.map((section) => (
                     <section key={section.heading}>
-                        <h2 className="font-mono-tech text-sm text-primary mb-2">
+                        <h2 className="font-mono-tech text-sm text-accent mb-2">
               // {section.heading}
                         </h2>
                         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -72,12 +72,12 @@ export default async function PrivacyPage() {
                     {t.contact}{" "}
                     <a
                         href="mailto:hola@gerardomartinez.dev"
-                        className="text-primary hover:underline"
+                        className="text-muted-foreground hover:text-accent transition-colors"
                     >
                         hola@gerardomartinez.dev
                     </a>
                 </p>
             </div>
-        </div>
+        </div >
     );
 }

@@ -10,14 +10,14 @@ export const FooterNav = () => {
     return (
         <div>
             <div className="font-mono-tech text-[10px] uppercase tracking-widest text-primary">
-              // {t.footer.titleNav}
+                {t.footer.titleNav}
             </div>
             <ul className="mt-4 space-y-2 font-mono-tech text-xs text-muted-foreground">
                 {links.map((l) => (
                     <li key={l.href}>
                         <a
                             href={l.href}
-                            className="transition-colors hover:text-primary"
+                            className="transition-colors hover:text-accent"
                         >
                             {l.label}
                         </a>

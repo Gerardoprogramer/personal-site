@@ -151,7 +151,7 @@
   },
   "contact": {
     "header": {
-      "eyebrow": "// contact",
+      "eyebrow": "contact",
       "title": "Tell me what you need to build.",
       "description": "I usually reply the same day. If you prefer direct email, that works too."
     },
@@ -161,7 +161,7 @@
       "other": "Other"
     },
     "labels": {
-      "intention": "// intent",
+      "intention": "intent",
       "name": "name",
       "email": "email",
       "message": "message"
@@ -173,7 +173,7 @@
       "position": "Role, stack, format (remote/hybrid), salary range…",
       "other": "Tell me what you have in mind."
     },
-    "help": "// no templates. read it before sending and get to the point.",
+    "help": "no templates. read it before sending and get to the point.",
     "directEmail": "or email me at",
     "button": {
       "send": "send message",

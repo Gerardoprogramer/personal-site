@@ -11,13 +11,13 @@ export const FooterContact = () => {
     return (
         <div>
             <div className="font-mono-tech text-[10px] uppercase tracking-widest text-primary">
-              // {t.footer.titleContact}
+                {t.footer.titleContact}
             </div>
             <ul className="mt-4 space-y-2 font-mono-tech text-xs text-muted-foreground">
                 <li>
                     <a
                         href={socials.email}
-                        className="transition-colors hover:text-primary"
+                        className="transition-colors hover:text-accent"
                     >
                         {profile.email}
                     </a>
@@ -27,7 +27,7 @@ export const FooterContact = () => {
                         href={socials.whatsapp}
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="transition-colors hover:text-primary"
+                        className="transition-colors hover:text-accent"
                     >
                         whatsapp →
                     </a>
@@ -36,7 +36,7 @@ export const FooterContact = () => {
                     <a
                         href={socials.cv}
                         download
-                        className="transition-colors hover:text-primary"
+                        className="transition-colors hover:text-accent"
                     >
                         {t.footer.descargar} cv (.pdf)
                     </a>
@@ -48,7 +48,7 @@ export const FooterContact = () => {
                             localStorage.removeItem("cookie-consent");
                             window.location.reload();
                         }}
-                        className="transition-colors hover:text-primary text-left"
+                        className="transition-colors hover:text-accent text-left"
                     >
                         {language === "es" ? "preferencias de cookies" : "cookie preferences"}
                     </button>
