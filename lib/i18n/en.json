@@ -123,21 +123,21 @@
       "role": "Full Stack Developer (professional services contract)",
       "format": "Remote · Costa Rica",
       "built": [
-        "Product features in Vue.js on top of a production Python backend.",
-        "Bug fixes through systematic reproduction, not blind patches.",
-        "Small performance improvements in database queries."
+        "Migrated the account service from PHP to FastAPI while keeping the exact same JSON response contract, so the frontend wouldn't break — first migrated it as-is, then refactored into a separate v2.",
+        "Fixed bugs with different root causes (code, browser, extensions) across several microservices: reproducing the issue first, tracing it to its root cause, and only then weighing a few solutions before applying the right one.",
+        "Built a configurable tabs component with three design variants integrated into a single component, with GSAP hover animations, following the Figma specs."
       ],
-      "learned": "Working on a live product with real users changes the definition of \"done\": code that works correctly but breaks operations is not finished."
+      "learned": "I learned not to delete code just because it looks useless at first glance. Sometimes it's a quiet patch holding something important together, and you need to understand what it's solving before touching it."
     },
     "funread": {
       "role": "Backend Internship (Django)",
       "format": "Internship · Costa Rica",
       "built": [
-        "Endpoints and models using Django + DRF.",
-        "Safe migrations with backfills split into separate steps.",
-        "Integration tests covering critical workflows."
+        "Built new backend features in Django for an English-teaching platform.",
+        "Designed a gamification system with the team (database and backend logic) that rewarded students to boost motivation and task completion rates.",
+        "Worked with the frontend team to correctly integrate the new endpoints into the student experience."
       ],
-      "learned": "The first time your own merge reaches production teaches more discipline than a semester of theory."
+      "learned": "It was my first real experience, and I learned more than I expected: how a gamified system actually works from the ground up, how to build that whole feature (from the database to the backend) without breaking anything that already existed, and also how to work as a team and document properly — things no course teaches quite the same way."
     },
     "header": {
       "eyebrow": "// experience",
@@ -145,8 +145,8 @@
       "description": "Early in my career, but every role has a story: what I built and what I learned along the way."
     },
     "labels": {
-      "built": "// built",
-      "learned": "// learned"
+      "built": "built",
+      "learned": "learned"
     }
   },
   "contact": {

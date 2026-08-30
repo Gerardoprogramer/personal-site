@@ -123,21 +123,21 @@
       "role": "Desarrollador Full Stack (contrato de servicios profesionales)",
       "format": "Remoto · Costa Rica",
       "built": [
-        "Features de producto en Vue.js sobre un backend Python en producción.",
-        "Corrección de bugs con reproducción sistemática, no parches ciegos.",
-        "Pequeñas mejoras de rendimiento en consultas de base de datos."
+        "Migré el servicio de cuentas (account) de PHP a FastAPI manteniendo el mismo contrato de respuesta JSON, para no romper el frontend — primero migré tal cual, y después refactoricé en una v2 aparte.",
+        "Resolví bugs de distinto origen (código, navegador, extensiones) en varios microservicios: primero replicando el error, después buscando la causa raíz, y recién ahí evaluando varias soluciones antes de aplicar la más adecuada.",
+        "Construí un componente de tabs configurable con tres variantes de diseño integradas en un mismo componente, con animación en hover con GSAP, siguiendo las especificaciones de Figma."
       ],
-      "learned": "Trabajar en un producto vivo con usuarios reales cambia la definición de \"terminado\": el código correcto que rompe la operación no está terminado."
+      "learned": "Aprendí a no borrar código solo porque a simple vista parece inútil. A veces es un parche silencioso que sostiene algo importante, y primero hay que entender qué resuelve antes de tocarlo."
     },
     "funread": {
       "role": "Pasantía Backend (Django)",
       "format": "Pasantía · Costa Rica",
       "built": [
-        "Endpoints y modelos en Django + DRF.",
-        "Migraciones seguras con backfill en pasos separados.",
-        "Tests de integración sobre los flujos críticos."
+        "Desarrollé nuevas funcionalidades backend en Django para una plataforma de enseñanza de inglés.",
+        "Diseñé junto al equipo un sistema de gamificación (base de datos y lógica backend) que daba recompensas a los estudiantes para aumentar su motivación y la tasa de finalización de tareas.",
+        "Trabajé junto al equipo de frontend para integrar correctamente los endpoints nuevos en la experiencia del estudiante."
       ],
-      "learned": "La primera vez que un merge propio llega a producción enseña más disciplina que un semestre de teoría."
+      "learned": "Fue mi primera experiencia real, y aprendí más de lo que esperaba: a entender cómo funcionaba un sistema gamificado desde cero, a construir esa funcionalidad completa (de la base de datos al backend) sin romper nada de lo que ya existía, y también a trabajar en equipo y documentar bien — cosas que ningún curso enseña de la misma forma."
     },
     "header": {
       "eyebrow": "// experiencia",
@@ -145,8 +145,8 @@
       "description": "Poca antigüedad, pero cada rol tiene contexto: qué construí y qué me llevé."
     },
     "labels": {
-      "built": "// construí",
-      "learned": "// aprendí"
+      "built": "construí",
+      "learned": "aprendí"
     }
   },
   "contact": {
