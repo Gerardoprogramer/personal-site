@@ -1,17 +1,26 @@
 interface BackgroundLetterProps {
-    letter: string;
-    side?: "left" | "right";
+  letter: "G" | "E" | "R" | "A" | "D" | "O";
+  side?: "left" | "right";
+  position?: "center" | "top";
+  size?: "large" | "compact";
 }
 
-export const BackgroundLetter = ({ letter, side = "right" }: BackgroundLetterProps) => {
-    const positionClass = side === "right" ? "-right-16" : "-left-16";
-
-    return (
-        <div
-            aria-hidden="true"
-            className={`pointer-events-none absolute ${positionClass} top-1/2 hidden -translate-y-1/2 select-none font-display text-[520px] italic leading-none text-foreground/[0.035] lg:block`}
-        >
-            {letter}
-        </div>
-    )
+export function BackgroundLetter({
+  letter,
+  side = "right",
+  position = "center",
+  size = "large",
+}: BackgroundLetterProps) {
+  return (
+    <div
+      aria-hidden="true"
+      data-section-letter={letter}
+      className="section-letter"
+      data-side={side}
+      data-position={position}
+      data-size={size}
+    >
+      <span>{letter}</span>
+    </div>
+  );
 }

@@ -1,119 +1,199 @@
 "use client";
 
-import { useRef, useState } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import {
+  FiArrowUpRight,
+  FiBriefcase,
+  FiGrid,
+  FiMail,
+  FiMenu,
+  FiUser,
+  FiX,
+  FiDownload,
+} from "react-icons/fi";
+import { useTranslation } from "@/lib/i18n/context";
+import { useActiveSection } from "@/hooks/useActiveSection";
+import { LanguageSwitcher } from "./header/LanguageSwitcher";
+import { SocialLinks } from "./header/SocialLinks";
+import { Logo } from "./header/Logo";
+import { socials } from "@/content/portfolio";
 
-import { Logo } from "@/components/layout/header/Logo";
-import { Nav } from "@/components/layout/header/Nav";
-import { LanguageSwitcher } from "@/components/layout/header/LanguageSwitcher";
-import { SocialLinks } from "@/components/layout/header/SocialLinks";
-import { LocalClock } from "@/components/layout/header/LocalClock";
-import { MenuToggle } from "@/components/layout/header/MenuToggle";
+export function Header() {
+  const { language } = useTranslation();
+  const pathname = usePathname();
+  const active = useActiveSection();
+  const menu = useRef<HTMLDialogElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const es = language === "es";
+  const home = pathname === "/" ? "" : `/?lang=${language}`;
+  const links = [
+    { id: "proyectos", label: es ? "Proyectos" : "Projects", Icon: FiGrid },
+    {
+      id: "experiencia",
+      label: es ? "Experiencia" : "Experience",
+      Icon: FiBriefcase,
+    },
+    { id: "sobre-mi", label: es ? "Sobre mí" : "About", Icon: FiUser },
+    { id: "stack", label: "Stack", Icon: FiGrid },
+    {
+      id: "servicios",
+      label: es ? "Servicios" : "Services",
+      Icon: FiBriefcase,
+    },
+    { id: "contacto", label: es ? "Contacto" : "Contact", Icon: FiMail },
+  ];
+  const dockLinks = links.filter((link) =>
+    ["proyectos", "experiencia", "sobre-mi", "contacto"].includes(link.id),
+  );
 
-import { useHeaderVisibility } from "@/hooks/useHeaderVisibility";
-
-export const Header = () => {
-    const headerRef = useRef<HTMLElement>(null);
-
-    const { visible, show } = useHeaderVisibility({
-        threshold: 12,
-        topOffset: 96,
-    });
-
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-        const rect = headerRef.current?.getBoundingClientRect();
-
-        if (!rect) return;
-
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-        headerRef.current?.style.setProperty("--mx", `${x}%`);
-        headerRef.current?.style.setProperty("--my", `${y}%`);
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1120px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) menu.current?.close();
     };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
 
-    return (
-        <div className="pointer-events-none fixed inset-x-0 bottom-[max(0.9rem,env(safe-area-inset-bottom))] top-auto z-50 flex justify-center md:bottom-auto md:top-4">
-            <div
-                data-visible={visible}
-                className="relative translate-y-[calc(100%+1.5rem)] opacity-0 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 md:-translate-y-[calc(100%+1.5rem)] md:data-[visible=true]:translate-y-0"
-            >
-                <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -inset-2 -z-10 rounded-full blur-2xl"
-                    style={{
-                        background: "var(--color-accent)",
-                        opacity: 0.22,
-                    }}
-                />
+  function openMenu() {
+    menu.current?.showModal();
+    setMenuOpen(true);
+  }
 
-                <header
-                    ref={headerRef}
-                    onMouseMove={handleMouseMove}
-                    onMouseEnter={show}
-                    onFocusCapture={show}
-                    data-open={menuOpen}
-                    className="group pointer-events-auto relative w-[min(92vw,26rem)] overflow-hidden rounded-full border border-accent bg-surface-2/95 shadow-[0_1px_0_0_rgba(255,255,255,0.08)_inset,0_24px_60px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-[border-radius] duration-300 data-[open=true]:rounded-[1.75rem] md:w-auto"
-                >
-                    <div
-                        aria-hidden="true"
-                        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        style={{
-                            background:
-                                "radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(138,39,64,0.4), transparent 70%)",
-                        }}
-                    />
-
-                    <div className="relative flex h-12 items-center gap-3 px-4 md:h-14 md:gap-5 md:px-5">
-                        <div className="hidden md:flex">
-                            <Logo />
-                        </div>
-
-                        <div className="hidden md:flex">
-                            <Nav />
-                        </div>
-
-
-                        <div className="flex min-w-0 flex-1 items-center gap-3 md:hidden">
-
-                            <div className="min-w-0 flex-1">
-                                <Nav compact />
-                            </div>
-
-                            <div className="flex shrink-0 items-center gap-2">
-                                <MenuToggle
-                                    open={menuOpen}
-                                    onToggle={() => setMenuOpen((v) => !v)}
-                                />
-                            </div>
-                        </div>
-
-                        <div className="hidden items-center gap-4 md:flex">
-                            <LanguageSwitcher />
-                            <SocialLinks />
-                            <LocalClock />
-                        </div>
-                    </div>
-
-                    <div
-                        id="mobile-menu"
-                        className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden"
-                        style={{
-                            gridTemplateRows: menuOpen ? "1fr" : "0fr",
-                        }}
-                    >
-                        <div className="overflow-hidden">
-                            <div className="flex flex-col gap-4 border-t border-border/60 px-5 pb-5 pt-3">
-                                <div className="flex items-center justify-between gap-3 pt-1">
-                                    <LanguageSwitcher />
-                                    <SocialLinks />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-            </div>
+  return (
+    <>
+      <header className="site-header">
+        <div className="header-bar">
+          <Logo />
+          <nav
+            aria-label={es ? "Navegación principal" : "Main navigation"}
+            className="desktop-nav"
+          >
+            {links.map((link) => (
+              <Link
+                key={link.id}
+                href={`${home}#${link.id}`}
+                aria-current={active === link.id ? "location" : undefined}
+                className="desktop-nav-link"
+              >
+                {link.label}
+                <span className="nav-active-dot" aria-hidden="true" />
+              </Link>
+            ))}
+          </nav>
+          <div className="header-utilities">
+            <SocialLinks />
+            <span className="header-divider" aria-hidden="true" />
+            <LanguageSwitcher />
+          </div>
         </div>
-    );
-};
+      </header>
+
+      <nav
+        aria-label={es ? "Navegación móvil" : "Mobile navigation"}
+        className="mobile-dock"
+      >
+        {dockLinks.map(({ id, label, Icon }) => (
+          <Link
+            key={id}
+            href={`${home}#${id}`}
+            aria-current={active === id ? "location" : undefined}
+            className="dock-link"
+          >
+            <Icon aria-hidden="true" className="size-[18px]" />
+            <span>{label}</span>
+          </Link>
+        ))}
+        <button
+          type="button"
+          aria-haspopup="dialog"
+          aria-controls="site-menu"
+          aria-expanded={menuOpen}
+          onClick={openMenu}
+          className="dock-link dock-menu"
+        >
+          <FiMenu aria-hidden="true" className="size-[18px]" />
+          <span>{es ? "Menú" : "Menu"}</span>
+        </button>
+      </nav>
+
+      <dialog
+        ref={menu}
+        id="site-menu"
+        aria-labelledby="site-menu-title"
+        className="navigation-sheet"
+        onClose={() => setMenuOpen(false)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) menu.current?.close();
+        }}
+      >
+        <div className="sheet-content">
+          <div className="sheet-handle" aria-hidden="true" />
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <p className="eyebrow mb-1">
+                {es ? "Explora el portfolio" : "Explore the portfolio"}
+              </p>
+              <h2 id="site-menu-title" className="font-display text-3xl">
+                {es ? "Un poco más de mí." : "A little more about me."}
+              </h2>
+            </div>
+            <button
+              autoFocus
+              type="button"
+              onClick={() => menu.current?.close()}
+              aria-label={es ? "Cerrar menú" : "Close menu"}
+              className="sheet-close"
+            >
+              <FiX aria-hidden="true" className="size-5" />
+            </button>
+          </div>
+          <nav
+            aria-label={es ? "Todas las secciones" : "All sections"}
+            className="sheet-navigation"
+          >
+            <Link
+              href={`${home}#top`}
+              onClick={() => menu.current?.close()}
+              className="sheet-nav-link"
+            >
+              <span className="sheet-letter">G</span>
+              <span>{es ? "Inicio" : "Home"}</span>
+              <FiArrowUpRight aria-hidden="true" />
+            </Link>
+            {links.map((link, index) => (
+              <Link
+                key={link.id}
+                href={`${home}#${link.id}`}
+                aria-current={active === link.id ? "location" : undefined}
+                onClick={() => menu.current?.close()}
+                className="sheet-nav-link"
+              >
+                <span className="sheet-letter">{"ERARDO"[index]}</span>
+                <span>{link.label}</span>
+                <FiArrowUpRight aria-hidden="true" />
+              </Link>
+            ))}
+          </nav>
+          <div className="sheet-footer">
+            <p className="eyebrow mb-3 text-muted-foreground">
+              {es ? "Conectemos" : "Let’s connect"}
+            </p>
+            <SocialLinks expanded />
+            <a
+              href={socials.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <FiDownload aria-hidden="true" />
+              {es ? "Ver currículum" : "View résumé"}
+            </a>
+          </div>
+        </div>
+      </dialog>
+    </>
+  );
+}

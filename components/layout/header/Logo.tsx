@@ -1,61 +1,33 @@
-import { profileStatic as profile } from '@/content/profile'
+"use client";
 
-export const Logo = () => {
-    return (
-        <a
-            href="#top"
-            className="font-display text-sm font-semibold tracking-tight"
-            aria-label={`${profile.name} — inicio`}
-        >
-            <svg
-                width="160"
-                height="32"
-                viewBox="0 0 160 32"
-                className="overflow-visible"
-            >
-                <defs>
-                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: "var(--color-foreground)" }} />
-                        <stop offset="100%" style={{ stopColor: "var(--color-primary)" }} />
-                    </linearGradient>
-                </defs>
+import Link from "next/link";
+import { useTranslation } from "@/lib/i18n/context";
 
-                <g className="transition-transform duration-300 ease-out group-hover:rotate-3 group-hover:scale-105 origin-[16px_16px]">
-                    <path
-                        d="M16,3 L27.26,9.5 L27.26,22.5 L16,29 L4.74,22.5 L4.74,9.5 Z"
-                        fill="none"
-                        stroke="url(#logoGradient)"
-                        strokeWidth={1.1}
-                        strokeLinejoin="round"
-                    />
-                    <text
-                        x="16"
-                        y="21"
-                        textAnchor="middle"
-                        className="font-display text-[13px] font-bold"
-                        style={{ fill: "url(#logoGradient)" }}
-                    >
-                        G
-                    </text>
-                </g>
-
-                <text
-                    x="42"
-                    y="21"
-                    className="font-display text-sm font-semibold tracking-tight"
-                    style={{ fill: "var(--color-foreground)" }}
-                >
-                    gerardo
-                </text>
-                <text
-                    x="97"
-                    y="21"
-                    className="font-display text-sm font-semibold tracking-tight"
-                    style={{ fill: "var(--color-primary)" }}
-                >
-                    .mm
-                </text>
-            </svg>
-        </a>
-    )
+export function Logo() {
+  const { language } = useTranslation();
+  return (
+    <Link
+      href={`/?lang=${language}#top`}
+      aria-label={
+        language === "es"
+          ? "Gerardo Martínez · Inicio"
+          : "Gerardo Martínez · Home"
+      }
+      className="header-brand"
+    >
+      <span className="brand-monogram" aria-hidden="true">
+        <svg viewBox="0 0 40 44" fill="none">
+          <path
+            d="M20 2 37.3 12v20L20 42 2.7 32V12Z"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+        </svg>
+        <span>G</span>
+      </span>
+      <span className="brand-name">
+        gerardo<span className="text-accent">.mm</span>
+      </span>
+    </Link>
+  );
 }

@@ -19,111 +19,12 @@
     "titleNav": "navegación",
     "descargar": "descargar"
   },
-  "hero": {
-    "title": "Diseño y construyo software que resiste",
-    "subtitle": "producción",
-    "description": "Full Stack Developer. Construyo desde ERPs con arquitectura hexagonal hasta landings con Lighthouse 100/100. Escribo código que otros ingenieros pueden mantener sin necesitar traducción.",
-    "actions": {
-      "contacto": "contratar servicios",
-      "perfil": "ver perfil profesional",
-      "descargar": "descargar"
-    },
-    "meta": {
-      "career": "informática empresarial",
-      "hour": "hora local"
-    },
-    "panel": {
-      "title": "estado",
-      "availability": "disponibilidad",
-      "availabilityValue": "disponible para trabajar",
-      "response": "tiempo de respuesta",
-      "responseValue": "< 24h",
-      "shipped": "entregado",
-      "shippedValue": "7 sistemas en producción",
-      "stack": "stack actual"
-    }
-  },
-  "sobreMi": {
-    "pageLabel": "sobre mí",
-    "paragraph1": "No suelo vender esto con una frase de efecto. Programo, leo, y me adapto a con quién esté trabajando — eso es prácticamente todo lo que hace falta saber antes de ver el trabajo.",
-    "paragraph2Prefix": "Construí un",
-    "paragraph2Anchor": "ERP completo por mi cuenta",
-    "paragraph2Suffix": ". Sigo expandiéndolo — no es un proyecto que cerré, es algo que todavía toco.",
-    "paragraph3": "Leo bastante, y se nota en cómo trabajo: prefiero entender el problema completo antes de escribir la primera línea.",
-    "paragraph4": "Abierto a empleo fijo o freelance. Ambos me sirven, por razones distintas.",
-    "noteTag": "nota",
-    "noteText": "el ERP sigue vivo. versión actual: v2 — última revisión esta semana.",
-    "metaLocationLabel": "Ubicación",
-    "metaLocation": "Costa Rica",
-    "metaFormatLabel": "Formato",
-    "metaFormat": "fijo o freelance",
-    "metaStatusLabel": "Estado",
-    "metaStatus": "construyendo, siempre"
-  },
-  "badges": {
-    "demoRepo": "[ demo + repo ]",
-    "repoOnly": "[ repositorio ]",
-    "demoOnly": "[ demo ]",
-    "partial": "[ acceso parcial ]",
-    "confidential": "[ case study · nda ]",
-    "inDevelopment": "[ en desarrollo ]"
-  },
-  "projects": {
-    "eyebrow": "// proyectos",
-    "title": "Proyectos que muestran cómo pienso, no solo qué uso.",
-    "description": "Tres tipos de tarjeta según lo que puedo enseñar: público con links, acceso parcial, o case study bajo NDA con problema, decisiones y arquitectura.",
-    "view": {
-      "list": "vista lista",
-      "map": "explorar como mapa"
-    },
-    "registration": "registros",
-    "FeaturedTitle1": "// problema",
-    "FeaturedTitle2": "// decisiones técnicas",
-    "cardTitle1": "problema",
-    "cardTitle2": "decisiones",
-    "cardTitle3": "arquitectura"
-  },
-  "map": {
-    "return": "volver al mapa"
-  },
-  "services": {
-    "First": {
-      "title": "Desarrollo de productos nuevos",
-      "body": "De la conversación inicial al MVP en producción. Elijo el stack que resuelva el problema, no el que esté de moda, y dejo el código en un estado en el que otro ingeniero pueda continuar sin pedir contexto."
-    },
-    "Second": {
-      "title": "Mantenimiento de sistemas",
-      "body": "Iteración sobre sistemas ya en producción sin romper lo que funciona. Cambios pequeños, reversibles, con tests donde faltan y documentación donde duele."
-    },
-    "Third": {
-      "title": "Resolución de bugs",
-      "body": "Reproducir primero, entender después, corregir al final. Antes de tocar código, necesito ver el error pasar frente a mis ojos — no confío en una hipótesis hasta confirmarla."
-    },
-    "Fourth": {
-      "title": "Migraciones",
-      "body": "Migraciones de datos, de versión de framework o de stack completo. Planifico ventanas cortas, mantengo compatibilidad hacia atrás y evito el big bang que rompe la operación."
-    },
-    "Header": {
-      "eyebrow": "// servicios",
-      "title": "Cómo trabajo cuando me contratas por proyecto.",
-      "description": "No es un catálogo con precios. Es la forma en que abordo cada tipo de trabajo. El precio depende del alcance real, no de una tabla."
-    }
-  },
-  "Stack": {
-    "labeldata": "Datos & Infra",
-    "labelsecond": "Secundario",
-    "Header": {
-      "eyebrow": "// stack",
-      "title": "Herramientas con las que resuelvo problemas reales.",
-      "description": "Agrupadas por dominio. El stack secundario aparece porque tengo experiencia real con él, aunque no sea el que elijo por defecto."
-    }
-  },
   "experience": {
     "4thewords": {
       "role": "Desarrollador Full Stack (contrato de servicios profesionales)",
       "format": "Remoto · Costa Rica",
       "built": [
-        "Migré el servicio de cuentas (account) de PHP a FastAPI manteniendo el mismo contrato de respuesta JSON, para no romper el frontend — primero migré tal cual, y después refactoricé en una v2 aparte.",
+        "Migré el servicio de cuentas de PHP a FastAPI manteniendo el contrato de respuesta JSON para conservar la compatibilidad con el frontend. Separé la migración inicial de la refactorización posterior.",
         "Resolví bugs de distinto origen (código, navegador, extensiones) en varios microservicios: primero replicando el error, después buscando la causa raíz, y recién ahí evaluando varias soluciones antes de aplicar la más adecuada.",
         "Construí un componente de tabs configurable con tres variantes de diseño integradas en un mismo componente, con animación en hover con GSAP, siguiendo las especificaciones de Figma."
       ],
@@ -134,26 +35,17 @@
       "format": "Pasantía · Costa Rica",
       "built": [
         "Desarrollé nuevas funcionalidades backend en Django para una plataforma de enseñanza de inglés.",
-        "Diseñé junto al equipo un sistema de gamificación (base de datos y lógica backend) que daba recompensas a los estudiantes para aumentar su motivación y la tasa de finalización de tareas.",
+        "Diseñé junto al equipo la base de datos y la lógica de un sistema de gamificación con recompensas para estudiantes.",
         "Trabajé junto al equipo de frontend para integrar correctamente los endpoints nuevos en la experiencia del estudiante."
       ],
       "learned": "Fue mi primera experiencia real, y aprendí más de lo que esperaba: a entender cómo funcionaba un sistema gamificado desde cero, a construir esa funcionalidad completa (de la base de datos al backend) sin romper nada de lo que ya existía, y también a trabajar en equipo y documentar bien — cosas que ningún curso enseña de la misma forma."
-    },
-    "header": {
-      "eyebrow": "// experiencia",
-      "title": "Dónde puse las manos en producción.",
-      "description": "Poca antigüedad, pero cada rol tiene contexto: qué construí y qué me llevé."
-    },
-    "labels": {
-      "built": "construí",
-      "learned": "aprendí"
     }
   },
   "contact": {
     "header": {
       "eyebrow": "contacto",
       "title": "Cuéntame qué necesitas construir.",
-      "description": "Respondo por lo general el mismo día. Si prefieres correo directo, también funciona."
+      "description": "Para un proyecto o una oportunidad de trabajo. También puedes escribirme directamente por correo."
     },
     "intents": {
       "service": "Quiero contratar un servicio",
@@ -173,30 +65,31 @@
       "position": "Rol, stack, formato (remoto/híbrido), rango salarial…",
       "other": "Cuéntame en qué estás pensando."
     },
-    "help": "sin plantillas. léelo antes de enviar y ve al grano.",
+    "help": "Cuéntame el contexto, qué necesitas y los plazos que tienes en mente.",
     "directEmail": "o escríbeme a",
     "button": {
       "send": "enviar mensaje",
-      "sent": "mensaje enviado"
-    }
+      "sent": "mensaje enviado",
+      "sending": "Enviando…"
+    },
+    "error": "No se pudo enviar. Intenta de nuevo o escríbeme por correo."
   },
   "meta": {
     "title": "Gerardo Martínez Monge | Informático Empresarial · Full Stack Developer",
-    "description": "Informático Empresarial Full Stack en Costa Rica. Construyo ERPs con arquitectura hexagonal y DDD, sistemas backend con Python/FastAPI/Django, y frontend con React/Next.js. Disponible para empleo fijo y proyectos freelance.",
-    "ogDescription": "Diseño y construyo software que resiste producción. ERPs, sistemas backend y frontend con arquitectura sólida.",
-    "twitterDescription": "Diseño y construyo software que resiste producción.",
+    "description": "Gerardo Martínez Monge, desarrollador full stack en Costa Rica. Aplicaciones web, ERP y experiencias digitales con Next.js, Java, Spring Boot y NestJS. Explora Obsidian Library, La Central y Selvática.",
+    "ogDescription": "Del problema real al software que lo resuelve. Tres proyectos: Obsidian Library, La Central y Selvática.",
+    "twitterDescription": "Del problema real al software que lo resuelve. Tres proyectos: Obsidian Library, La Central y Selvática.",
     "keywords": [
       "Gerardo Martínez Monge",
-      "Desarrollador Full Stack Costa Rica",
-      "Informático Empresarial",
-      "Desarrollador Python",
-      "FastAPI",
-      "Desarrollador Django",
-      "Desarrollador React",
-      "Desarrollador Next.js",
-      "Domain-Driven Design",
-      "Arquitectura Hexagonal",
-      "Desarrollador freelance Costa Rica"
+      "Desarrollador full stack Costa Rica",
+      "Next.js",
+      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "NestJS",
+      "PostgreSQL",
+      "ERP",
+      "Desarrollo web"
     ]
   },
   "cookies": {
@@ -232,9 +125,5 @@
       }
     ],
     "contact": "Si tenés dudas sobre esta política, escribime directamente a"
-  },
-  "modalproject": {
-    "Screenshots": "Capturas",
-    "View": "Ver capturas"
   }
 }

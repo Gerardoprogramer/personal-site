@@ -1,13 +1,14 @@
+import { usePathname } from "next/navigation";
 import { useTranslation } from "@/lib/i18n/context";
 
 export function useNavLinks() {
-  const { t } = useTranslation();
-
+  const { t, language } = useTranslation();
+  const pathname = usePathname();
+  const home = pathname === "/" ? "" : `/?lang=${language}`;
   return [
-    { href: "#proyectos", label: t.nav.proyectos },
-    { href: "#servicios", label: t.nav.servicios },
-    { href: "#stack", label: t.nav.stack },
-    { href: "#experiencia", label: t.nav.experiencia },
-    { href: "#contacto", label: t.nav.contacto },
-  ] as const;
+    { href: `${home}#proyectos`, label: t.nav.proyectos },
+    { href: `${home}#experiencia`, label: t.nav.experiencia },
+    { href: `${home}#servicios`, label: t.nav.servicios },
+    { href: `${home}#contacto`, label: t.nav.contacto },
+  ];
 }

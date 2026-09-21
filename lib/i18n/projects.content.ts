@@ -1,273 +1,358 @@
-import type { Language } from "@/lib/i18n/context";
+import type { ProjectSlug } from "@/content/projects";
+import type { Language } from "./context";
 
 export interface ProjectContent {
-  title: string;
+  category: string;
   tagline: string;
-  problem: string;
-  decisions: string[];
-  architecture?: string;
-  why?: string;
-  learned?: string;
-  note?: string;
-  gallery?: { caption: string }[];
+  summary: string;
+  headline: string;
+  introduction: string;
+  role: string;
+  status: string;
+  coverAlt: string;
+  challenge: string;
+  challengeBody: string;
+  decisions: { title: string; body: string }[];
+  evidence: { value: string; label: string }[];
+  evidenceNote: string;
+  scope: string;
+  closing: string;
 }
 
-export const projectsContent: Record<Language, Record<string, ProjectContent>> = {
+export const caseLabels = {
   es: {
-    "erp-minisuper": {
-      title: "La Central ERP",
-      tagline: "ERP para retail con sincronización en tiempo real, control de inventario y analítica de ventas.",
-      problem: "El cliente necesitaba centralizar ventas, inventario, compras y empleados en una sola plataforma capaz de sincronizar múltiples cajas en tiempo real y adaptarse a la lógica específica de un minisuper.",
-      why: "El cliente ya había intentado resolverlo con software genérico de punto de venta y no cubría su operación real — necesitaba algo hecho a medida de cómo trabaja su negocio.",
+    back: "Todos los proyectos",
+    read: "Explorar el proyecto",
+    demo: "Abrir demo",
+    code: "Código",
+    role: "Mi participación",
+    context: "Contexto",
+    status: "Estado",
+    year: "Año",
+    challenge: "El punto de partida",
+    decisions: "Decisiones que dan forma al producto",
+    evidence: "Implementación y verificación",
+    stack: "Tecnologías",
+    scope: "Alcance actual",
+    next: "Siguiente proyecto",
+    contact: "¿Construimos algo juntos?",
+    contactAction: "Hablemos",
+    screen: "Captura de la aplicación",
+    inspect: "Ampliar captura",
+    close: "Cerrar imagen",
+    of: "de",
+    selected: "Selección de proyectos",
+    view: "Ver proyecto",
+  },
+  en: {
+    back: "All projects",
+    read: "Explore the project",
+    demo: "Open demo",
+    code: "Code",
+    role: "My contribution",
+    context: "Context",
+    status: "Status",
+    year: "Year",
+    challenge: "The starting point",
+    decisions: "Decisions that shape the product",
+    evidence: "Implementation and verification",
+    stack: "Technologies",
+    scope: "Current scope",
+    next: "Next project",
+    contact: "Let’s build something together.",
+    contactAction: "Get in touch",
+    screen: "Application screenshot",
+    inspect: "Enlarge screenshot",
+    close: "Close image",
+    of: "of",
+    selected: "Selected projects",
+    view: "View project",
+  },
+};
+
+export const projectsContent: Record<
+  Language,
+  Record<ProjectSlug, ProjectContent>
+> = {
+  es: {
+    "obsidian-library": {
+      category: "Proyecto personal · Aplicación web",
+      tagline: "Del catálogo al préstamo, con cada operación conectada.",
+      summary:
+        "Una plataforma bibliotecaria que reúne catálogo, préstamos, reservas y membresías, con pagos mediante Stripe.",
+      headline: "Una biblioteca. Todo un producto detrás.",
+      introduction:
+        "Obsidian conecta la experiencia del lector con las reglas de una biblioteca: encontrar un libro, consultar su disponibilidad, gestionar un préstamo o una reserva y mantener al día la membresía. Un proyecto personal publicado como demo, con frontend en Next.js y backend en Java y Spring Boot.",
+      role: "Desarrollo frontend e integración con la API; backend, datos y pagos.",
+      status: "Demo publicada · Interfaz en refinamiento",
+      coverAlt:
+        "Portada de Obsidian Library con acceso a la plataforma bibliotecaria",
+      challenge: "Lo que ocurre entre un clic y una confirmación.",
+      challengeBody:
+        "Un libro puede estar prestado, reservado o disponible. Un pago puede seguir pendiente cuando el lector vuelve desde Stripe. El reto es coordinar esos estados y explicarlos en la interfaz, aplicando en el servidor las reglas de disponibilidad, membresías y pagos.",
       decisions: [
-        "Arquitectura hexagonal + DDD + CQRS: el dominio queda aislado del transporte y la persistencia, separando el modelo de escritura del modelo de lectura.",
-        "WebSockets y eventos internos para mantener inventario, ventas y estado de cajas sincronizados en tiempo real.",
-        "Módulos que no se conocen directamente entre sí — toda la comunicación se maneja mediante eventos desacoplados.",
-        "Algoritmo propio de predicción de pedidos basado en demanda, stock, temporadas y tiempos de entrega.",
+        {
+          title: "Confirmar antes de activar",
+          body: "La pantalla consulta el estado del backend y muestra la espera de confirmación. El servidor verifica la firma de los eventos de Stripe, reconoce entregas repetidas y evita que un evento tardío de fallo revierta un pago exitoso.",
+        },
+        {
+          title: "Una cola que respeta la disponibilidad",
+          body: "Las reservas avanzan según el orden de solicitud y los ejemplares libres. El lector dispone de 48 horas para recoger el libro. Al vencer ese plazo, el sistema puede dar paso a la siguiente reserva.",
+        },
+        {
+          title: "Sesiones coordinadas",
+          body: "Next.js conecta el navegador con la API de Spring Boot. La autenticación combina cookies HTTP-only, protección CSRF y rotación de refresh tokens. El cliente coordina las peticiones que necesitan renovar la sesión.",
+        },
+        {
+          title: "Reglas cerca de los datos",
+          body: "Los préstamos validan límites de la membresía y disponibilidad. Las operaciones críticas utilizan transacciones y bloqueos. Flyway mantiene el historial del esquema y PostgreSQL añade restricciones de integridad.",
+        },
       ],
-      learned: "Que en un sistema con varias cajas simultáneas, la consistencia de datos en tiempo real es más difícil de lograr bien que cualquier feature individual.",
-      architecture: "Spring Boot + Next.js, DDD + Hexagonal + CQRS, event-driven",
-      note: "Código bajo NDA. Detalles de implementación disponibles bajo solicitud.",
-      gallery: [
-        { caption: "Dashboard con ventas en tiempo real, stock bajo y sugerencias pendientes de un vistazo." },
-        { caption: "Punto de venta con escaneo de código de barras y cálculo automático de IVA por producto." },
-        { caption: "Control de inventario con categorías, stock y precios centralizados." },
-        { caption: "Pedidos inteligentes: predicción de demanda por producto para saber cuánto reordenar y cuándo." },
-        { caption: "Gestión de empleados con roles, PINs de acceso y estado activo/inactivo." },
-        { caption: "Sugerencias de producto: el equipo registra lo que los clientes piden y no está en catálogo." },
+      evidence: [
+        { value: "67", label: "pruebas en los reportes del backend" },
+        { value: "48 h", label: "plazo de recogida de una reserva" },
+        { value: "CI", label: "verificación con GitHub Actions" },
       ],
+      evidenceNote:
+        "Reportes locales del 20 de septiembre de 2026: 67 pruebas aprobadas, incluidas 8 de integración con PostgreSQL mediante Testcontainers.",
+      scope:
+        "Demo de un proyecto personal. La experiencia del lector está publicada y la interfaz sigue puliéndose. La API incluye funciones administrativas; su interfaz aún no está completa. La renovación de membresías prepara un enlace de pago enviado por correo.",
+      closing:
+        "Una interfaz clara necesita representar también las esperas, los vencimientos y las operaciones que requieren confirmación.",
     },
-    "strata-ai-workspace": {
-      title: "Strata AI Research Workspace",
-      tagline: "Workspace con IA para analizar documentos, generar resúmenes, responder con citas y buscar semánticamente sobre tu propia base de conocimiento.",
-      problem: "La lectura de investigación se dispersa entre PDFs, notas sueltas y chats con IA sin trazabilidad. Se necesita un espacio único donde cada respuesta esté anclada a la fuente y las notas evolucionen con el material.",
-      why: "Lo empecé para resolver un problema propio: perdía demasiado tiempo buscando en qué documento había leído algo específico.",
+    "la-central": {
+      category: "Desarrollo a medida · ERP + POS",
+      tagline: "La operación de un minisúper, conectada de principio a fin.",
+      summary:
+        "Ventas, inventario, caja, compras y fiado en una instalación local compartida por varias cajas.",
+      headline: "Software a la medida de un negocio real.",
+      introduction:
+        "Desarrollé La Central para reunir la operación de un minisúper en Costa Rica en un sistema adaptado a su forma de trabajar. Me encargué de la interfaz, el backend, la base de datos y el despliegue local, además de las herramientas de respaldo y recuperación.",
+      role: "Desarrollo integral: interfaz, backend, datos, despliegue y respaldos.",
+      status: "Desarrollo completado · Pendiente de puesta en marcha",
+      coverAlt:
+        "Punto de venta de La Central con una venta por gramos y precio automático por cartón de huevos",
+      challenge: "Cada venta mueve más que el inventario.",
+      challengeBody:
+        "Un cobro puede combinar productos por peso, unidades, paquetes, efectivo y fiado. Afecta las existencias, la caja y la deuda del cliente, mientras otro cajero trabaja con los mismos datos. El sistema debe mantener esas operaciones coherentes, incluso ante reintentos y acciones simultáneas.",
       decisions: [
-        "Pipeline de RAG con chunking semántico y reranking, no simple similitud vectorial: las respuestas incluyen citas verificables.",
-        "PostgreSQL con pgvector para embeddings y búsqueda semántica, separado del dominio para poder cambiar de modelo sin migrar datos del usuario.",
-        "Streaming de respuestas con FastAPI + AsyncIO para que la conversación se sienta fluida.",
-        "Procesamiento de PDFs con OCR para documentos con estructuras inconsistentes.",
+        {
+          title: "Varias cajas, una misma operación",
+          body: "Una PC principal ejecuta el servidor y la base de datos. Las demás cajas acceden desde el navegador por la red local. La operación diaria funciona sin Internet mientras la PC principal y la red estén disponibles.",
+        },
+        {
+          title: "Reintentar sin duplicar",
+          body: "Si se pierde la confirmación de un cobro, la interfaz conserva la clave de la operación. Al reintentar con los mismos datos, el servidor puede devolver la venta ya registrada. Las transacciones coordinan venta, inventario y caja.",
+        },
+        {
+          title: "Vender como trabaja el minisúper",
+          body: "Unidades y cartones comparten inventario; los productos por peso admiten captura de gramos. Los precios por presentación se aplican al total, y las ventas conservan descripciones, precios y factores de conversión históricos.",
+        },
+        {
+          title: "Reponer con información y criterio",
+          body: "Las sugerencias consideran ventas netas, mínimos, existencias disponibles y pedidos pendientes de todos los proveedores. El usuario puede aceptar parte de la propuesta y editar cantidades y costos antes de crear la orden.",
+        },
+        {
+          title: "Preparar también la recuperación",
+          body: "El despliegue incluye respaldos, restauración de comprobación en un contenedor independiente y controles de integridad. Las compras parciales, devoluciones y créditos a proveedores mantienen sus propios saldos e historial.",
+        },
       ],
-      learned: "Que un RAG que 'funciona' y un RAG que da respuestas verificables y confiables son dos proyectos completamente distintos en esfuerzo.",
-      architecture: "Next.js + FastAPI, RAG sobre pgvector",
-      note: "Actualmente en desarrollo, con atrasos por otros compromisos. Demo y repositorio público se publicarán al llegar a beta.",
+      evidence: [
+        { value: "53", label: "pruebas documentadas" },
+        { value: "4", label: "formatos de comprobante verificados en PDF" },
+        { value: "LAN", label: "instalación compartida en la red del local" },
+      ],
+      evidenceNote:
+        "Verificación del 14 al 16 de septiembre de 2026: 15 pruebas unitarias, 33 de integración y 5 recorridos de navegador aprobados. Durante varios días de operación simulada se corrigieron errores y se comprobaron de nuevo los flujos. También se documentó la recuperación de respaldos.",
+      scope:
+        "Desarrollo terminado y validado en pruebas. La puesta en marcha depende de adquirir y configurar los equipos del local, incluida la impresora. El sistema registra medios de pago; no procesa tarjetas ni SINPE. Los comprobantes no tienen conexión con Hacienda. Las capturas utilizan datos de demostración.",
+      closing:
+        "El trabajo abarca la venta que ve el cajero y los datos, las excepciones y la recuperación que sostienen la operación.",
     },
-    "biblioteca-stripe": {
-      title: "Obsidian Library",
-      tagline: "Sistema integral de gestión de biblioteca con préstamos, suscripciones y pagos automatizados.",
-      problem: "Se necesitaba una plataforma robusta para administrar libros, préstamos, reservas, suscripciones y pagos dentro de una sola solución, con seguridad, trazabilidad y lógica de negocio bien definida.",
-      why: "Quería un proyecto personal que me obligara a integrar pagos reales de punta a punta, no solo simulados — Stripe con webhooks de verdad, no un mock.",
+    selvatica: {
+      category: "Proyecto personal · Experiencia web",
+      tagline: "Una experiencia digital construida alrededor del paisaje.",
+      summary:
+        "Hospitalidad conceptual inspirada en Arenal: composición editorial, imágenes y movimiento que cambian con el dispositivo.",
+      headline: "El paisaje marca el ritmo.",
+      introduction:
+        "Selvática explora cómo la tipografía, las imágenes y el movimiento pueden transmitir la identidad de un alojamiento conceptual. Una experiencia personal de diseño y desarrollo frontend inspirada en el bosque húmedo y el paisaje volcánico de Arenal, Costa Rica.",
+      role: "Desarrollo frontend, composición visual e interacciones responsive.",
+      status: "Proyecto completado · Demo publicada",
+      coverAlt:
+        "Portada de Selvática: tipografía de gran formato sobre un paisaje de bosque",
+      challenge: "Transmitir un lugar a través de una pantalla.",
+      challengeBody:
+        "La propuesta alterna escenas inmersivas con espacios de lectura más pausados. La composición, las transiciones y la carga de imágenes debían acompañar ese ritmo y conservar una experiencia natural tanto con ratón como con pantalla táctil.",
       decisions: [
-        "Backend en capas (controller, domain, mapper, repository, service) para separación clara de responsabilidades.",
-        "Autenticación con access token + refresh token y cookies HTTP-only para reforzar seguridad de sesión.",
-        "Webhooks de Stripe con verificación de firma e idempotencia para procesar pagos, multas y reembolsos sin duplicados.",
-        "PageResponse estandarizado para paginación reutilizable en libros, reseñas y usuarios.",
+        {
+          title: "Dos maneras de recorrer el paisaje",
+          body: "En escritorio, una imagen permanece visible mientras avanza el relato y cambia con la experiencia activa. En móvil, la sección se convierte en una secuencia vertical de imágenes y textos adaptada a la lectura táctil.",
+        },
+        {
+          title: "Movimiento con una función",
+          body: "Las transiciones conectan imágenes, contenido y jerarquía. Motion respeta la preferencia de movimiento reducido. Las secciones estáticas e interactivas se componen con Server y Client Components de Next.js.",
+        },
+        {
+          title: "Un archivo que se puede explorar",
+          body: "La galería usa una composición asimétrica y un visor con dialog nativo. Admite navegación con flechas, cierre con Escape y devolución del foco al elemento que abrió la imagen.",
+        },
+        {
+          title: "De la intención a la consulta",
+          body: "Un panel accesible desde varias partes de la página reúne llegada, salida y huéspedes. Con esos datos prepara una consulta de disponibilidad que continúa por WhatsApp.",
+        },
       ],
-      learned: "Que la idempotencia en webhooks no es opcional — sin ella, un reintento de Stripe te puede cobrar (o reembolsar) dos veces a la misma persona.",
-      architecture: "Spring Boot + Next.js, arquitectura en capas",
-    },
-    "trendora-ecommerce": {
-      title: "Trendora",
-      tagline: "Plataforma de ecommerce con autenticación por roles, filtros sincronizados con la URL y panel de administración.",
-      problem: "Un ecommerce necesita manejar catálogo, roles de usuario, pagos de navegación por filtros y un panel administrativo, todo consumido desde una SPA rápida y una API organizada por dominios.",
-      why: "Quería practicar separar frontend y backend como dos proyectos independientes con contratos claros entre ambos, en vez de un monolito acoplado.",
-      decisions: [
-        "Backend en NestJS con arquitectura modular por dominio (auth, products, files, websockets) y TypeORM sobre PostgreSQL.",
-        "Frontend en React + Vite con arquitectura por dominio (admin, auth, shop) para separar responsabilidades.",
-        "Filtros sincronizados con la URL vía searchParams para navegación compartible y paginación integrada.",
-        "WebSockets para mensajería en tiempo real entre usuarios y panel de administración.",
+      evidence: [
+        { value: "93", label: "rendimiento móvil documentado" },
+        { value: "100", label: "accesibilidad en Lighthouse" },
+        { value: "100", label: "buenas prácticas y SEO en Lighthouse" },
       ],
-      learned: "Que sincronizar filtros con la URL cambia por completo cómo pensás el estado — deja de vivir solo en el componente y pasa a ser parte de la navegación.",
-      architecture: "React + Vite (frontend), NestJS + TypeORM (backend)",
-    },
-    "restaurante-aspnet": {
-      title: "Gestor de Restaurante",
-      tagline: "Sistema de gestión de restaurante con ingredientes, menú, mesas y órdenes en 5 capas.",
-      problem: "Un restaurante necesita administrar ingredientes, menú, mesas y órdenes activas con una arquitectura mantenible que separe claramente dominio, acceso a datos y presentación.",
-      why: "Fue uno de mis primeros proyectos grandes — quería entender arquitectura en capas de forma clásica antes de saltar a patrones más modernos como hexagonal.",
-      decisions: [
-        "Arquitectura en 5 capas (Model, DA, BS, SI, UI) para separar dominio, acceso a datos, lógica de negocio, API y presentación.",
-        "Entity Framework como ORM sobre SQL Server con patrón repositorio.",
-        "Frontend con Razor Views (ASP.NET MVC) consumiendo la capa de servicios directamente, sin necesitar un framework SPA.",
-      ],
-      learned: "Que entender bien una arquitectura en capas 'a la antigua' me hizo apreciar después por qué existen alternativas como hexagonal.",
-      architecture: "ASP.NET, arquitectura en 5 capas",
-      gallery: [
-        { caption: "Inicio de sesión con opción de recordarme y recuperación de contraseña." },
-        { caption: "Registro de nuevos usuarios con validación de usuario, correo y contraseña." },
-        { caption: "Catálogo de medidas (taza, cucharada, litro, etc.) para estandarizar recetas." },
-        { caption: "Catálogo de ingredientes centralizado, base para armar cualquier platillo del menú." },
-        { caption: "Platillos del menú con su precio de venta y valor aproximado de costo por ingredientes." },
-        { caption: "Ingredientes asociados a cada platillo, con su medida y costo aproximado individual." },
-        { caption: "Administración del menú: alta de platillos por categoría, precio e imagen." },
-        { caption: "Detalle de un platillo del menú con su categoría, precio e imagen." },
-        { caption: "Menú completo agrupado por categorías, listo para mostrar a los clientes." },
-        { caption: "Gestión de mesas: alta, edición y habilitación/deshabilitación según disponibilidad." },
-        { caption: "Toma de órdenes por mesa, con control de estado ocupada/disponible en tiempo real." },
-      ],
-    },
-    "selvatica-landing": {
-      title: "Selvática",
-      tagline: "Landing page para hotel de aventura en Costa Rica, con motor de reservas y Lighthouse 100/100.",
-      problem: "Un lodge de aventura junto al Volcán Arenal necesitaba una presencia digital que transmitiera la experiencia (termales, canopy, cascadas, cultura Maleku) sin sacrificar velocidad de carga ni accesibilidad, y con reserva directa vía WhatsApp.",
-      why: "Quería demostrar que un sitio visualmente rico no tiene excusa para cargar lento — muchos lodges de turismo en Costa Rica tienen sitios pesados y lentos.",
-      decisions: [
-        "Next.js con generación estática y optimización de imágenes nativa para mantener tiempos de carga mínimos pese al peso visual del contenido.",
-        "Flujo de reserva simplificado: selector de fechas y huéspedes que conecta directo a WhatsApp con mensaje prellenado, sin fricción de formularios.",
-        "Auditoría manual de accesibilidad además del score automático de Lighthouse — contraste, navegación por teclado, alt text en todas las imágenes.",
-      ],
-      learned: "Que un Lighthouse 100/100 automático no garantiza accesibilidad real — hay que probarlo a mano con teclado y lector de pantalla.",
-    },
-    "backend-4thewords": {
-      title: "Migración y modernización en 4thewords",
-      tagline: "Contrato profesional: migración de PHP a FastAPI, corrección de bugs full stack y componentes reutilizables.",
-      problem: "La plataforma operaba con microservicios y parte de la lógica seguía en PHP, generando deuda técnica y bugs difíciles de rastrear tanto en frontend como backend. Se necesitaba modernizar sin interrumpir el servicio a una base activa de escritores.",
-      why: "Me contrataron puntualmente para esta migración porque requería tocar un servicio crítico sin margen de error con usuarios activos.",
-      decisions: [
-        "Migración del servicio de cuentas (account) de PHP a FastAPI, manteniendo compatibilidad con el resto de microservicios durante la transición.",
-        "Corrección de bugs en todos los niveles del stack — backend y frontend — con reproducción sistemática antes de tocar código.",
-        "Diseño de un sistema de tabs personalizable con 3 niveles de tipo distintos, como componente reutilizable para múltiples partes de la plataforma.",
-        "Trabajo directo sobre una arquitectura de microservicios, coordinando cambios que no rompieran contratos entre servicios.",
-      ],
-      learned: "Que migrar un servicio en producción sin downtime exige más disciplina de comunicación entre equipos que habilidad técnica pura.",
-      architecture: "Microservicios, migración PHP → FastAPI",
-      note: "Código bajo NDA. Detalles de implementación disponibles bajo solicitud.",
-    },
-    "backend-funread": {
-      title: "Backend Django y estructura gamificada en Funread",
-      tagline: "Pasantía profesional: nuevas funcionalidades en Django para una plataforma de enseñanza de inglés en colegios.",
-      problem: "Funread estaba construyendo una plataforma para la enseñanza de inglés en colegios locales. El reto no era solo técnico: la gamificación tenía que motivar a estudiantes a usar la plataforma de forma constante, sin que se sintiera pesada o aburrida, sosteniendo eso sobre una estructura de datos sólida en MySQL.",
-      why: "Fue mi primera pasantía real — quería ver cómo se sentía trabajar en un equipo con código y decisiones de otras personas ya establecidas.",
-      decisions: [
-        "Desarrollo de nuevas funcionalidades en Django, incluyendo la lógica de negocio detrás del sistema de gamificación educativa.",
-        "Diseño de la estructura de base de datos en MySQL para soportar progreso, logros y recompensas ligados al avance del estudiante en el curso.",
-        "Colaboración directa con el equipo de frontend en React para integrar las nuevas funcionalidades del backend en la experiencia del estudiante.",
-        "Investigación aplicada de IA como parte del roadmap de producto.",
-      ],
-      learned: "Que la primera vez que tu propio merge llega a producción con usuarios reales enseña más disciplina que un semestre de teoría.",
-      architecture: "Django + MySQL, integración con frontend en React",
-      note: "Código propiedad de Funread. Puedo detallar decisiones en entrevista.",
+      evidenceNote:
+        "Puntuaciones recogidas en el README del proyecto. El rendimiento depende de las condiciones de medición; el resultado automatizado de accesibilidad no sustituye la comprobación manual.",
+      scope:
+        "Proyecto conceptual publicado como demo. No representa un alojamiento ni un operador turístico real. El formulario prepara una consulta por WhatsApp; no confirma reservas ni procesa pagos.",
+      closing:
+        "El detalle está en cómo se relacionan las imágenes, la lectura y las interacciones a lo largo del recorrido.",
     },
   },
   en: {
-    "erp-minisuper": {
-      title: "La Central ERP",
-      tagline: "Retail ERP with real-time sync, inventory control, and sales analytics.",
-      problem: "The client needed to centralize sales, inventory, purchasing, and staff in a single platform able to sync multiple registers in real time and adapt to a mini-market's specific business rules.",
-      why: "The client had already tried generic point-of-sale software and it didn't fit how the business actually operated — they needed something built around their real workflow.",
+    "obsidian-library": {
+      category: "Personal project · Web application",
+      tagline: "From the catalog to the loan, with every operation connected.",
+      summary:
+        "A library platform bringing together a catalog, loans, reservations and memberships, with Stripe payments.",
+      headline: "A library. A whole product behind it.",
+      introduction:
+        "Obsidian connects the reader’s experience with the rules of a library: finding a book, checking availability, managing loans and reservations, and keeping a membership current. A personal project published as a demo, with Next.js on the frontend and Java and Spring Boot on the backend.",
+      role: "Frontend and API integration; backend, data and payments.",
+      status: "Live demo · Interface being refined",
+      coverAlt: "Obsidian Library homepage with access to the library platform",
+      challenge: "What happens between a click and a confirmation.",
+      challengeBody:
+        "A book can be on loan, reserved or available. A payment can still be pending when the reader returns from Stripe. The challenge is to coordinate those states and communicate them while the server enforces availability, membership and payment rules.",
       decisions: [
-        "Hexagonal architecture + DDD + CQRS: the domain stays isolated from transport and persistence, splitting the write model from the read model.",
-        "WebSockets and internal events keep inventory, sales, and register state in sync in real time.",
-        "Modules don't know about each other directly — all communication happens through decoupled events.",
-        "Custom order-prediction algorithm based on demand, stock, seasonality, and supplier lead time.",
+        {
+          title: "Confirm before activating",
+          body: "The payment screen checks the backend status and displays the confirmation wait. The server verifies Stripe signatures, recognizes repeated deliveries and prevents a late failure event from reversing a successful payment.",
+        },
+        {
+          title: "A queue that respects availability",
+          body: "Reservations advance in request order as copies become available. Readers have 48 hours to collect a book. Once that window expires, the system can advance the next reservation.",
+        },
+        {
+          title: "Coordinated sessions",
+          body: "Next.js connects the browser to the Spring Boot API. Authentication combines HTTP-only cookies, CSRF protection and refresh-token rotation. The client coordinates requests that need a session refresh.",
+        },
+        {
+          title: "Rules close to the data",
+          body: "Loans validate membership limits and availability. Critical operations use transactions and locks. Flyway tracks schema changes, while PostgreSQL adds integrity constraints.",
+        },
       ],
-      learned: "That real-time consistency across multiple simultaneous registers is harder to get right than any single feature on its own.",
-      architecture: "Spring Boot + Next.js, DDD + Hexagonal + CQRS, event-driven",
-      note: "Code under NDA. Implementation details available on request.",
-      gallery: [
-        { caption: "Dashboard with real-time sales, low-stock alerts, and pending suggestions at a glance." },
-        { caption: "Point of sale with barcode scanning and automatic VAT calculation for each product." },
-        { caption: "Inventory management with centralized categories, stock levels, and pricing." },
-        { caption: "Smart ordering: demand forecasting by product to know what to reorder and when." },
-        { caption: "Employee management with roles, PIN-based access, and active/inactive status." },
-        { caption: "Product suggestions: staff can log items customers request that aren't yet in the catalog." },
+      evidence: [
+        { value: "67", label: "tests recorded in backend reports" },
+        { value: "48 h", label: "reservation pickup window" },
+        { value: "CI", label: "verification with GitHub Actions" },
       ],
+      evidenceNote:
+        "Local reports dated September 20, 2026 record 67 passing tests, including 8 PostgreSQL integration tests using Testcontainers.",
+      scope:
+        "Personal project demo. The reader experience is published and the interface is being refined. The API includes administrative features; their interface is not yet complete. Membership renewal prepares a payment link sent by email.",
+      closing:
+        "A clear interface also needs to represent waiting, expiration and operations that require confirmation.",
     },
-    "biblioteca-stripe": {
-      title: "Obsidian Library",
-      tagline: "End-to-end library management system with loans, subscriptions, and automated payments.",
-      problem: "A robust platform was needed to manage books, loans, reservations, subscriptions, and payments in one solution, with security, traceability, and well-defined business logic.",
-      why: "I wanted a personal project that forced me to integrate real payments end to end — actual Stripe webhooks, not a mock.",
+    "la-central": {
+      category: "Custom software · ERP + POS",
+      tagline: "The daily operation of a grocery store, connected end to end.",
+      summary:
+        "Sales, inventory, cash management, purchasing and customer credit in one local installation shared by multiple registers.",
+      headline: "Software shaped around a real business.",
+      introduction:
+        "I developed La Central to bring the operations of a grocery store in Costa Rica into a system tailored to how it works. I built the interface, backend, database and local deployment, together with backup and recovery tools.",
+      role: "Complete development: interface, backend, data, deployment and backups.",
+      status: "Development completed · Awaiting installation",
+      coverAlt:
+        "La Central point of sale with a weighted product and automatic egg carton pricing",
+      challenge: "Every sale affects more than inventory.",
+      challengeBody:
+        "A checkout can combine weighted products, units, packs, cash and customer credit. It affects stock, cash and the customer’s balance while another cashier works with the same data. Those operations need to remain consistent through retries and concurrent actions.",
       decisions: [
-        "Layered backend (controller, domain, mapper, repository, service) for clear separation of concerns.",
-        "Access token + refresh token authentication with HTTP-only cookies to strengthen session security.",
-        "Stripe webhooks with signature verification and idempotency to process payments, fines, and refunds without duplicates.",
-        "Standardized PageResponse for reusable pagination across books, reviews, and users.",
+        {
+          title: "Multiple registers, one operation",
+          body: "A main PC runs the server and database. Other registers connect through a browser on the local network. Daily operation works without Internet as long as the main PC and network remain available.",
+        },
+        {
+          title: "Retry without duplicating",
+          body: "If a checkout confirmation is lost, the interface retains the operation key. A retry with the same data can return the sale already recorded. Transactions coordinate the sale, inventory and cash record.",
+        },
+        {
+          title: "Sell the way the store works",
+          body: "Individual units and cartons share inventory; weighted products support gram entry. Pack prices are applied to the total, and sales retain historical descriptions, prices and conversion factors.",
+        },
+        {
+          title: "Restock with information and judgment",
+          body: "Suggestions consider net sales, minimum stock, available inventory and outstanding orders from every supplier. Users can accept part of a proposal and edit quantities and costs before creating an order.",
+        },
+        {
+          title: "Prepare for recovery too",
+          body: "Deployment includes backups, restore checks in an independent container and integrity checks. Partial deliveries, returns and supplier credits maintain their own balances and history.",
+        },
       ],
-      learned: "That idempotency on webhooks isn't optional — without it, a Stripe retry can charge (or refund) the same person twice.",
-      architecture: "Spring Boot + Next.js, layered architecture",
+      evidence: [
+        { value: "53", label: "documented tests" },
+        { value: "4", label: "receipt formats verified as PDFs" },
+        { value: "LAN", label: "shared installation on the store network" },
+      ],
+      evidenceNote:
+        "September 14–16, 2026 verification: 15 unit tests, 33 integration tests and 5 browser journeys passed. Errors found during several days of simulated operation were corrected and the flows checked again. Backup recovery was also documented.",
+      scope:
+        "Development completed and validated in testing. Launch awaits purchase and configuration of the store’s equipment, including the printer. Payment methods are recorded; cards and SINPE are not processed. Receipts have no Hacienda integration. Screenshots use demonstration data.",
+      closing:
+        "The work covers the sale a cashier sees and the data, exceptions and recovery that support the operation.",
     },
-    "trendora-ecommerce": {
-      title: "Trendora",
-      tagline: "E-commerce platform with role-based auth, URL-synced filters, and an admin panel.",
-      problem: "An e-commerce needs to handle a catalog, user roles, filter-based navigation, and an admin panel, all consumed from a fast SPA backed by a domain-organized API.",
-      why: "I wanted practice keeping frontend and backend as two genuinely independent projects with a clear contract, instead of a coupled monolith.",
+    selvatica: {
+      category: "Personal project · Web experience",
+      tagline: "A digital experience built around the landscape.",
+      summary:
+        "A hospitality concept inspired by Arenal: editorial composition, imagery and motion adapted to each device.",
+      headline: "The landscape sets the pace.",
+      introduction:
+        "Selvática explores how typography, imagery and motion can express the identity of a conceptual hospitality destination. A personal design and frontend project inspired by the rainforest and volcanic landscape of Arenal, Costa Rica.",
+      role: "Frontend development, visual composition and responsive interactions.",
+      status: "Project completed · Live demo",
+      coverAlt:
+        "Selvática homepage with large typography over a forest landscape",
+      challenge: "Communicating a place through a screen.",
+      challengeBody:
+        "The experience alternates immersive scenes with quieter reading spaces. Composition, transitions and image loading needed to support that pace and feel natural with both a mouse and a touch screen.",
       decisions: [
-        "NestJS backend with domain-driven modular architecture (auth, products, files, websockets) and TypeORM over PostgreSQL.",
-        "React + Vite frontend with domain-based architecture (admin, auth, shop) to keep concerns separated.",
-        "URL-synced filters via searchParams for shareable navigation and integrated pagination.",
-        "WebSockets for real-time messaging between users and the admin panel.",
+        {
+          title: "Two ways to explore the landscape",
+          body: "On desktop, an image stays visible as the story progresses and changes with the active experience. On mobile, the section becomes a vertical sequence of images and text suited to touch-based reading.",
+        },
+        {
+          title: "Motion with a purpose",
+          body: "Transitions connect images, content and hierarchy. Motion respects the reduced-motion preference. Static and interactive sections use Next.js Server and Client Components.",
+        },
+        {
+          title: "An archive to explore",
+          body: "The gallery uses an asymmetric composition and a native dialog viewer. It supports arrow-key navigation, Escape to close and focus restoration to the element that opened the image.",
+        },
+        {
+          title: "From interest to inquiry",
+          body: "A panel available throughout the page collects arrival, departure and guest count. It uses those details to prepare an availability inquiry that continues through WhatsApp.",
+        },
       ],
-      learned: "That syncing filters to the URL completely changes how you think about state — it stops living only in the component and becomes part of navigation.",
-      architecture: "React + Vite (frontend), NestJS + TypeORM (backend)",
-    },
-    "restaurante-aspnet": {
-      title: "Restaurant Management System",
-      tagline: "Restaurant management system for ingredients, menu, tables, and orders across 5 layers.",
-      problem: "A restaurant needs to manage ingredients, menu, tables, and active orders with a maintainable architecture that clearly separates domain, data access, and presentation.",
-      why: "It was one of my first larger projects — I wanted to understand classic layered architecture before jumping to more modern patterns like hexagonal.",
-      decisions: [
-        "5-layer architecture (Model, DA, BS, SI, UI) separating domain, data access, business logic, API, and presentation.",
-        "Entity Framework as ORM over SQL Server with the repository pattern.",
-        "Razor Views (ASP.NET MVC) frontend consuming the service layer directly, without needing an SPA framework.",
+      evidence: [
+        { value: "93", label: "documented mobile performance" },
+        { value: "100", label: "Lighthouse accessibility" },
+        { value: "100", label: "Lighthouse best practices and SEO" },
       ],
-      learned: "That really understanding an 'old-school' layered architecture made me appreciate later why alternatives like hexagonal exist.",
-      architecture: "ASP.NET, 5-layer architecture",
-      gallery: [
-        { caption: "Sign-in page with a remember me option and password recovery." },
-        { caption: "User registration with username, email, and password validation." },
-        { caption: "Measurement catalog (cup, tablespoon, liter, etc.) to standardize recipes." },
-        { caption: "Centralized ingredient catalog used as the foundation for every menu item." },
-        { caption: "Menu items with selling price and estimated ingredient cost." },
-        { caption: "Ingredients linked to each menu item, including measurements and estimated individual costs." },
-        { caption: "Menu management: create and organize dishes by category, price, and image." },
-        { caption: "Menu item details showing its category, price, and image." },
-        { caption: "Complete menu grouped by category, ready to be displayed to customers." },
-        { caption: "Table management: create, edit, enable, or disable tables based on availability." },
-        { caption: "Table ordering with real-time occupied/available status tracking." },
-      ],
-    },
-    "selvatica-landing": {
-      title: "Selvática",
-      tagline: "Landing page for an adventure lodge in Costa Rica, with a booking flow and 100/100 Lighthouse scores.",
-      problem: "An adventure lodge near Arenal Volcano needed a digital presence that captured the experience (hot springs, canopy tours, waterfalls, Maleku culture) without sacrificing load speed or accessibility, with direct booking via WhatsApp.",
-      why: "I wanted to prove a visually rich site has no excuse to load slow — a lot of tourism lodges in Costa Rica run heavy, slow sites.",
-      decisions: [
-        "Next.js with static generation and native image optimization to keep load times minimal despite the visual weight of the content.",
-        "Simplified booking flow: a date and guest selector that connects directly to WhatsApp with a pre-filled message, no form friction.",
-        "Manual accessibility audit on top of the automated Lighthouse score — contrast, keyboard navigation, alt text on every image.",
-      ],
-      learned: "That a perfect automated Lighthouse score doesn't guarantee real accessibility — you have to test it by hand with a keyboard and screen reader.",
-    },
-    "backend-4thewords": {
-      title: "Migration and Modernization at 4thewords",
-      tagline: "Professional contract: PHP-to-FastAPI migration, full-stack bug fixing, and reusable components.",
-      problem: "The platform ran on microservices, with part of the logic still in PHP, creating technical debt and hard-to-trace bugs on both frontend and backend. It needed modernizing without interrupting service for an active base of writers.",
-      why: "I was brought in specifically for this migration because it meant touching a critical service with no room for error on a live user base.",
-      decisions: [
-        "Migrated the account service from PHP to FastAPI, maintaining compatibility with the rest of the microservices during the transition.",
-        "Fixed bugs across the entire stack — backend and frontend — with systematic reproduction before touching any code.",
-        "Designed a customizable tab system with 3 distinct type levels as a reusable component used across multiple parts of the platform.",
-        "Worked directly within a microservices architecture, coordinating changes that wouldn't break contracts between services.",
-      ],
-      learned: "That migrating a live service with zero downtime takes more communication discipline across teams than pure technical skill.",
-      architecture: "Microservices, PHP → FastAPI migration",
-      note: "Code under NDA. Implementation details available on request.",
-    },
-    "backend-funread": {
-      title: "Django Backend and Gamified Structure at Funread",
-      tagline: "Professional internship: new Django features for an English-teaching platform for local schools.",
-      problem: "Funread was building a platform to teach English in local high schools. The challenge wasn't purely technical: gamification had to keep students motivated to use the platform consistently, without it feeling heavy or boring, all backed by a solid MySQL data structure.",
-      why: "It was my first real internship — I wanted to see what it felt like working inside a team with established code and decisions that weren't mine.",
-      decisions: [
-        "Built new features in Django, including the business logic behind the educational gamification system.",
-        "Designed the MySQL database structure to support progress, achievements, and rewards tied to each student's course advancement.",
-        "Collaborated directly with the frontend team in React to integrate the new backend features into the student experience.",
-        "Applied AI research as part of the product roadmap.",
-      ],
-      learned: "That the first time your own merge reaches production with real users teaches more discipline than a semester of theory.",
-      architecture: "Django + MySQL, integration with React frontend",
-      note: "Code owned by Funread. Happy to detail decisions in an interview.",
+      evidenceNote:
+        "Scores documented in the project README. Performance depends on measurement conditions; an automated accessibility score does not replace manual checks.",
+      scope:
+        "A conceptual project published as a demo. It does not represent a real accommodation or tourism operator. The form prepares a WhatsApp inquiry; it does not confirm reservations or process payments.",
+      closing:
+        "The detail lies in how imagery, reading and interaction work together throughout the experience.",
     },
   },
 };

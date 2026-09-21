@@ -1,77 +1,69 @@
-'use client';
+"use client";
 
-import { useState } from "react";
-import { SectionHeader } from "../shared/SectionHeader"
-import { Reveal } from "../shared/Reveal"
-import { services } from '@/content/Services'
-import { BackgroundLetter } from "../shared/BackgroundLetter";
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "@/lib/i18n/context";
+import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 
-export const Services = () => {
-    const { t } = useTranslation();
-    const [openId, setOpenId] = useState<string | null>(null);
-    const items = services(t);
-
-    return (
-        <section
-            id="servicios"
-            className="relative overflow-hidden border-y border-border bg-surface/40 py-24"
-        >
-            <BackgroundLetter letter="A" />
-            <div className="mx-auto max-w-6xl px-6">
-                <Reveal>
-                    <SectionHeader
-                        eyebrow={t.services.Header.eyebrow.replace("// ", "")}
-                        title={t.services.Header.title}
-                        description={t.services.Header.description}
-                        index="02"
-                    />
-                </Reveal>
-
-                <div className="mt-14 border-t border-border">
-                    {items.map((s, i) => {
-                        const isOpen = openId === s.id;
-                        return (
-                            <Reveal key={s.id} delay={i * 60}>
-                                <div className="border-b border-border">
-                                    <button
-                                        onClick={() => setOpenId(isOpen ? null : s.id)}
-                                        aria-expanded={isOpen}
-                                        className="group flex w-full items-center gap-5 py-6 text-left"
-                                    >
-                                        <span className="font-mono-tech text-xs text-muted-foreground">
-                                            {s.id}
-                                        </span>
-                                        <h3
-                                            className={`flex-1 font-display text-xl font-semibold tracking-tight transition-colors duration-200 ${isOpen ? "text-accent" : "text-foreground"
-                                                }`}
-                                        >
-                                            {s.title}
-                                        </h3>
-                                        <span
-                                            className={`font-mono-tech text-sm text-muted-foreground transition-transform duration-300 ${isOpen ? "rotate-90 text-accent" : ""
-                                                }`}
-                                        >
-                                            ▸
-                                        </span>
-                                    </button>
-
-                                    <div
-                                        className="grid transition-[grid-template-rows] duration-300 ease-out"
-                                        style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
-                                    >
-                                        <div className="overflow-hidden">
-                                            <p className="max-w-[60ch] pb-7 pl-13 text-sm leading-relaxed text-muted-foreground">
-                                                {s.body}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Reveal>
-                        );
-                    })}
-                </div>
+export function Services() {
+  const { language } = useTranslation();
+  const es = language === "es";
+  const items = es
+    ? [
+        [
+          "Aplicaciones a medida",
+          "Sistemas de gestión, plataformas web e integración de APIs, desde las reglas del negocio hasta la interfaz.",
+        ],
+        [
+          "Sitios con identidad",
+          "Landings y experiencias web con atención a la composición, la navegación, el rendimiento y los dispositivos móviles.",
+        ],
+        [
+          "Evolución de sistemas",
+          "Nuevas funcionalidades, corrección de errores y migraciones con cambios comprobables y documentación útil.",
+        ],
+      ]
+    : [
+        [
+          "Custom applications",
+          "Management systems, web platforms and API integrations, from business rules to the interface.",
+        ],
+        [
+          "Websites with identity",
+          "Landing pages and web experiences with attention to composition, navigation, performance and mobile devices.",
+        ],
+        [
+          "Evolving existing systems",
+          "New features, bug fixes and migrations with verifiable changes and useful documentation.",
+        ],
+      ];
+  return (
+    <section
+      id="servicios"
+      className="relative isolate border-y border-border bg-surface/50 py-16"
+    >
+      <BackgroundLetter letter="D" side="left" />
+      <div className="section-shell">
+        <p className="eyebrow mb-4">
+          04 / {es ? "Cómo puedo aportar" : "How I can help"}
+        </p>
+        <h2 className="font-display text-3xl tracking-tight sm:text-4xl">
+          {es
+            ? "De una idea a algo que puedas usar."
+            : "From an idea to something you can use."}
+        </h2>
+        <div className="mt-9 grid gap-8 md:grid-cols-3">
+          {items.map(([title, body], index) => (
+            <div key={title}>
+              <span className="font-mono-tech text-xs text-accent">
+                0{index + 1}
+              </span>
+              <h3 className="mb-3 mt-4 text-lg">{title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {body}
+              </p>
             </div>
-        </section>
-    )
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

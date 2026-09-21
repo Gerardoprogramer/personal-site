@@ -19,111 +19,12 @@
     "titleNav": "navigation",
     "descargar": "download"
   },
-  "hero": {
-    "title": "I build software that",
-    "subtitle": "survives production",
-    "description": "Full Stack Developer. I build everything from ERPs with Hexagonal Architecture to landing pages that achieve Lighthouse 100/100. I write code that other engineers can maintain without needing a translation.",
-    "actions": {
-      "contacto": "hire me",
-      "perfil": "view my profile",
-      "descargar": "download"
-    },
-    "meta": {
-      "career": "business informatics",
-      "hour": "local time"
-    },
-    "panel": {
-      "title": "status",
-      "availability": "availability",
-      "availabilityValue": "open to work",
-      "response": "response time",
-      "responseValue": "< 24h",
-      "shipped": "shipped",
-      "shippedValue": "7 production systems",
-      "stack": "current stack"
-    }
-  },
-  "sobreMi": {
-    "pageLabel": "about me",
-    "paragraph1": "I don't usually sell this with a punchy hook. I code, I read, and I adapt to whoever I'm working with — that's pretty much everything you need to know before seeing the work.",
-    "paragraph2Prefix": "I built a",
-    "paragraph2Anchor": "full ERP on my own",
-    "paragraph2Suffix": ". I'm still expanding it — it's not a project I closed, it's something I still touch.",
-    "paragraph3": "I read a lot, and it shows in how I work: I'd rather understand the whole problem before writing the first line of code.",
-    "paragraph4": "Open to full-time roles or freelance work. Both interest me for different reasons.",
-    "noteTag": "note",
-    "noteText": "the ERP is still alive. current version: v2 — last touched this week.",
-    "metaLocationLabel": "Location",
-    "metaLocation": "Costa Rica",
-    "metaFormatLabel": "Format",
-    "metaFormat": "full-time or freelance",
-    "metaStatusLabel": "Status",
-    "metaStatus": "always building"
-  },
-  "badges": {
-    "demoRepo": "[ demo + repo ]",
-    "repoOnly": "[ repository ]",
-    "demoOnly": "[ demo ]",
-    "partial": "[ partial access ]",
-    "confidential": "[ case study · nda ]",
-    "inDevelopment": "[ in development ]"
-  },
-  "projects": {
-    "eyebrow": "// projects",
-    "title": "Projects that show how I think, not just what I use.",
-    "description": "Three project formats based on what I can share: public repositories, limited access, or NDA case studies covering the problem, technical decisions, and architecture.",
-    "view": {
-      "list": "list view",
-      "map": "map view"
-    },
-    "registration": "entries",
-    "FeaturedTitle1": "// problem",
-    "FeaturedTitle2": "// technical decisions",
-    "cardTitle1": "problem",
-    "cardTitle2": "decisions",
-    "cardTitle3": "architecture"
-  },
-  "map": {
-    "return": "Back to the map"
-  },
-  "services": {
-    "First": {
-      "title": "New Product Development",
-      "body": "From the initial conversation to a production-ready MVP. I choose the stack that solves the problem—not the one that's trending—and leave the codebase in a state where another engineer can pick it up without needing extra context."
-    },
-    "Second": {
-      "title": "System Maintenance",
-      "body": "Iterating on production systems without breaking what already works. Small, reversible changes, tests where they're missing, and documentation where it's needed most."
-    },
-    "Third": {
-      "title": "Bug Fixing",
-      "body": "Reproduce first, understand second, fix last. Before touching any code, I need to see the error happen myself — I don't trust a hypothesis until I've confirmed it."
-    },
-    "Fourth": {
-      "title": "Migrations",
-      "body": "Data, framework, or full-stack migrations. I plan short maintenance windows, preserve backward compatibility, and avoid risky big-bang releases that disrupt operations."
-    },
-    "Header": {
-      "eyebrow": "// services",
-      "title": "How I work when you hire me for a project.",
-      "description": "This isn't a price list. It's how I approach each type of project. Pricing depends on the actual scope, not on a fixed rate card."
-    }
-  },
-  "Stack": {
-    "labeldata": "Data & Infra",
-    "labelsecond": "Secondary",
-    "Header": {
-      "eyebrow": "// stack",
-      "title": "The tools I use to solve real-world problems.",
-      "description": "Grouped by domain. Secondary tools are here because I have real experience with them, even if they're not my default choice."
-    }
-  },
   "experience": {
     "4thewords": {
       "role": "Full Stack Developer (professional services contract)",
       "format": "Remote · Costa Rica",
       "built": [
-        "Migrated the account service from PHP to FastAPI while keeping the exact same JSON response contract, so the frontend wouldn't break — first migrated it as-is, then refactored into a separate v2.",
+        "Migrated the account service from PHP to FastAPI while preserving the JSON response contract and frontend compatibility. Kept the initial migration separate from subsequent refactoring.",
         "Fixed bugs with different root causes (code, browser, extensions) across several microservices: reproducing the issue first, tracing it to its root cause, and only then weighing a few solutions before applying the right one.",
         "Built a configurable tabs component with three design variants integrated into a single component, with GSAP hover animations, following the Figma specs."
       ],
@@ -134,26 +35,17 @@
       "format": "Internship · Costa Rica",
       "built": [
         "Built new backend features in Django for an English-teaching platform.",
-        "Designed a gamification system with the team (database and backend logic) that rewarded students to boost motivation and task completion rates.",
+        "Worked with the team on the database and backend logic for a student rewards and gamification system.",
         "Worked with the frontend team to correctly integrate the new endpoints into the student experience."
       ],
       "learned": "It was my first real experience, and I learned more than I expected: how a gamified system actually works from the ground up, how to build that whole feature (from the database to the backend) without breaking anything that already existed, and also how to work as a team and document properly — things no course teaches quite the same way."
-    },
-    "header": {
-      "eyebrow": "// experience",
-      "title": "Where I got my hands on production systems.",
-      "description": "Early in my career, but every role has a story: what I built and what I learned along the way."
-    },
-    "labels": {
-      "built": "built",
-      "learned": "learned"
     }
   },
   "contact": {
     "header": {
       "eyebrow": "contact",
       "title": "Tell me what you need to build.",
-      "description": "I usually reply the same day. If you prefer direct email, that works too."
+      "description": "For a project or a job opportunity. You can also email me directly."
     },
     "intents": {
       "service": "I want to hire a service",
@@ -173,30 +65,31 @@
       "position": "Role, stack, format (remote/hybrid), salary range…",
       "other": "Tell me what you have in mind."
     },
-    "help": "no templates. read it before sending and get to the point.",
+    "help": "Tell me the context, what you need and the timeline you have in mind.",
     "directEmail": "or email me at",
     "button": {
       "send": "send message",
-      "sent": "message sent"
-    }
+      "sent": "message sent",
+      "sending": "Sending…"
+    },
+    "error": "Your message could not be sent. Try again or email me directly."
   },
   "meta": {
     "title": "Gerardo Martínez Monge | Full Stack Developer & Business Informatics Engineer",
-    "description": "Full Stack Business Informatics engineer based in Costa Rica. I build ERPs with Hexagonal Architecture and DDD, backend systems with Python/FastAPI/Django, and frontends with React/Next.js. Open to full-time roles and freelance projects.",
-    "ogDescription": "I design and build software that survives production. ERPs, backend systems, and frontends with solid architecture.",
-    "twitterDescription": "I design and build software that survives production.",
+    "description": "Gerardo Martínez Monge, full stack developer in Costa Rica. Web applications, ERP and digital experiences with Next.js, Java, Spring Boot and NestJS. Explore Obsidian Library, La Central and Selvática.",
+    "ogDescription": "From a real problem to software that solves it. Three projects: Obsidian Library, La Central and Selvática.",
+    "twitterDescription": "From a real problem to software that solves it. Three projects: Obsidian Library, La Central and Selvática.",
     "keywords": [
       "Gerardo Martínez Monge",
-      "Full Stack Developer Costa Rica",
-      "Business Informatics Engineer",
-      "Python Developer",
-      "FastAPI",
-      "Django Developer",
-      "React Developer",
-      "Next.js Developer",
-      "Domain-Driven Design",
-      "Hexagonal Architecture",
-      "Freelance Developer Costa Rica"
+      "Full stack developer Costa Rica",
+      "Next.js",
+      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "NestJS",
+      "PostgreSQL",
+      "ERP",
+      "Desarrollo web"
     ]
   },
   "cookies": {
@@ -232,9 +125,5 @@
       }
     ],
     "contact": "If you have questions about this policy, email me directly at"
-  },
-  "modalproject": {
-    "Screenshots": "Screenshots",
-    "View": "View screenshots"
   }
 }

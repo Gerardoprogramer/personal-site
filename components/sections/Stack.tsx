@@ -1,34 +1,42 @@
-'use client'
+"use client";
 
-import { SectionHeader } from "../shared/SectionHeader";
-import { Reveal } from "../shared/Reveal";
-import { stackGroups } from "@/content/stack";
 import { useTranslation } from "@/lib/i18n/context";
-import { BackgroundLetter } from "../shared/BackgroundLetter";
-import { MetroMap } from "@/components/sections/stack/MetroMap";
+import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 
-export const Stack = () => {
-    const { t } = useTranslation();
-
-    return (
-        <section id="stack" className="relative overflow-hidden py-24">
-            <BackgroundLetter letter="R" />
-            <div className="mx-auto max-w-6xl px-6">
-                <Reveal>
-                    <SectionHeader
-                        eyebrow={t.Stack.Header.eyebrow.replace("// ", "")}
-                        title={t.Stack.Header.title}
-                        description={t.Stack.Header.description}
-                        index="03"
-                    />
-                </Reveal>
-
-                <Reveal delay={120}>
-                    <div className="mt-14">
-                        <MetroMap groups={stackGroups(t)} />
-                    </div>
-                </Reveal>
-            </div>
-        </section>
-    )
+export function Stack() {
+  const { language } = useTranslation();
+  const es = language === "es";
+  const groups = [
+    {
+      title: "Frontend",
+      items: "TypeScript · React · Next.js · Tailwind CSS · Vue.js",
+    },
+    {
+      title: "Backend",
+      items:
+        "Java · Spring Boot · Node.js · NestJS · Python · FastAPI · Django",
+    },
+    {
+      title: es ? "Datos y herramientas" : "Data and tooling",
+      items: "PostgreSQL · Prisma · Docker · Git · GitHub Actions · Playwright",
+    },
+  ];
+  return (
+    <section id="stack" className="section-shell relative isolate pb-20">
+      <BackgroundLetter letter="R" size="compact" />
+      <h2 className="eyebrow mb-6 text-muted-foreground">
+        {es ? "Herramientas de trabajo" : "Tools I work with"}
+      </h2>
+      <div className="grid gap-6 border-y border-border py-7 md:grid-cols-3">
+        {groups.map((group) => (
+          <div key={group.title}>
+            <h3 className="mb-3 text-sm font-medium">{group.title}</h3>
+            <p className="text-sm leading-7 text-muted-foreground">
+              {group.items}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }

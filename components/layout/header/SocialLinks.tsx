@@ -1,27 +1,41 @@
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+"use client";
+
+import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { socials } from "@/content/portfolio";
+import { useTranslation } from "@/lib/i18n/context";
 
-const links = [
-    { href: socials.github, icon: FaGithub, label: "GitHub de Gerardo Martínez" },
-    { href: socials.linkedin, icon: FaLinkedin, label: "LinkedIn de Gerardo Martínez" },
-    { href: socials.whatsapp, icon: FaWhatsapp, label: "WhatsApp de Gerardo Martínez" },
-];
-
-export const SocialLinks = () => {
-    return (
-        <>
-            {links.map(({ href, icon: Icon, label }) => (
-                <a
-                    key={href}
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label={label}
-                    className="group flex size-6 items-center justify-center text-muted-foreground transition-colors hover:text-primary"
-                >
-                    <Icon className="size-4 transition-transform duration-200 group-hover:scale-110" aria-hidden="true" />
-                </a>
-            ))}
-        </>
-    )
+export function SocialLinks({ expanded = false }: { expanded?: boolean }) {
+  const { language } = useTranslation();
+  const links = [
+    { name: "WhatsApp", href: socials.whatsapp, Icon: FaWhatsapp },
+    { name: "GitHub", href: socials.github, Icon: FaGithub },
+    { name: "LinkedIn", href: socials.linkedin, Icon: FaLinkedinIn },
+  ];
+  return (
+    <nav
+      aria-label={
+        language === "es"
+          ? "Redes y contacto directo"
+          : "Social profiles and direct contact"
+      }
+      className={
+        expanded ? "social-links social-links-expanded" : "social-links"
+      }
+    >
+      {links.map(({ name, href, Icon }) => (
+        <a
+          key={name}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${name} · ${language === "es" ? "abrir en otra pestaña" : "open in a new tab"}`}
+          title={name}
+          className={`social-link ${name === "WhatsApp" ? "social-link-whatsapp" : ""}`}
+        >
+          <Icon aria-hidden="true" className="size-[18px]" />
+          {expanded && <span>{name}</span>}
+        </a>
+      ))}
+    </nav>
+  );
 }
