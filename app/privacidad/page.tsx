@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
+import { FiArrowLeft } from "react-icons/fi";
 import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
 
@@ -38,9 +39,10 @@ export default async function PrivacyPage() {
     <div className="max-w-2xl mx-auto px-5 sm:px-6 pb-20 pt-32">
       <Link
         href={`/?lang=${lang}`}
-        className="font-mono-tech text-xs text-muted-foreground hover:text-accent transition-colors mb-8 inline-block"
+        className="font-mono-tech text-xs text-muted-foreground hover:text-accent transition-colors mb-8 inline-flex items-center gap-2"
       >
-        {lang === "es" ? "← volver al inicio" : "← back to home"}
+        <FiArrowLeft aria-hidden="true" className="size-4 shrink-0" />
+        {lang === "es" ? "volver al inicio" : "back to home"}
       </Link>
 
       <h1 className="text-2xl sm:text-3xl font-display font-medium text-foreground mb-2">

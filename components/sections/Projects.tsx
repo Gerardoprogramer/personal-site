@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { FiArrowUpRight } from "react-icons/fi";
 import { projects } from "@/content/projects";
 import { caseLabels, projectsContent } from "@/lib/i18n/projects.content";
 import { useTranslation } from "@/lib/i18n/context";
@@ -49,15 +50,13 @@ export function Projects() {
                   <span>
                     {String(index + 1).padStart(2, "0")} / {project.name}
                   </span>
-                  <span
+                  <FiArrowUpRight
                     aria-hidden="true"
-                    className="text-xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                  >
-                    ↗
-                  </span>
+                    className="size-5 shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
                 </div>
                 <div
-                  className={`overflow-hidden rounded-t-lg border border-white/10 bg-background shadow-2xl transition-transform duration-500 group-hover:-translate-y-1 ${index === 0 ? "aspect-[2/1] md:aspect-[2.65/1]" : "aspect-[1.5/1]"}`}
+                  className={`overflow-hidden rounded-t-lg border border-white/10 bg-background shadow-2xl transition-transform duration-500 group-hover:-translate-y-1 ${index === 0 ? "aspect-2/1 md:aspect-[2.65/1]" : "aspect-1.5/1"}`}
                 >
                   <Image
                     src={project.image}
@@ -97,7 +96,11 @@ export function Projects() {
                       className="inline-flex min-h-8 items-center gap-2"
                       style={{ color: project.color }}
                     >
-                      {labels.view} <span aria-hidden="true">↗</span>
+                      {labels.view}
+                      <FiArrowUpRight
+                        aria-hidden="true"
+                        className="size-4 shrink-0"
+                      />
                     </span>
                   </div>
                 </div>

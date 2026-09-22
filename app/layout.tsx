@@ -36,6 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const dict = dictionaries[lang].meta;
   const ogLocale = lang === "es" ? "es_CR" : "en_US";
   const canonicalUrl = `${SITE_URL}/?lang=${lang}`;
+  const ogImage = `/og-image${lang === "en" ? "-en" : ""}.png?v=portfolio-2`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -56,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Gerardo Martínez Monge",
       images: [
         {
-          url: "/og-image.png",
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: "Gerardo Martínez Monge - Full Stack Developer",
@@ -67,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: dict.title,
       description: dict.twitterDescription,
-      images: ["/og-image.png"],
+      images: [ogImage],
     },
     robots: {
       index: true,
@@ -88,8 +89,16 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     icons: {
-      icon: "/favicon.ico",
-      apple: "/apple-icon.png",
+      icon: {
+        url: "/icon.svg",
+        sizes: "any",
+        type: "image/svg+xml",
+      },
+      apple: {
+        url: "/apple-icon.png?v=gm-1",
+        sizes: "180x180",
+        type: "image/png",
+      },
     },
   };
 }
@@ -171,7 +180,7 @@ export default async function RootLayout({
         <LanguageProvider initialLang={initialLang}>
           <a
             href="#main-content"
-            className="sr-only fixed left-4 top-4 z-[60] rounded bg-foreground px-5 py-3 text-background focus:not-sr-only focus:fixed"
+            className="sr-only fixed left-4 top-4 z-60 rounded bg-foreground px-5 py-3 text-background focus:not-sr-only focus:fixed"
           >
             {initialLang === "es" ? "Saltar al contenido" : "Skip to content"}
           </a>

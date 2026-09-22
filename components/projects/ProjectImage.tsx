@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { FiMaximize2, FiX } from "react-icons/fi";
 import { useTranslation } from "@/lib/i18n/context";
 import { caseLabels } from "@/lib/i18n/projects.content";
 
@@ -46,8 +47,9 @@ export function ProjectImage({
           loading={eager ? "eager" : "lazy"}
           className="h-auto w-full"
         />
-        <span className="absolute bottom-3 right-3 rounded-full bg-background/90 px-4 py-2 text-xs text-foreground shadow-lg backdrop-blur">
-          {labels.inspect} <span aria-hidden="true">↗</span>
+        <span className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-full bg-background/90 px-4 py-2 text-xs text-foreground shadow-lg backdrop-blur">
+          {labels.inspect}
+          <FiMaximize2 aria-hidden="true" className="size-3.5 shrink-0" />
         </span>
       </button>
       {caption && (
@@ -71,7 +73,8 @@ export function ProjectImage({
             onClick={() => dialog.current?.close()}
             className="sticky left-full top-3 z-10 mb-3 flex min-h-11 items-center gap-3 rounded-full border border-border bg-background px-5 text-sm text-foreground"
           >
-            {labels.close} <span aria-hidden="true">×</span>
+            {labels.close}
+            <FiX aria-hidden="true" className="size-4 shrink-0" />
           </button>
           {imageOpen && (
             <Image

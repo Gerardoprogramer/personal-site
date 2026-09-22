@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="wine" cx="85%" cy="30%" r="70%">
+      <stop stop-color="#6e1f30" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#0a0908" stop-opacity="0"/>
+    </radialGradient>
+    <path id="monogram" d="M46 14.8V29h-4c-1.2-7.9-5.5-11.3-10.4-11.3-6.7 0-10.5 6.2-10.5 14.6 0 8.3 3.7 14 10.4 14 2.8 0 5.3-.8 7-2.3v-8.5H33V32h15v3.5h-3.5v10.2C40.7 48.6 36.4 50 31.4 50c-10.5 0-16.5-7-16.5-17.6C14.9 21.7 21.7 14 32 14c4.2 0 7.7 1.2 10.2 3.4l1.3-2.6Z"/>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0908"/>
+  <rect width="1200" height="630" fill="url(#wine)"/>
+  <rect x="24.5" y="24.5" width="1151" height="581" rx="20" fill="none" stroke="#332d27"/>
+  <use xlink:href="#monogram" transform="translate(688 50) scale(10)" fill="#f2ede4" opacity=".055"/>
+  <g transform="translate(68 49) scale(.875)">
+    <path d="M32 5 55.4 18.5v27L32 59 8.6 45.5v-27Z" fill="#291b1f" stroke="#dd94a5" stroke-width="2.25" stroke-linejoin="round"/>
+    <use xlink:href="#monogram" fill="#f2ede4"/>
+  </g>
+  <text x="139" y="87" fill="#f2ede4" font-family="Georgia, serif" font-size="28" letter-spacing="-.8">gerardo<tspan fill="#dd94a5">.mm</tspan></text>
+  <text x="1128" y="82" text-anchor="end" fill="#b3aa9c" font-family="Arial, sans-serif" font-size="17" letter-spacing="2.5">FULL STACK DEVELOPER</text>
+  <path d="M72 123H1128" stroke="#332d27"/>
+  <g fill="#f2ede4" font-family="Georgia, serif" font-size="82" letter-spacing="-3">
+    <text x="70" y="238">Gerardo Martínez</text>
+    <text x="70" y="324">Monge</text>
+  </g>
+  <text x="73" y="397" fill="#dd94a5" font-family="Arial, sans-serif" font-size="27">Del problema real al software que lo resuelve.</text>
+  <text x="73" y="460" fill="#b3aa9c" font-family="Arial, sans-serif" font-size="19">Obsidian Library / La Central / Selvática</text>
+  <path d="M72 507H1128" stroke="#332d27"/>
+  <text x="73" y="560" fill="#f2ede4" font-family="Arial, sans-serif" font-size="21">gerardomartinez.dev</text>
+  <text x="1128" y="560" text-anchor="end" fill="#b3aa9c" font-family="Arial, sans-serif" font-size="19">Liberia, Costa Rica</text>
+</svg>

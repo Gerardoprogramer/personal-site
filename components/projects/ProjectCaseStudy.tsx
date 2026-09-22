@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FiArrowLeft, FiArrowUpRight } from "react-icons/fi";
 import { projects, type Project } from "@/content/projects";
 import { projectsContent, caseLabels } from "@/lib/i18n/projects.content";
 import { useTranslation } from "@/lib/i18n/context";
@@ -21,7 +22,8 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
         href={`/?lang=${language}#proyectos`}
         className="button-text text-muted-foreground"
       >
-        <span aria-hidden="true">←</span> {labels.back}
+        <FiArrowLeft aria-hidden="true" className="size-4 shrink-0" />
+        {labels.back}
       </Link>
       <header className="pb-10 pt-8 sm:pb-14">
         <p className="eyebrow mb-4" style={{ color: project.color }}>
@@ -45,7 +47,11 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 className="button-primary"
               >
-                {labels.demo} <span aria-hidden="true">↗</span>
+                {labels.demo}
+                <FiArrowUpRight
+                  aria-hidden="true"
+                  className="size-4 shrink-0"
+                />
               </a>
             )}
             {project.repositories.map((repo) => (
@@ -56,7 +62,11 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 className="button-outline"
               >
-                {labels.code} · {repo.label} <span aria-hidden="true">↗</span>
+                {labels.code} · {repo.label}
+                <FiArrowUpRight
+                  aria-hidden="true"
+                  className="size-4 shrink-0"
+                />
               </a>
             ))}
           </div>
@@ -198,14 +208,16 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
           className="group"
         >
           <p className="eyebrow mb-3 text-muted-foreground">{labels.next}</p>
-          <span className="font-display text-3xl group-hover:text-accent">
-            {next.name} <span aria-hidden="true">↗</span>
+          <span className="inline-flex items-center gap-3 font-display text-3xl group-hover:text-accent">
+            {next.name}
+            <FiArrowUpRight aria-hidden="true" className="size-6 shrink-0" />
           </span>
         </Link>
         <div className="sm:text-right">
           <p className="mb-3 text-sm text-muted-foreground">{labels.contact}</p>
           <Link href={`/?lang=${language}#contacto`} className="button-outline">
-            {labels.contactAction} <span aria-hidden="true">↗</span>
+            {labels.contactAction}
+            <FiArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
           </Link>
         </div>
       </div>

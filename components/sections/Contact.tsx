@@ -4,8 +4,7 @@ import { SectionHeader } from "../shared/SectionHeader";
 import { useState } from "react";
 import { profileStatic as profile } from "@/content/profile";
 import { useTranslation } from "@/lib/i18n/context";
-import { FaArrowRight } from "react-icons/fa";
-import { FaCheck } from "react-icons/fa6";
+import { FiArrowRight, FiCheck } from "react-icons/fi";
 import { BackgroundLetter } from "../shared/BackgroundLetter";
 
 export const Contact = () => {
@@ -221,14 +220,17 @@ export const Contact = () => {
               {status === "sent" ? (
                 <>
                   {t.contact.button.sent}
-                  <FaCheck />
+                  <FiCheck aria-hidden="true" className="size-4 shrink-0" />
                 </>
               ) : status === "sending" ? (
                 <>{t.contact.button.sending}</>
               ) : (
                 <>
                   {t.contact.button.send}
-                  <FaArrowRight />
+                  <FiArrowRight
+                    aria-hidden="true"
+                    className="size-4 shrink-0"
+                  />
                 </>
               )}
             </button>

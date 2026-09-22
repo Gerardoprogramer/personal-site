@@ -1,5 +1,6 @@
 "use client";
 
+import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 
@@ -39,11 +40,14 @@ export function Hero() {
           <div className="flex flex-wrap items-center gap-4 md:justify-end">
             <a href="#proyectos" className="button-primary">
               {es ? "Ver proyectos" : "View projects"}{" "}
-              <span aria-hidden="true">↘</span>
+              <FiArrowDownRight
+                aria-hidden="true"
+                className="size-4 shrink-0"
+              />
             </a>
             <a href="#contacto" className="button-text">
               {es ? "Hablemos" : "Get in touch"}{" "}
-              <span aria-hidden="true">↗</span>
+              <FiArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
             </a>
           </div>
         </div>
@@ -58,9 +62,10 @@ export function Hero() {
             href="/CV_Gerardo_Martinez_General.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-border underline-offset-4 hover:text-foreground"
+            className="inline-flex items-center gap-2 underline decoration-border underline-offset-4 hover:text-foreground"
           >
-            {es ? "Ver currículum ↗" : "View résumé ↗"}
+            {es ? "Ver currículum" : "View résumé"}
+            <FiArrowUpRight aria-hidden="true" className="size-3.5 shrink-0" />
           </a>
         </div>
       </div>

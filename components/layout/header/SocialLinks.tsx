@@ -32,7 +32,7 @@ export function SocialLinks({ expanded = false }: { expanded?: boolean }) {
           title={name}
           className={`social-link ${name === "WhatsApp" ? "social-link-whatsapp" : ""}`}
         >
-          <Icon aria-hidden="true" className="size-[18px]" />
+          <Icon aria-hidden="true" className="size-4.5" />
           {expanded && <span>{name}</span>}
         </a>
       ))}
