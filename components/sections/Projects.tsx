@@ -56,7 +56,14 @@ export function Projects() {
                   />
                 </div>
                 <div
-                  className={`overflow-hidden rounded-t-lg border border-white/10 bg-background shadow-2xl transition-transform duration-500 group-hover:-translate-y-1 ${index === 0 ? "aspect-2/1 md:aspect-[2.65/1]" : "aspect-1.5/1"}`}
+                  className={`overflow-hidden rounded-t-lg border border-white/10 bg-background shadow-2xl transition-transform duration-500 group-hover:-translate-y-1 ${index === 0 ? "" : "aspect-1.5/1"}`}
+                  style={
+                    index === 0
+                      ? {
+                          aspectRatio: `${project.imageWidth} / ${project.imageHeight}`,
+                        }
+                      : undefined
+                  }
                 >
                   <Image
                     src={project.image}

@@ -21,9 +21,9 @@ export const projects: Project[] = [
     year: "2026",
     color: "#dfb978",
     surface: "#211b13",
-    image: "/projects/obsidian-cover.png",
+    image: "/projects/obsidian-library.png",
     imageWidth: 1440,
-    imageHeight: 1000,
+    imageHeight: 900,
     stack: [
       "Next.js",
       "TypeScript",
@@ -32,7 +32,7 @@ export const projects: Project[] = [
       "PostgreSQL",
       "Stripe",
     ],
-    demo: "https://obsidian-delta-kohl.vercel.app",
+    demo: "https://library.gerardomartinez.dev",
     repositories: [
       {
         label: "Frontend",

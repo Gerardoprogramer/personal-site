@@ -79,18 +79,22 @@ export const projectsContent: Record<
       category: "Proyecto personal · Aplicación web",
       tagline: "Del catálogo al préstamo, con cada operación conectada.",
       summary:
-        "Una plataforma bibliotecaria que reúne catálogo, préstamos, reservas y membresías, con pagos mediante Stripe.",
+        "Una biblioteca para lectores y administradores: catálogo, préstamos, reservas y membresías con pagos mediante Stripe.",
       headline: "Una biblioteca. Todo un producto detrás.",
       introduction:
-        "Obsidian conecta la experiencia del lector con las reglas de una biblioteca: encontrar un libro, consultar su disponibilidad, gestionar un préstamo o una reserva y mantener al día la membresía. Un proyecto personal publicado como demo, con frontend en Next.js y backend en Java y Spring Boot.",
-      role: "Desarrollo frontend e integración con la API; backend, datos y pagos.",
-      status: "Demo publicada · Interfaz en refinamiento",
+        "Desarrollé Obsidian para conectar las dos caras de una biblioteca. El lector descubre libros, gestiona préstamos y reservas y mantiene su membresía. Desde el panel administrativo se organiza el catálogo y se atienden préstamos, multas y suscripciones. Una aplicación completa en Next.js y Spring Boot, publicada como demo.",
+      role: "Desarrollo integral: interfaz del lector, panel administrativo, API, datos y pagos.",
+      status: "Proyecto completado · Demo publicada",
       coverAlt:
-        "Portada de Obsidian Library con acceso a la plataforma bibliotecaria",
+        "Portada actual de Obsidian Library con el mensaje Una biblioteca que te acompaña y una vista ilustrativa de la plataforma",
       challenge: "Lo que ocurre entre un clic y una confirmación.",
       challengeBody:
         "Un libro puede estar prestado, reservado o disponible. Un pago puede seguir pendiente cuando el lector vuelve desde Stripe. El reto es coordinar esos estados y explicarlos en la interfaz, aplicando en el servidor las reglas de disponibilidad, membresías y pagos.",
       decisions: [
+        {
+          title: "Dos roles, una misma biblioteca",
+          body: "El lector tiene su catálogo, préstamos, reservas, favoritos y reseñas. El panel administrativo reúne libros, géneros, usuarios, operaciones, multas y planes de membresía. Cada experiencia ofrece acciones distintas según los permisos de la cuenta y comparte las reglas del backend.",
+        },
         {
           title: "Confirmar antes de activar",
           body: "La pantalla consulta el estado del backend y muestra la espera de confirmación. El servidor verifica la firma de los eventos de Stripe, reconoce entregas repetidas y evita que un evento tardío de fallo revierta un pago exitoso.",
@@ -100,8 +104,8 @@ export const projectsContent: Record<
           body: "Las reservas avanzan según el orden de solicitud y los ejemplares libres. El lector dispone de 48 horas para recoger el libro. Al vencer ese plazo, el sistema puede dar paso a la siguiente reserva.",
         },
         {
-          title: "Sesiones coordinadas",
-          body: "Next.js conecta el navegador con la API de Spring Boot. La autenticación combina cookies HTTP-only, protección CSRF y rotación de refresh tokens. El cliente coordina las peticiones que necesitan renovar la sesión.",
+          title: "Sesiones y red coordinadas",
+          body: "Next.js actúa como BFF entre el navegador y Spring Boot. La autenticación combina cookies HTTP-only, protección CSRF y rotación de refresh tokens, mientras el cliente coordina renovaciones concurrentes. El proxy también gestiona los cold starts del backend mediante health checks y evita reintentar automáticamente operaciones que modifican estado.",
         },
         {
           title: "Reglas cerca de los datos",
@@ -109,14 +113,14 @@ export const projectsContent: Record<
         },
       ],
       evidence: [
-        { value: "67", label: "pruebas en los reportes del backend" },
+        { value: "92", label: "pruebas automatizadas entre frontend y backend" },
         { value: "48 h", label: "plazo de recogida de una reserva" },
-        { value: "CI", label: "verificación con GitHub Actions" },
+        { value: "CI", label: "validación automatizada con GitHub Actions" },
       ],
       evidenceNote:
-        "Reportes locales del 20 de septiembre de 2026: 67 pruebas aprobadas, incluidas 8 de integración con PostgreSQL mediante Testcontainers.",
+        "Suite documentada: 67 pruebas de backend, 18 pruebas unitarias de frontend y 7 recorridos de navegador con Playwright. Los recorridos autenticados de Playwright utilizan una API simulada para comprobar la interfaz y sus interacciones.",
       scope:
-        "Demo de un proyecto personal. La experiencia del lector está publicada y la interfaz sigue puliéndose. La API incluye funciones administrativas; su interfaz aún no está completa. La renovación de membresías prepara un enlace de pago enviado por correo.",
+        "Proyecto personal completado y publicado como demo en la nube. Incluye la experiencia del lector y el panel administrativo, con catálogo, operaciones de préstamo y reserva, multas, planes, suscripciones y reembolsos. El frontend y el backend cuentan con pruebas automatizadas, CI y despliegues independientes.",
       closing:
         "Una interfaz clara necesita representar también las esperas, los vencimientos y las operaciones que requieren confirmación.",
     },
@@ -220,17 +224,22 @@ export const projectsContent: Record<
       category: "Personal project · Web application",
       tagline: "From the catalog to the loan, with every operation connected.",
       summary:
-        "A library platform bringing together a catalog, loans, reservations and memberships, with Stripe payments.",
+        "A library for readers and administrators: a catalog, loans, reservations and memberships with Stripe payments.",
       headline: "A library. A whole product behind it.",
       introduction:
-        "Obsidian connects the reader’s experience with the rules of a library: finding a book, checking availability, managing loans and reservations, and keeping a membership current. A personal project published as a demo, with Next.js on the frontend and Java and Spring Boot on the backend.",
-      role: "Frontend and API integration; backend, data and payments.",
-      status: "Live demo · Interface being refined",
-      coverAlt: "Obsidian Library homepage with access to the library platform",
+        "I built Obsidian to connect both sides of a library. Readers discover books, manage loans and reservations, and maintain their memberships. The admin panel supports catalog management, loans, fines and subscriptions. A complete application built with Next.js and Spring Boot, published as a live demo.",
+      role: "Complete development: reader interface, admin panel, API, data and payments.",
+      status: "Project completed · Live demo",
+      coverAlt:
+        "Current Obsidian Library homepage with its Una biblioteca que te acompaña headline and an illustrative preview of the platform",
       challenge: "What happens between a click and a confirmation.",
       challengeBody:
         "A book can be on loan, reserved or available. A payment can still be pending when the reader returns from Stripe. The challenge is to coordinate those states and communicate them while the server enforces availability, membership and payment rules.",
       decisions: [
+        {
+          title: "Two roles, one library",
+          body: "Readers have a catalog, loans, reservations, wishlists and reviews. The admin panel brings together books, genres, users, operations, fines and membership plans. Each experience offers actions based on account permissions and shares the rules enforced by the backend.",
+        },
         {
           title: "Confirm before activating",
           body: "The payment screen checks the backend status and displays the confirmation wait. The server verifies Stripe signatures, recognizes repeated deliveries and prevents a late failure event from reversing a successful payment.",
@@ -240,8 +249,8 @@ export const projectsContent: Record<
           body: "Reservations advance in request order as copies become available. Readers have 48 hours to collect a book. Once that window expires, the system can advance the next reservation.",
         },
         {
-          title: "Coordinated sessions",
-          body: "Next.js connects the browser to the Spring Boot API. Authentication combines HTTP-only cookies, CSRF protection and refresh-token rotation. The client coordinates requests that need a session refresh.",
+          title: "Coordinated sessions and network",
+          body: "Next.js acts as a BFF between the browser and Spring Boot. Authentication combines HTTP-only cookies, CSRF protection and refresh-token rotation, while the client coordinates concurrent session renewals. The proxy also handles backend cold starts through health checks without automatically retrying state-changing operations.",
         },
         {
           title: "Rules close to the data",
@@ -249,14 +258,14 @@ export const projectsContent: Record<
         },
       ],
       evidence: [
-        { value: "67", label: "tests recorded in backend reports" },
+        { value: "92", label: "automated tests across frontend and backend" },
         { value: "48 h", label: "reservation pickup window" },
-        { value: "CI", label: "verification with GitHub Actions" },
+        { value: "CI", label: "automated validation with GitHub Actions" },
       ],
       evidenceNote:
-        "Local reports dated September 20, 2026 record 67 passing tests, including 8 PostgreSQL integration tests using Testcontainers.",
+        "Documented suite: 67 backend tests, 18 frontend unit tests and 7 Playwright browser flows. The authenticated Playwright flows use a mocked API to check the interface and its interactions.",
       scope:
-        "Personal project demo. The reader experience is published and the interface is being refined. The API includes administrative features; their interface is not yet complete. Membership renewal prepares a payment link sent by email.",
+        "Completed personal project published as a cloud demo. It includes reader and admin interfaces, with a catalog, loan and reservation operations, fines, plans, subscriptions and refunds. Both frontend and backend include automated tests, CI and independent deployments.",
       closing:
         "A clear interface also needs to represent waiting, expiration and operations that require confirmation.",
     },

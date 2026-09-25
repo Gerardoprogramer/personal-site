@@ -79,11 +79,15 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
         height={project.imageHeight}
         eager
         caption={
-          project.slug === "la-central"
+          project.slug === "obsidian-library"
             ? language === "es"
-              ? "Punto de venta · Datos de demostración. Venta por gramos y por presentación."
-              : "Point of sale · Demonstration data. Weighted products and pack pricing."
-            : `${project.name} · ${labels.screen}`
+              ? "Página de presentación · Captura de la demo publicada."
+              : "Landing page · Screenshot of the live demo."
+            : project.slug === "la-central"
+              ? language === "es"
+                ? "Punto de venta · Datos de demostración. Venta por gramos y por presentación."
+                : "Point of sale · Demonstration data. Weighted products and pack pricing."
+              : `${project.name} · ${labels.screen}`
         }
       />
       <dl className="mt-8 grid gap-6 border-b border-border pb-8 sm:grid-cols-[1.3fr_1fr_auto]">
