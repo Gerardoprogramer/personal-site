@@ -8,7 +8,7 @@ const contactSchema = z.object({
     email: z.string().trim().email(),
     intent: z.string().trim().min(1).max(50),
     message: z.string().trim().min(10).max(2000),
-    company: z.string().max(0).optional(),
+    contactCheck: z.string().trim().max(200).optional(),
 });
 
 export async function POST(req: Request) {
@@ -25,9 +25,9 @@ export async function POST(req: Request) {
             );
         }
 
-        const { name, email, intent, message, company } = parsed.data;
+        const { name, email, intent, message, contactCheck } = parsed.data;
 
-        if (company) {
+        if (contactCheck) {
             return NextResponse.json({ ok: true });
         }
 

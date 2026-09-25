@@ -34,7 +34,7 @@ export const Contact = () => {
       email: formData.get("email"),
       intent,
       message: formData.get("message"),
-      company: formData.get("company") || "",
+      contactCheck: formData.get("contact_check") || "",
     };
 
     try {
@@ -73,9 +73,9 @@ export const Contact = () => {
         >
           <input
             type="text"
-            name="company"
+            name="contact_check"
             tabIndex={-1}
-            autoComplete="off"
+            autoComplete="new-password"
             className="pointer-events-none absolute left-[-9999px] top-0 h-0 w-0 opacity-0"
             aria-hidden="true"
           />
@@ -94,11 +94,10 @@ export const Contact = () => {
                 return (
                   <label
                     key={opt.value}
-                    className={`flex cursor-pointer items-center gap-3 rounded-md border px-4 py-3 text-sm transition-colors focus-within:outline-2 focus-within:outline-accent focus-within:outline-offset-2 ${
-                      active
+                    className={`flex cursor-pointer items-center gap-3 rounded-md border px-4 py-3 text-sm transition-colors focus-within:outline-2 focus-within:outline-accent focus-within:outline-offset-2 ${active
                         ? "border-accent bg-accent/10 text-foreground"
                         : "border-border bg-surface-2/40 text-muted-foreground hover:border-primary/40"
-                    }`}
+                      }`}
                   >
                     <input
                       type="radio"
@@ -110,9 +109,8 @@ export const Contact = () => {
                     />
                     <span
                       aria-hidden="true"
-                      className={`grid size-4 shrink-0 place-items-center rounded-full border ${
-                        active ? "border-accent" : "border-border"
-                      }`}
+                      className={`grid size-4 shrink-0 place-items-center rounded-full border ${active ? "border-accent" : "border-border"
+                        }`}
                     >
                       {active ? (
                         <span className="size-1.5 rounded-full bg-accent" />
