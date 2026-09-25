@@ -1,7 +1,19 @@
 import { Resend } from "resend";
 
-if (!process.env.RESEND_API_KEY) {
-  throw new Error("RESEND_API_KEY no está definida en las variables de entorno");
-}
+let resend: Resend | null = null;
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
+export function getResend() {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    throw new Error(
+      "RESEND_API_KEY no está definida en las variables de entorno",
+    );
+  }
+
+  if (!resend) {
+    resend = new Resend(apiKey);
+  }
+
+  return resend;
+}

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { resend } from "@/lib/resend";
+import { getResend } from "@/lib/resend";
 import ContactEmail from "@/emails/ContactEmail";
 
 const contactSchema = z.object({
@@ -15,6 +15,7 @@ export async function POST(req: Request) {
     try {
         const body = await req.json();
         const parsed = contactSchema.safeParse(body);
+        const resend = getResend();
 
         if (!parsed.success) {
               console.log("Zod validation failed:", JSON.stringify(parsed.error.flatten(), null, 2));
