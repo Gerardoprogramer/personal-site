@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getProject } from "@/content/projects";
 import { projectsContent } from "@/lib/i18n/projects.content";
 import { ProjectCaseStudy } from "@/components/projects/ProjectCaseStudy";
+import { SITE_URL } from "@/content/profile";
+import { toLanguage } from "@/lib/i18n/lang";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -11,9 +13,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) notFound();
-  const language = (await headers()).get("x-language") === "en" ? "en" : "es";
+  const language = toLanguage((await headers()).get("x-language"));
   const copy = projectsContent[language][project.slug];
-  const base = `https://gerardomartinez.dev/proyectos/${project.slug}`;
+  const base = `${SITE_URL}/proyectos/${project.slug}`;
   return {
     title: project.name,
     description: copy.summary,

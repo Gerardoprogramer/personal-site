@@ -9,6 +9,8 @@ import { LanguageProvider } from "@/lib/i18n/context";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
+import { toLanguage, type Language } from "@/lib/i18n/lang";
+import { SITE_URL, profileStatic } from "@/content/profile";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,13 +28,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://gerardomartinez.dev";
-
 const dictionaries = { es, en };
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  const lang = headersList.get("x-language") === "en" ? "en" : "es";
+  const lang = toLanguage(headersList.get("x-language"));
   const dict = dictionaries[lang].meta;
   const ogLocale = lang === "es" ? "es_CR" : "en_US";
   const canonicalUrl = `${SITE_URL}/?lang=${lang}`;
@@ -103,7 +103,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function buildJsonLd(lang: "es" | "en") {
+function buildJsonLd(lang: Language) {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -118,7 +118,7 @@ function buildJsonLd(lang: "es" | "en") {
       addressLocality: "Liberia",
       addressCountry: "CR",
     },
-    email: "hola@gerardomartinez.dev",
+    email: profileStatic.email,
     sameAs: [
       "https://github.com/Gerardoprogramer",
       "https://www.linkedin.com/in/gerardo-martinez-dev",
@@ -146,7 +146,7 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const headersList = await headers();
-  const initialLang = headersList.get("x-language") === "en" ? "en" : "es";
+  const initialLang = toLanguage(headersList.get("x-language"));
   const jsonLd = buildJsonLd(initialLang);
 
   return (
@@ -158,7 +158,9 @@ export default async function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
         />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -169,7 +171,11 @@ export default async function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('consent', 'default', {
-              analytics_storage: 'denied'
+              analytics_storage: 'denied',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              wait_for_update: 500
             });
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
@@ -182,7 +188,7 @@ export default async function RootLayout({
             href="#main-content"
             className="sr-only fixed left-4 top-4 z-60 rounded bg-foreground px-5 py-3 text-background focus:not-sr-only focus:fixed"
           >
-            {initialLang === "es" ? "Saltar al contenido" : "Skip to content"}
+            {dictionaries[initialLang].common.skipToContent}
           </a>
           <Header />
           <main id="main-content" className="flex-1">

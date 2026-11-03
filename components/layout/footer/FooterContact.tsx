@@ -6,7 +6,7 @@ import { useTranslation } from "@/lib/i18n/context";
 import { FiArrowUpRight } from "react-icons/fi";
 
 export const FooterContact = () => {
-  const { t, language } = useTranslation();
+  const { t } = useTranslation();
   const profile = getProfile(t);
 
   return (
@@ -52,9 +52,7 @@ export const FooterContact = () => {
             }}
             className="transition-colors hover:text-accent text-left"
           >
-            {language === "es"
-              ? "preferencias de cookies"
-              : "cookie preferences"}
+            {t.common.cookiePreferences}
           </button>
         </li>
       </ul>

@@ -1,13 +1,11 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/content/projects";
-
-const SITE_URL = "https://gerardomartinez.dev";
+import { SITE_URL } from "@/content/profile";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
       alternates: {
@@ -28,6 +26,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     })),
-    { url: `${SITE_URL}/privacidad`, changeFrequency: "yearly", priority: 0.2 },
+    {
+      url: `${SITE_URL}/privacidad`,
+      changeFrequency: "yearly",
+      priority: 0.2,
+      alternates: {
+        languages: {
+          es: `${SITE_URL}/privacidad?lang=es`,
+          en: `${SITE_URL}/privacidad?lang=en`,
+        },
+      },
+    },
   ];
 }

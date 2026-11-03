@@ -4,8 +4,7 @@ import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 
 export function Stack() {
-  const { language } = useTranslation();
-  const es = language === "es";
+  const { t } = useTranslation();
   const groups = [
     {
       title: "Frontend",
@@ -17,7 +16,7 @@ export function Stack() {
         "Java · Spring Boot · Node.js · NestJS · Python · FastAPI · Django",
     },
     {
-      title: es ? "Datos y herramientas" : "Data and tooling",
+      title: t.stack.data,
       items: "PostgreSQL · Prisma · Docker · Git · GitHub Actions · Playwright",
     },
   ];
@@ -25,7 +24,7 @@ export function Stack() {
     <section id="stack" className="section-shell relative isolate pb-20">
       <BackgroundLetter letter="R" size="compact" />
       <h2 className="eyebrow mb-6 text-muted-foreground">
-        {es ? "Herramientas de trabajo" : "Tools I work with"}
+        {t.stack.title}
       </h2>
       <div className="grid gap-6 border-y border-border py-7 md:grid-cols-3">
         {groups.map((group) => (

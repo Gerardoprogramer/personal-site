@@ -4,15 +4,11 @@ import Link from "next/link";
 import { useTranslation } from "@/lib/i18n/context";
 
 export function Logo() {
-  const { language } = useTranslation();
+  const { language, t } = useTranslation();
   return (
     <Link
       href={`/?lang=${language}#top`}
-      aria-label={
-        language === "es"
-          ? "Gerardo Martínez · Inicio"
-          : "Gerardo Martínez · Home"
-      }
+      aria-label={t.header.logoLabel}
       className="header-brand"
     >
       <span className="brand-monogram" aria-hidden="true">

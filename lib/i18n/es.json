@@ -125,5 +125,79 @@
       }
     ],
     "contact": "Si tenés dudas sobre esta política, escribime directamente a"
+  },
+  "common": {
+    "skipToContent": "Saltar al contenido",
+    "backHome": "volver al inicio",
+    "viewResume": "Ver currículum",
+    "newTab": "abrir en otra pestaña",
+    "cookiePreferences": "preferencias de cookies"
+  },
+  "header": {
+    "projects": "Proyectos",
+    "experience": "Experiencia",
+    "about": "Sobre mí",
+    "stack": "Stack",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "mainNav": "Navegación principal",
+    "mobileNav": "Navegación móvil",
+    "menu": "Menú",
+    "menuEyebrow": "Explora el portfolio",
+    "menuTitle": "Un poco más de mí.",
+    "closeMenu": "Cerrar menú",
+    "allSections": "Todas las secciones",
+    "home": "Inicio",
+    "connect": "Conectemos",
+    "logoLabel": "Gerardo Martínez · Inicio",
+    "socialNav": "Redes y contacto directo"
+  },
+  "hero": {
+    "titleLine1": "Del problema real",
+    "titleLine2": "al software que lo resuelve.",
+    "intro": "Soy desarrollador full stack e informático empresarial. Construyo aplicaciones completas, desde las reglas del negocio hasta los detalles de la interfaz.",
+    "viewProjects": "Ver proyectos",
+    "talk": "Hablemos",
+    "availability": "Disponible para empleo y proyectos"
+  },
+  "projectsSection": {
+    "title": "Tres proyectos. Tres enfoques.",
+    "description": "Producto, operación y experiencia visual. Una selección para ver cómo diseño y construyo."
+  },
+  "experienceSection": {
+    "eyebrow": "Experiencia",
+    "title": "También, construir en equipo.",
+    "more": "Más sobre mi contribución"
+  },
+  "about": {
+    "eyebrow": "Sobre mí",
+    "titleLine1": "Entender primero.",
+    "titleLine2": "Construir con criterio.",
+    "paragraphs": [
+      "Mi formación en Informática Empresarial conecta dos cosas que me interesan: cómo funciona un negocio y cómo el software puede ayudarlo. Me gusta seguir el problema completo, desde lo que necesita una persona hasta los datos y las reglas que sostienen la solución.",
+      "Trabajo desde Liberia, Costa Rica. Leo bastante, disfruto pulir las interfaces y presto atención a lo que sucede cuando una operación falla. Busco aportar esa mirada en un equipo o en un proyecto a medida."
+    ]
+  },
+  "stack": {
+    "title": "Herramientas de trabajo",
+    "data": "Datos y herramientas"
+  },
+  "services": {
+    "eyebrow": "Cómo puedo aportar",
+    "title": "De una idea a algo que puedas usar.",
+    "items": [
+      {
+        "title": "Aplicaciones a medida",
+        "body": "Sistemas de gestión, plataformas web e integración de APIs, desde las reglas del negocio hasta la interfaz."
+      },
+      {
+        "title": "Sitios con identidad",
+        "body": "Landings y experiencias web con atención a la composición, la navegación, el rendimiento y los dispositivos móviles."
+      },
+      {
+        "title": "Evolución de sistemas",
+        "body": "Nuevas funcionalidades, corrección de errores y migraciones con cambios comprobables y documentación útil."
+      }
+    ]
   }
 }

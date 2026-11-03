@@ -5,8 +5,7 @@ import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 
 export function Experience() {
-  const { t, language } = useTranslation();
-  const es = language === "es";
+  const { t } = useTranslation();
   return (
     <section
       id="experiencia"
@@ -14,9 +13,9 @@ export function Experience() {
     >
       <BackgroundLetter letter="R" />
       <div className="section-shell">
-        <p className="eyebrow mb-4">02 / {es ? "Experiencia" : "Experience"}</p>
+        <p className="eyebrow mb-4">02 / {t.experienceSection.eyebrow}</p>
         <h2 className="mb-10 font-display text-4xl tracking-tight sm:text-5xl">
-          {es ? "También, construir en equipo." : "Building with a team, too."}
+          {t.experienceSection.title}
         </h2>
         {experience(t).map((exp) => (
           <article
@@ -36,9 +35,7 @@ export function Experience() {
               <p className="text-base leading-relaxed">{exp.built[0]}</p>
               <details className="mt-4 text-sm">
                 <summary className="cursor-pointer py-2 text-muted-foreground hover:text-foreground">
-                  {es
-                    ? "Más sobre mi contribución"
-                    : "More about my contribution"}
+                  {t.experienceSection.more}
                 </summary>
                 <ul className="mt-3 space-y-3 text-muted-foreground">
                   {exp.built.slice(1).map((item) => (
