@@ -54,6 +54,12 @@ describe("POST /api/contact", () => {
     });
   });
 
+  it("accepts both the www and the apex Origin", async () => {
+    for (const origin of ["https://www.gerardomartinez.dev", "https://gerardomartinez.dev"]) {
+      expect((await POST(request(validBody, { origin }))).status).toBe(200);
+    }
+  });
+
   it("rejects requests without an allowed Origin", async () => {
     expect((await POST(request(validBody, { origin: null }))).status).toBe(403);
     expect(

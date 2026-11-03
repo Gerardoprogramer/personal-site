@@ -29,10 +29,10 @@ function isAllowedOrigin(req: Request) {
         return false;
     }
 
-    const siteHost = new URL(SITE_URL).host;
+    const apexHost = new URL(SITE_URL).host.replace(/^www\./, "");
     const allowed = [
-        siteHost,
-        `www.${siteHost}`,
+        apexHost,
+        `www.${apexHost}`,
         req.headers.get("x-forwarded-host"),
         req.headers.get("host"),
     ];

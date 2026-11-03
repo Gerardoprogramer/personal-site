@@ -5,7 +5,13 @@ import { FiArrowLeft } from "react-icons/fi";
 import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
 import { toLanguage } from "@/lib/i18n/lang";
-import { SITE_URL, profileStatic } from "@/content/profile";
+import { profileStatic } from "@/content/profile";
+import {
+  defaultOgImage,
+  languageAlternates,
+  localizedUrl,
+  ogLocale,
+} from "@/lib/seo";
 
 const dictionaries = { es, en };
 
@@ -13,16 +19,37 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const lang = toLanguage(headersList.get("x-language"));
   const dict = dictionaries[lang].privacy;
+  const canonicalUrl = localizedUrl("/privacidad", lang);
+  const ogImage = defaultOgImage(lang);
 
   return {
     title: dict.title,
     description: dict.intro,
     alternates: {
-      canonical: `${SITE_URL}/privacidad?lang=${lang}`,
-      languages: {
-        es: `${SITE_URL}/privacidad?lang=es`,
-        en: `${SITE_URL}/privacidad?lang=en`,
-      },
+      canonical: canonicalUrl,
+      languages: languageAlternates("/privacidad"),
+    },
+    openGraph: {
+      type: "website",
+      locale: ogLocale(lang),
+      url: canonicalUrl,
+      title: `${dict.title} | Gerardo Martínez Monge`,
+      description: dict.intro,
+      siteName: "Gerardo Martínez Monge",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: "Gerardo Martínez Monge - Full Stack Developer",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${dict.title} | Gerardo Martínez Monge`,
+      description: dict.intro,
+      images: [ogImage],
     },
     robots: {
       index: true,
