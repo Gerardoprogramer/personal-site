@@ -1,3 +1,4 @@
+import { profileStatic } from "./profile";
 
 interface propsSocials {
     github: string,
@@ -10,7 +11,7 @@ interface propsSocials {
 export const socials: propsSocials = {
     github: "https://github.com/Gerardoprogramer",
     linkedin: "https://www.linkedin.com/in/gerardo-martinez-dev",
-    email: "mailto:hola@gerardomartinez.dev",
+    email: `mailto:${profileStatic.email}`,
     cv: "/CV_Gerardo_Martinez_General.pdf",
     whatsapp: "https://wa.me/50689462689",
 };

@@ -4,8 +4,9 @@ import { createContext, useContext, useEffect, ReactNode } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import es from "./es.json";
 import en from "./en.json";
+import type { Language } from "./lang";
 
-export type Language = "es" | "en";
+export type { Language };
 export type Translations = typeof es;
 const translations: Record<Language, Translations> = { es, en };
 

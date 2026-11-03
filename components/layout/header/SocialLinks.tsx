@@ -5,7 +5,7 @@ import { socials } from "@/content/portfolio";
 import { useTranslation } from "@/lib/i18n/context";
 
 export function SocialLinks({ expanded = false }: { expanded?: boolean }) {
-  const { language } = useTranslation();
+  const { t } = useTranslation();
   const links = [
     { name: "WhatsApp", href: socials.whatsapp, Icon: FaWhatsapp },
     { name: "GitHub", href: socials.github, Icon: FaGithub },
@@ -13,11 +13,7 @@ export function SocialLinks({ expanded = false }: { expanded?: boolean }) {
   ];
   return (
     <nav
-      aria-label={
-        language === "es"
-          ? "Redes y contacto directo"
-          : "Social profiles and direct contact"
-      }
+      aria-label={t.header.socialNav}
       className={
         expanded ? "social-links social-links-expanded" : "social-links"
       }
@@ -28,7 +24,7 @@ export function SocialLinks({ expanded = false }: { expanded?: boolean }) {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`${name} · ${language === "es" ? "abrir en otra pestaña" : "open in a new tab"}`}
+          aria-label={`${name} · ${t.common.newTab}`}
           title={name}
           className={`social-link ${name === "WhatsApp" ? "social-link-whatsapp" : ""}`}
         >

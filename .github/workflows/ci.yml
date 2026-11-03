@@ -42,5 +42,11 @@ jobs:
       - name: Type check
         run: pnpm exec tsc --noEmit
 
+      - name: Test
+        run: pnpm test
+
+      - name: Audit dependencies
+        run: pnpm audit --audit-level=high
+
       - name: Build
         run: pnpm build

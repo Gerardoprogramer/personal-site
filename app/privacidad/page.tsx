@@ -4,13 +4,14 @@ import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
+import { toLanguage } from "@/lib/i18n/lang";
+import { SITE_URL, profileStatic } from "@/content/profile";
 
 const dictionaries = { es, en };
-const SITE_URL = "https://gerardomartinez.dev";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  const lang = (headersList.get("x-language") as "es" | "en") || "es";
+  const lang = toLanguage(headersList.get("x-language"));
   const dict = dictionaries[lang].privacy;
 
   return {
@@ -32,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function PrivacyPage() {
   const headersList = await headers();
-  const lang = (headersList.get("x-language") as "es" | "en") || "es";
+  const lang = toLanguage(headersList.get("x-language"));
   const t = dictionaries[lang].privacy;
 
   return (
@@ -42,7 +43,7 @@ export default async function PrivacyPage() {
         className="font-mono-tech text-xs text-muted-foreground hover:text-accent transition-colors mb-8 inline-flex items-center gap-2"
       >
         <FiArrowLeft aria-hidden="true" className="size-4 shrink-0" />
-        {lang === "es" ? "volver al inicio" : "back to home"}
+        {dictionaries[lang].common.backHome}
       </Link>
 
       <h1 className="text-2xl sm:text-3xl font-display font-medium text-foreground mb-2">
@@ -73,10 +74,10 @@ export default async function PrivacyPage() {
         <p className="text-sm text-muted-foreground">
           {t.contact}{" "}
           <a
-            href="mailto:hola@gerardomartinez.dev"
+            href={`mailto:${profileStatic.email}`}
             className="text-muted-foreground hover:text-accent transition-colors"
           >
-            hola@gerardomartinez.dev
+            {profileStatic.email}
           </a>
         </p>
       </div>

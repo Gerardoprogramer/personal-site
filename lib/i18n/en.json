@@ -125,5 +125,79 @@
       }
     ],
     "contact": "If you have questions about this policy, email me directly at"
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "backHome": "back to home",
+    "viewResume": "View résumé",
+    "newTab": "open in a new tab",
+    "cookiePreferences": "cookie preferences"
+  },
+  "header": {
+    "projects": "Projects",
+    "experience": "Experience",
+    "about": "About",
+    "stack": "Stack",
+    "services": "Services",
+    "contact": "Contact",
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile navigation",
+    "menu": "Menu",
+    "menuEyebrow": "Explore the portfolio",
+    "menuTitle": "A little more about me.",
+    "closeMenu": "Close menu",
+    "allSections": "All sections",
+    "home": "Home",
+    "connect": "Let’s connect",
+    "logoLabel": "Gerardo Martínez · Home",
+    "socialNav": "Social profiles and direct contact"
+  },
+  "hero": {
+    "titleLine1": "From a real problem",
+    "titleLine2": "to software that solves it.",
+    "intro": "I’m a full stack developer with a background in Business Informatics. I build complete applications, from business rules to the details of the interface.",
+    "viewProjects": "View projects",
+    "talk": "Get in touch",
+    "availability": "Open to roles and projects"
+  },
+  "projectsSection": {
+    "title": "Three projects. Three perspectives.",
+    "description": "Product, operations and visual experience. A selection of how I design and build."
+  },
+  "experienceSection": {
+    "eyebrow": "Experience",
+    "title": "Building with a team, too.",
+    "more": "More about my contribution"
+  },
+  "about": {
+    "eyebrow": "About me",
+    "titleLine1": "Understand first.",
+    "titleLine2": "Build with purpose.",
+    "paragraphs": [
+      "My background in Business Informatics connects two things I care about: how a business works and how software can help. I like following the whole problem, from a person’s needs to the data and rules that support the solution.",
+      "I work from Liberia, Costa Rica. I read a lot, enjoy refining interfaces and pay attention to what happens when an operation fails. I’m looking to bring that approach to a team or a custom project."
+    ]
+  },
+  "stack": {
+    "title": "Tools I work with",
+    "data": "Data and tooling"
+  },
+  "services": {
+    "eyebrow": "How I can help",
+    "title": "From an idea to something you can use.",
+    "items": [
+      {
+        "title": "Custom applications",
+        "body": "Management systems, web platforms and API integrations, from business rules to the interface."
+      },
+      {
+        "title": "Websites with identity",
+        "body": "Landing pages and web experiences with attention to composition, navigation, performance and mobile devices."
+      },
+      {
+        "title": "Evolving existing systems",
+        "body": "New features, bug fixes and migrations with verifiable changes and useful documentation."
+      }
+    ]
   }
 }

@@ -21,28 +21,27 @@ import { Logo } from "./header/Logo";
 import { socials } from "@/content/portfolio";
 
 export function Header() {
-  const { language } = useTranslation();
+  const { language, t } = useTranslation();
   const pathname = usePathname();
   const active = useActiveSection();
   const menu = useRef<HTMLDialogElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const es = language === "es";
   const home = pathname === "/" ? "" : `/?lang=${language}`;
   const links = [
-    { id: "proyectos", label: es ? "Proyectos" : "Projects", Icon: FiGrid },
+    { id: "proyectos", label: t.header.projects, Icon: FiGrid },
     {
       id: "experiencia",
-      label: es ? "Experiencia" : "Experience",
+      label: t.header.experience,
       Icon: FiBriefcase,
     },
-    { id: "sobre-mi", label: es ? "Sobre mí" : "About", Icon: FiUser },
-    { id: "stack", label: "Stack", Icon: FiGrid },
+    { id: "sobre-mi", label: t.header.about, Icon: FiUser },
+    { id: "stack", label: t.header.stack, Icon: FiGrid },
     {
       id: "servicios",
-      label: es ? "Servicios" : "Services",
+      label: t.header.services,
       Icon: FiBriefcase,
     },
-    { id: "contacto", label: es ? "Contacto" : "Contact", Icon: FiMail },
+    { id: "contacto", label: t.header.contact, Icon: FiMail },
   ];
   const dockLinks = links.filter((link) =>
     ["proyectos", "experiencia", "sobre-mi", "contacto"].includes(link.id),
@@ -68,7 +67,7 @@ export function Header() {
         <div className="header-bar">
           <Logo />
           <nav
-            aria-label={es ? "Navegación principal" : "Main navigation"}
+            aria-label={t.header.mainNav}
             className="desktop-nav"
           >
             {links.map((link) => (
@@ -92,7 +91,7 @@ export function Header() {
       </header>
 
       <nav
-        aria-label={es ? "Navegación móvil" : "Mobile navigation"}
+        aria-label={t.header.mobileNav}
         className="mobile-dock"
       >
         {dockLinks.map(({ id, label, Icon }) => (
@@ -115,7 +114,7 @@ export function Header() {
           className="dock-link dock-menu"
         >
           <FiMenu aria-hidden="true" className="size-[18px]" />
-          <span>{es ? "Menú" : "Menu"}</span>
+          <span>{t.header.menu}</span>
         </button>
       </nav>
 
@@ -134,24 +133,24 @@ export function Header() {
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="eyebrow mb-1">
-                {es ? "Explora el portfolio" : "Explore the portfolio"}
+                {t.header.menuEyebrow}
               </p>
               <h2 id="site-menu-title" className="font-display text-3xl">
-                {es ? "Un poco más de mí." : "A little more about me."}
+                {t.header.menuTitle}
               </h2>
             </div>
             <button
               autoFocus
               type="button"
               onClick={() => menu.current?.close()}
-              aria-label={es ? "Cerrar menú" : "Close menu"}
+              aria-label={t.header.closeMenu}
               className="sheet-close"
             >
               <FiX aria-hidden="true" className="size-5" />
             </button>
           </div>
           <nav
-            aria-label={es ? "Todas las secciones" : "All sections"}
+            aria-label={t.header.allSections}
             className="sheet-navigation"
           >
             <Link
@@ -160,7 +159,7 @@ export function Header() {
               className="sheet-nav-link"
             >
               <span className="sheet-letter">G</span>
-              <span>{es ? "Inicio" : "Home"}</span>
+              <span>{t.header.home}</span>
               <FiArrowUpRight aria-hidden="true" />
             </Link>
             {links.map((link, index) => (
@@ -179,7 +178,7 @@ export function Header() {
           </nav>
           <div className="sheet-footer">
             <p className="eyebrow mb-3 text-muted-foreground">
-              {es ? "Conectemos" : "Let’s connect"}
+              {t.header.connect}
             </p>
             <SocialLinks expanded />
             <a
@@ -189,7 +188,7 @@ export function Header() {
               className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
             >
               <FiDownload aria-hidden="true" />
-              {es ? "Ver currículum" : "View résumé"}
+              {t.common.viewResume}
             </a>
           </div>
         </div>

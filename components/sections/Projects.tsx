@@ -9,8 +9,7 @@ import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 
 export function Projects() {
-  const { language } = useTranslation();
-  const es = language === "es";
+  const { language, t } = useTranslation();
   const labels = caseLabels[language];
   return (
     <section id="proyectos" className="section-shell relative isolate pb-24">
@@ -19,15 +18,11 @@ export function Projects() {
         <div>
           <p className="eyebrow mb-3">01 / {labels.selected}</p>
           <h2 className="font-display text-4xl tracking-tight sm:text-5xl">
-            {es
-              ? "Tres proyectos. Tres enfoques."
-              : "Three projects. Three perspectives."}
+            {t.projectsSection.title}
           </h2>
         </div>
         <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-          {es
-            ? "Producto, operación y experiencia visual. Una selección para ver cómo diseño y construyo."
-            : "Product, operations and visual experience. A selection of how I design and build."}
+          {t.projectsSection.description}
         </p>
       </div>
       <div className="grid gap-8 md:grid-cols-2">
