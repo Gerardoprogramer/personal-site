@@ -18,7 +18,7 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 import { LanguageSwitcher } from "./header/LanguageSwitcher";
 import { SocialLinks } from "./header/SocialLinks";
 import { Logo } from "./header/Logo";
-import { socials } from "@/content/portfolio";
+import { cvHref, socials } from "@/content/portfolio";
 
 export function Header() {
   const { language, t } = useTranslation();
@@ -182,7 +182,7 @@ export function Header() {
             </p>
             <SocialLinks expanded />
             <a
-              href={socials.cv}
+              href={cvHref(language)}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs text-muted-foreground hover:text-foreground"

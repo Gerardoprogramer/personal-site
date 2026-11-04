@@ -3,10 +3,10 @@
 import { FiArrowDownRight, FiArrowUpRight, FiFileText } from "react-icons/fi";
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
-import { socials } from "@/content/portfolio";
+import { cvHref } from "@/content/portfolio";
 
 export function Hero() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   return (
     <section
       id="top"
@@ -42,7 +42,7 @@ export function Hero() {
             <FiArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
           </a>
           <a
-            href={socials.cv}
+            href={cvHref(language)}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t.hero.cvLabel}
