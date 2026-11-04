@@ -533,6 +533,11 @@ html:has(dialog[open]) {
     scroll-padding-top: 7.25rem;
   }
 }
+/* While the cookie banner is shown, keep focused elements clear of it
+   (WCAG 2.4.11): banner offset + banner height + 0.5rem for the focus ring. */
+html:has(.cookie-banner) {
+  scroll-padding-bottom: calc(1rem + 10.75rem + 0.5rem);
+}
 @media (max-width: 1119px) {
   body {
     padding-bottom: calc(5.75rem + env(safe-area-inset-bottom));
@@ -540,12 +545,25 @@ html:has(dialog[open]) {
   .cookie-banner {
     bottom: calc(5.75rem + env(safe-area-inset-bottom));
   }
+  html:has(.cookie-banner) {
+    scroll-padding-bottom: calc(
+      5.75rem + env(safe-area-inset-bottom) + 10.75rem + 0.5rem
+    );
+  }
   .section-letter > span {
     opacity: 0.05;
   }
   body:has(input[type="text"]:focus, input[type="email"]:focus, textarea:focus)
     .mobile-dock {
     display: none;
+  }
+}
+@media (max-width: 639px) {
+  /* Taller banner below the sm breakpoint (up to 4 lines of text at 320px). */
+  html:has(.cookie-banner) {
+    scroll-padding-bottom: calc(
+      5.75rem + env(safe-area-inset-bottom) + 13.125rem + 0.5rem
+    );
   }
 }
 @media (max-width: 359px) {
