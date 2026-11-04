@@ -158,7 +158,8 @@
     "intro": "I’m a full stack developer with a background in Business Informatics. I build complete applications, from business rules to the details of the interface.",
     "viewProjects": "View projects",
     "talk": "Get in touch",
-    "availability": "Open to roles and projects"
+    "availability": "Open to roles and projects",
+    "cvLabel": "View résumé (PDF, opens in a new tab)"
   },
   "projectsSection": {
     "title": "Three projects. Three perspectives.",
