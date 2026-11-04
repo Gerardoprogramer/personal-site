@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getProject } from "@/content/projects";
 import { projectsContent } from "@/lib/i18n/projects.content";
 import { ProjectCaseStudy } from "@/components/projects/ProjectCaseStudy";
-import { SITE_URL } from "@/content/profile";
+import { languageAlternates, localizedUrl, ogLocale } from "@/lib/seo";
 import { toLanguage } from "@/lib/i18n/lang";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -15,24 +15,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) notFound();
   const language = toLanguage((await headers()).get("x-language"));
   const copy = projectsContent[language][project.slug];
-  const base = `${SITE_URL}/proyectos/${project.slug}`;
+  const path = `/proyectos/${project.slug}`;
+  const canonicalUrl = localizedUrl(path, language);
   return {
     title: project.name,
     description: copy.summary,
     alternates: {
-      canonical: `${base}?lang=${language}`,
-      languages: {
-        es: `${base}?lang=es`,
-        en: `${base}?lang=en`,
-        "x-default": base,
-      },
+      canonical: canonicalUrl,
+      languages: languageAlternates(path),
     },
     openGraph: {
       type: "article",
       title: `${project.name} | Gerardo Martínez`,
       description: copy.summary,
-      url: `${base}?lang=${language}`,
-      locale: language === "es" ? "es_CR" : "en_US",
+      url: canonicalUrl,
+      locale: ogLocale(language),
       images: [
         {
           url: project.image,

@@ -1,41 +1,28 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/content/projects";
-import { SITE_URL } from "@/content/profile";
+import { LANGUAGES, languageAlternates, localizedUrl } from "@/lib/seo";
 
+type Page = Pick<MetadataRoute.Sitemap[number], "changeFrequency" | "priority"> & {
+  path: string;
+};
+
+const pages: Page[] = [
+  { path: "/", changeFrequency: "monthly", priority: 1 },
+  ...projects.map((project) => ({
+    path: `/proyectos/${project.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  })),
+  { path: "/privacidad", changeFrequency: "yearly", priority: 0.2 },
+];
+
+// One entry per page and language: each <loc> is that page's canonical URL.
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: SITE_URL,
-      changeFrequency: "monthly",
-      priority: 1,
-      alternates: {
-        languages: {
-          es: `${SITE_URL}/?lang=es`,
-          en: `${SITE_URL}/?lang=en`,
-        },
-      },
-    },
-    ...projects.map((project) => ({
-      url: `${SITE_URL}/proyectos/${project.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-      alternates: {
-        languages: {
-          es: `${SITE_URL}/proyectos/${project.slug}?lang=es`,
-          en: `${SITE_URL}/proyectos/${project.slug}?lang=en`,
-        },
-      },
+  return pages.flatMap(({ path, ...entry }) =>
+    LANGUAGES.map((lang) => ({
+      url: localizedUrl(path, lang),
+      ...entry,
+      alternates: { languages: languageAlternates(path) },
     })),
-    {
-      url: `${SITE_URL}/privacidad`,
-      changeFrequency: "yearly",
-      priority: 0.2,
-      alternates: {
-        languages: {
-          es: `${SITE_URL}/privacidad?lang=es`,
-          en: `${SITE_URL}/privacidad?lang=en`,
-        },
-      },
-    },
-  ];
+  );
 }

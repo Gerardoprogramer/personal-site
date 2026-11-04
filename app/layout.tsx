@@ -11,6 +11,12 @@ import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
 import { toLanguage, type Language } from "@/lib/i18n/lang";
 import { SITE_URL, profileStatic } from "@/content/profile";
+import {
+  defaultOgImage,
+  languageAlternates,
+  localizedUrl,
+  ogLocale,
+} from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,9 +40,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const lang = toLanguage(headersList.get("x-language"));
   const dict = dictionaries[lang].meta;
-  const ogLocale = lang === "es" ? "es_CR" : "en_US";
-  const canonicalUrl = `${SITE_URL}/?lang=${lang}`;
-  const ogImage = `/og-image${lang === "en" ? "-en" : ""}.png?v=portfolio-2`;
+  const canonicalUrl = localizedUrl("/", lang);
+  const ogImage = defaultOgImage(lang);
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -50,7 +55,7 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: "Gerardo Martínez Monge",
     openGraph: {
       type: "website",
-      locale: ogLocale,
+      locale: ogLocale(lang),
       url: canonicalUrl,
       title: dict.title,
       description: dict.ogDescription,
@@ -82,11 +87,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       canonical: canonicalUrl,
-      languages: {
-        es: `${SITE_URL}/?lang=es`,
-        en: `${SITE_URL}/?lang=en`,
-        "x-default": SITE_URL,
-      },
+      languages: languageAlternates("/"),
     },
     icons: {
       icon: {

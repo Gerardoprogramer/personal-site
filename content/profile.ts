@@ -8,7 +8,7 @@ interface propsProfile {
     email: string
 }
 
-export const SITE_URL = "https://gerardomartinez.dev";
+export const SITE_URL = "https://www.gerardomartinez.dev";
 
 export const profileStatic = {
     name: "Gerardo Martínez Monge",
