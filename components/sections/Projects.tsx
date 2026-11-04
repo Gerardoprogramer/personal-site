@@ -39,7 +39,7 @@ export function Projects() {
                 style={{ backgroundColor: project.surface }}
               >
                 <div
-                  className="mb-4 flex items-center justify-between gap-3 font-mono-tech text-[11px]"
+                  className="mb-4 flex items-center justify-between gap-3 font-mono-tech text-xs"
                   style={{ color: project.color }}
                 >
                   <span>

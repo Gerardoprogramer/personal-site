@@ -11,7 +11,7 @@ export const FooterContact = () => {
 
   return (
     <div>
-      <div className="font-mono-tech text-[10px] uppercase tracking-widest text-primary">
+      <div className="font-mono-tech text-xs uppercase tracking-[0.08em] text-primary">
         {t.footer.titleContact}
       </div>
       <ul className="mt-4 space-y-2 font-mono-tech text-xs text-muted-foreground">
