@@ -158,7 +158,8 @@
     "intro": "Soy desarrollador full stack e informático empresarial. Construyo aplicaciones completas, desde las reglas del negocio hasta los detalles de la interfaz.",
     "viewProjects": "Ver proyectos",
     "talk": "Hablemos",
-    "availability": "Disponible para empleo y proyectos"
+    "availability": "Disponible para empleo y proyectos",
+    "cvLabel": "Ver currículum (PDF, se abre en otra pestaña)"
   },
   "projectsSection": {
     "title": "Tres proyectos. Tres enfoques.",

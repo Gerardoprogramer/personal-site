@@ -1,6 +1,6 @@
 "use client";
 
-import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
+import { FiArrowDownRight, FiArrowUpRight, FiFileText } from "react-icons/fi";
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 import { socials } from "@/content/portfolio";
@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="section-shell relative isolate pb-16 pt-36 sm:pb-20 sm:pt-44"
+      className="section-shell relative isolate pb-12 pt-36 sm:pt-40"
     >
       <BackgroundLetter letter="G" />
       <div
@@ -29,39 +29,33 @@ export function Hero() {
             {t.hero.titleLine2}
           </span>
         </h1>
-        <div className="mt-8 grid gap-8 md:grid-cols-[1.3fr_1fr] md:items-end">
-          <p className="max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {t.hero.intro}
-          </p>
-          <div className="flex flex-wrap items-center gap-4 md:justify-end">
-            <a href="#proyectos" className="button-primary">
-              {t.hero.viewProjects}{" "}
-              <FiArrowDownRight
-                aria-hidden="true"
-                className="size-4 shrink-0"
-              />
-            </a>
-            <a href="#contacto" className="button-text">
-              {t.hero.talk}{" "}
-              <FiArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
-            </a>
-          </div>
-        </div>
-        <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 font-mono-tech text-[11px] text-muted-foreground">
-          <span className="flex items-center gap-2">
-            <span className="size-1.5 rounded-full bg-[#91c6a4]" />
-            {t.hero.availability}
-          </span>
+        <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          {t.hero.intro}
+        </p>
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <a href="#proyectos" className="button-primary">
+            {t.hero.viewProjects}{" "}
+            <FiArrowDownRight aria-hidden="true" className="size-4 shrink-0" />
+          </a>
+          <a href="#contacto" className="button-text">
+            {t.hero.talk}{" "}
+            <FiArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
+          </a>
           <a
             href={socials.cv}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 underline decoration-border underline-offset-4 hover:text-foreground"
+            aria-label={t.hero.cvLabel}
+            className="button-outline"
           >
+            <FiFileText aria-hidden="true" className="size-4 shrink-0" />
             {t.common.viewResume}
-            <FiArrowUpRight aria-hidden="true" className="size-3.5 shrink-0" />
           </a>
         </div>
+        <p className="mt-5 flex items-center gap-2 font-mono-tech text-[11px] text-muted-foreground">
+          <span className="size-1.5 rounded-full bg-[#91c6a4]" />
+          {t.hero.availability}
+        </p>
       </div>
     </section>
   );
