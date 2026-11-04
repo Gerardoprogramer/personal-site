@@ -131,7 +131,8 @@
     "backHome": "back to home",
     "viewResume": "View résumé",
     "newTab": "open in a new tab",
-    "cookiePreferences": "cookie preferences"
+    "cookiePreferences": "cookie preferences",
+    "sendEmail": "Send email"
   },
   "header": {
     "projects": "Projects",

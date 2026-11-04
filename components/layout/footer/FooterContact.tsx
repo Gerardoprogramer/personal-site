@@ -14,11 +14,11 @@ export const FooterContact = () => {
       <div className="font-mono-tech text-xs uppercase tracking-[0.08em] text-primary">
         {t.footer.titleContact}
       </div>
-      <ul className="mt-4 space-y-2 font-mono-tech text-xs text-muted-foreground">
+      <ul className="mt-4 font-mono-tech text-xs text-muted-foreground md:space-y-2">
         <li>
           <a
             href={socials.email}
-            className="transition-colors hover:text-accent"
+            className="inline-flex min-h-11 items-center transition-colors hover:text-accent md:min-h-0"
           >
             {profile.email}
           </a>
@@ -28,7 +28,8 @@ export const FooterContact = () => {
             href={socials.whatsapp}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 transition-colors hover:text-accent"
+            aria-label={`WhatsApp · ${t.common.newTab}`}
+            className="inline-flex min-h-11 items-center gap-2 transition-colors hover:text-accent md:min-h-0"
           >
             WhatsApp
             <FiArrowUpRight aria-hidden="true" className="size-3.5 shrink-0" />
@@ -38,7 +39,7 @@ export const FooterContact = () => {
           <a
             href={socials.cv}
             download
-            className="transition-colors hover:text-accent"
+            className="inline-flex min-h-11 items-center transition-colors hover:text-accent md:min-h-0"
           >
             {t.footer.descargar} cv (.pdf)
           </a>
@@ -50,7 +51,7 @@ export const FooterContact = () => {
               localStorage.removeItem("cookie-consent");
               window.location.reload();
             }}
-            className="transition-colors hover:text-accent text-left"
+            className="inline-flex min-h-11 items-center transition-colors hover:text-accent text-left md:min-h-0"
           >
             {t.common.cookiePreferences}
           </button>

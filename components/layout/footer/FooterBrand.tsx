@@ -22,8 +22,8 @@ export const FooterBrand = () => {
                     href={socials.github}
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label="GitHub"
-                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                    aria-label={`GitHub · ${t.common.newTab}`}
+                    className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent md:size-9"
                 >
                     <FaGithub className="size-4" strokeWidth={1.5} aria-hidden="true" />
                 </a>
@@ -31,15 +31,15 @@ export const FooterBrand = () => {
                     href={socials.linkedin}
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label="LinkedIn"
-                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                    aria-label={`LinkedIn · ${t.common.newTab}`}
+                    className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent md:size-9"
                 >
                     <FaLinkedin className="size-4" strokeWidth={1.5} aria-hidden="true" />
                 </a>
                 <a
                     href={socials.email}
-                    aria-label="Enviar correo"
-                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                    aria-label={t.common.sendEmail}
+                    className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent md:size-9"
                 >
                     <FaEnvelope className="size-4" strokeWidth={1.5} aria-hidden="true" />
                 </a>
@@ -47,8 +47,8 @@ export const FooterBrand = () => {
                     href={socials.whatsapp}
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label="WhatsApp"
-                    className="inline-flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+                    aria-label={`WhatsApp · ${t.common.newTab}`}
+                    className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent md:size-9"
                 >
                     <FaWhatsapp className="size-4" strokeWidth={1.5} aria-hidden="true" />
                 </a>

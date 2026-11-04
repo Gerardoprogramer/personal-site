@@ -12,12 +12,12 @@ export const FooterNav = () => {
             <div className="font-mono-tech text-xs uppercase tracking-[0.08em] text-primary">
                 {t.footer.titleNav}
             </div>
-            <ul className="mt-4 space-y-2 font-mono-tech text-xs text-muted-foreground">
+            <ul className="mt-4 font-mono-tech text-xs text-muted-foreground md:space-y-2">
                 {links.map((l) => (
                     <li key={l.href}>
                         <a
                             href={l.href}
-                            className="transition-colors hover:text-accent"
+                            className="inline-flex min-h-11 items-center transition-colors hover:text-accent md:min-h-0"
                         >
                             {l.label}
                         </a>

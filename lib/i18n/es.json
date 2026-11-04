@@ -131,7 +131,8 @@
     "backHome": "volver al inicio",
     "viewResume": "Ver currículum",
     "newTab": "abrir en otra pestaña",
-    "cookiePreferences": "preferencias de cookies"
+    "cookiePreferences": "preferencias de cookies",
+    "sendEmail": "Enviar correo"
   },
   "header": {
     "projects": "Proyectos",
