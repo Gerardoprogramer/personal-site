@@ -1,12 +1,12 @@
 "use client";
 
-import { socials } from "@/content/portfolio";
+import { cvFiles, cvHref, socials } from "@/content/portfolio";
 import { getProfile } from "@/content/profile";
 import { useTranslation } from "@/lib/i18n/context";
 import { FiArrowUpRight } from "react-icons/fi";
 
 export const FooterContact = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const profile = getProfile(t);
 
   return (
@@ -37,8 +37,8 @@ export const FooterContact = () => {
         </li>
         <li>
           <a
-            href={socials.cv}
-            download
+            href={cvHref(language)}
+            download={cvFiles[language]}
             className="inline-flex min-h-11 items-center transition-colors hover:text-accent md:min-h-0"
           >
             {t.footer.descargar} cv (.pdf)
