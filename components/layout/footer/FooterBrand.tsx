@@ -14,7 +14,7 @@ export const FooterBrand = () => {
             <div className="font-display text-sm font-semibold">
                 {profile.name}
             </div>
-            <div className="mt-1 font-mono-tech text-[11px] uppercase tracking-widest text-muted-foreground">
+            <div className="mt-1 font-mono-tech text-xs uppercase tracking-[0.08em] text-muted-foreground">
                 {profile.role} · {profile.location}
             </div>
             <div className="mt-6 flex items-center gap-3">

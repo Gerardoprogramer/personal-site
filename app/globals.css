@@ -79,9 +79,9 @@
 
 @utility eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   line-height: 1.6;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
@@ -334,7 +334,7 @@ html:has(dialog[open]) {
   min-height: 3.375rem;
   border-radius: 1.125rem;
   color: var(--color-muted-foreground);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   line-height: 1.2;
   transition:
     background 180ms,
@@ -446,7 +446,7 @@ html:has(dialog[open]) {
   gap: 0.5rem;
   border-color: var(--color-border);
   border-radius: 0.75rem;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
 }
 
 @keyframes sheet-enter {

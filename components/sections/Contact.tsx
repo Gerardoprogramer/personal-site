@@ -81,7 +81,7 @@ export const Contact = () => {
           />
 
           <fieldset className="mb-6">
-            <legend className="mb-3 font-mono-tech text-[11px] uppercase tracking-widest text-muted-foreground">
+            <legend className="mb-3 font-mono-tech text-xs uppercase tracking-[0.08em] text-muted-foreground">
               {t.contact.labels.intention}
             </legend>
             <div
@@ -129,7 +129,7 @@ export const Contact = () => {
             <div>
               <label
                 htmlFor="c-name"
-                className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground"
+                className="font-mono-tech text-xs uppercase tracking-[0.08em] text-muted-foreground"
               >
                 {t.contact.labels.name}
               </label>
@@ -147,7 +147,7 @@ export const Contact = () => {
             <div>
               <label
                 htmlFor="c-email"
-                className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground"
+                className="font-mono-tech text-xs uppercase tracking-[0.08em] text-muted-foreground"
               >
                 {t.contact.labels.email}
               </label>
@@ -166,7 +166,7 @@ export const Contact = () => {
           <div className="mt-5">
             <label
               htmlFor="c-message"
-              className="font-mono-tech text-[10px] uppercase tracking-widest text-muted-foreground"
+              className="font-mono-tech text-xs uppercase tracking-[0.08em] text-muted-foreground"
             >
               {t.contact.labels.message}
             </label>
@@ -187,14 +187,14 @@ export const Contact = () => {
                     : t.contact.placeholders.other
               }
             />
-            <div className="mt-1 text-right font-mono-tech text-[10px] text-muted-foreground">
+            <div className="mt-1 text-right font-mono-tech text-xs text-muted-foreground">
               {messageLength}/{MAX_MESSAGE}
             </div>
           </div>
 
           <div
             id="contact-help"
-            className="mt-3 font-mono-tech text-[11px] text-muted-foreground"
+            className="mt-3 text-[13px] leading-relaxed text-muted-foreground"
             role="status"
             aria-live="polite"
           >
