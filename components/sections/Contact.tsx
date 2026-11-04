@@ -140,7 +140,7 @@ export const Contact = () => {
                 type="text"
                 maxLength={100}
                 autoComplete="name"
-                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-accent"
+                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground transition-colors placeholder:text-muted-foreground/80 focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 placeholder={t.contact.placeholders.name}
               />
             </div>
@@ -157,7 +157,7 @@ export const Contact = () => {
                 required
                 type="email"
                 autoComplete="email"
-                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-accent"
+                className="mt-2 h-11 w-full rounded-md border border-border bg-surface-2/40 px-3 text-sm text-foreground transition-colors placeholder:text-muted-foreground/80 focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 placeholder={t.contact.placeholders.email}
               />
             </div>
@@ -178,7 +178,7 @@ export const Contact = () => {
               maxLength={MAX_MESSAGE}
               rows={5}
               onChange={(e) => setMessageLength(e.target.value.length)}
-              className="mt-2 w-full rounded-md border border-border bg-surface-2/40 px-3 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/80 focus:border-accent"
+              className="mt-2 w-full rounded-md border border-border bg-surface-2/40 px-3 py-3 text-sm text-foreground transition-colors placeholder:text-muted-foreground/80 focus:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               placeholder={
                 intent === "posicion"
                   ? t.contact.placeholders.position
@@ -204,7 +204,7 @@ export const Contact = () => {
           <div className="mt-6 flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex flex-wrap items-center gap-2 font-mono-tech text-xs text-muted-foreground transition-colors hover:text-accent"
+              className="inline-flex min-h-11 flex-wrap items-center gap-2 font-mono-tech text-xs text-muted-foreground transition-colors hover:text-accent"
             >
               {t.contact.directEmail}{" "}
               <span className="text-foreground">{profile.email}</span>
