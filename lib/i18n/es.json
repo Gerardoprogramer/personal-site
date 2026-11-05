@@ -13,6 +13,7 @@
     "status": "Disponible para empleo fijo y proyectos freelance"
   },
   "footer": {
+    "statusLabel": "estado:",
     "status": "disponible",
     "builtWith": "construido con criterio",
     "titleContact": "contacto directo",
@@ -70,7 +71,7 @@
     "button": {
       "send": "enviar mensaje",
       "sent": "mensaje enviado",
-      "sending": "Enviando…"
+      "sending": "enviando…"
     },
     "error": "No se pudo enviar. Intenta de nuevo o escríbeme por correo."
   },

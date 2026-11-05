@@ -60,7 +60,7 @@ export const Contact = () => {
       <div className="mx-auto max-w-3xl px-6">
         <SectionHeader
           align="center"
-          eyebrow={t.contact.header.eyebrow.replace("// ", "")}
+          eyebrow={t.contact.header.eyebrow}
           title={t.contact.header.title}
           description={t.contact.header.description}
           index="05"
