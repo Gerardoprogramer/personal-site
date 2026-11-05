@@ -63,7 +63,7 @@ export const Contact = () => {
           eyebrow={t.contact.header.eyebrow}
           title={t.contact.header.title}
           description={t.contact.header.description}
-          index="05"
+          index="06"
         />
 
         <form

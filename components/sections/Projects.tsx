@@ -7,6 +7,7 @@ import { projects } from "@/content/projects";
 import { caseLabels, projectsContent } from "@/lib/i18n/projects.content";
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export function Projects() {
   const { language, t } = useTranslation();
@@ -15,12 +16,13 @@ export function Projects() {
     <section id="proyectos" className="section-shell relative isolate pb-24">
       <BackgroundLetter letter="E" side="left" position="top" />
       <div className="mb-10 flex flex-wrap items-end justify-between gap-5 border-t border-border pt-8">
-        <div>
-          <p className="eyebrow mb-3">01 / {labels.selected}</p>
-          <h2 className="font-display text-4xl tracking-tight sm:text-5xl">
-            {t.projectsSection.title}
-          </h2>
-        </div>
+        <SectionHeader
+          index="01"
+          size="lg"
+          compact
+          eyebrow={labels.selected}
+          title={t.projectsSection.title}
+        />
         <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
           {t.projectsSection.description}
         </p>
