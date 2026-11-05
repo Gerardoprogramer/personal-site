@@ -1,10 +1,11 @@
 'use client';
 
+import Link from "next/link";
 import { useNavLinks } from '@/hooks/use-nav-links';
 import { useTranslation } from "@/lib/i18n/context";
 
 export const FooterNav = () => {
-    const links = useNavLinks();
+    const { links } = useNavLinks();
     const { t } = useTranslation();
 
     return (
@@ -12,15 +13,15 @@ export const FooterNav = () => {
             <div className="font-mono-tech text-xs uppercase tracking-[0.08em] text-primary">
                 {t.footer.titleNav}
             </div>
-            <ul className="mt-4 font-mono-tech text-xs text-muted-foreground md:space-y-2">
+            <ul className="mt-4 font-mono-tech text-xs lowercase text-muted-foreground md:space-y-2">
                 {links.map((l) => (
-                    <li key={l.href}>
-                        <a
+                    <li key={l.id}>
+                        <Link
                             href={l.href}
                             className="inline-flex min-h-11 items-center transition-colors hover:text-accent md:min-h-0"
                         >
                             {l.label}
-                        </a>
+                        </Link>
                     </li>
                 ))}
             </ul>

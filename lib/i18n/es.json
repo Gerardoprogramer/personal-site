@@ -1,10 +1,5 @@
 {
   "nav": {
-    "proyectos": "proyectos",
-    "servicios": "servicios",
-    "stack": "stack",
-    "experiencia": "experiencia",
-    "contacto": "contacto",
     "languageSwitcher": "Selector de idioma",
     "disponible": "Disponible"
   },

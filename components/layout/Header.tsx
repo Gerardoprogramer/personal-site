@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
 import {
   FiArrowUpRight,
   FiBriefcase,
@@ -13,36 +12,34 @@ import {
   FiX,
   FiDownload,
 } from "react-icons/fi";
+import type { IconType } from "react-icons";
 import { useTranslation } from "@/lib/i18n/context";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { useNavLinks, type NavSectionId } from "@/hooks/use-nav-links";
 import { LanguageSwitcher } from "./header/LanguageSwitcher";
 import { SocialLinks } from "./header/SocialLinks";
 import { Logo } from "./header/Logo";
 import { cvHref, socials } from "@/content/portfolio";
 
+const SECTION_ICONS: Record<NavSectionId, IconType> = {
+  proyectos: FiGrid,
+  experiencia: FiBriefcase,
+  "sobre-mi": FiUser,
+  stack: FiGrid,
+  servicios: FiBriefcase,
+  contacto: FiMail,
+};
+
 export function Header() {
   const { language, t } = useTranslation();
-  const pathname = usePathname();
   const active = useActiveSection();
   const menu = useRef<HTMLDialogElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const home = pathname === "/" ? "" : `/?lang=${language}`;
-  const links = [
-    { id: "proyectos", label: t.header.projects, Icon: FiGrid },
-    {
-      id: "experiencia",
-      label: t.header.experience,
-      Icon: FiBriefcase,
-    },
-    { id: "sobre-mi", label: t.header.about, Icon: FiUser },
-    { id: "stack", label: t.header.stack, Icon: FiGrid },
-    {
-      id: "servicios",
-      label: t.header.services,
-      Icon: FiBriefcase,
-    },
-    { id: "contacto", label: t.header.contact, Icon: FiMail },
-  ];
+  const { home, links: sections } = useNavLinks();
+  const links = sections.map((section) => ({
+    ...section,
+    Icon: SECTION_ICONS[section.id],
+  }));
   const dockLinks = links.filter((link) =>
     ["proyectos", "experiencia", "sobre-mi", "contacto"].includes(link.id),
   );
