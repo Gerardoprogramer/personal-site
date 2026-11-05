@@ -3,6 +3,7 @@
 import { experience } from "@/content/Experience";
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export function Experience() {
   const { t } = useTranslation();
@@ -13,10 +14,13 @@ export function Experience() {
     >
       <BackgroundLetter letter="R" />
       <div className="section-shell">
-        <p className="eyebrow mb-4">02 / {t.experienceSection.eyebrow}</p>
-        <h2 className="mb-10 font-display text-4xl tracking-tight sm:text-5xl">
-          {t.experienceSection.title}
-        </h2>
+        <SectionHeader
+          index="02"
+          size="lg"
+          eyebrow={t.experienceSection.eyebrow}
+          title={t.experienceSection.title}
+          className="mb-10"
+        />
         {experience(t).map((exp) => (
           <article
             key={exp.company}

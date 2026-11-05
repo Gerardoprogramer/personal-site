@@ -2,6 +2,7 @@
 
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export function Stack() {
   const { t } = useTranslation();
@@ -23,9 +24,13 @@ export function Stack() {
   return (
     <section id="stack" className="section-shell relative isolate pb-20">
       <BackgroundLetter letter="R" size="compact" />
-      <h2 className="eyebrow mb-6 text-muted-foreground">
-        {t.stack.title}
-      </h2>
+      <SectionHeader
+        index="04"
+        size="md"
+        eyebrow={t.stack.eyebrow}
+        title={t.stack.title}
+        className="mb-6"
+      />
       <div className="grid gap-6 border-y border-border py-7 md:grid-cols-3">
         {groups.map((group) => (
           <div key={group.title}>

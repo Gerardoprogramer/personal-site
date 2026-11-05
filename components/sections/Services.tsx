@@ -2,6 +2,7 @@
 
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export function Services() {
   const { t } = useTranslation();
@@ -12,12 +13,12 @@ export function Services() {
     >
       <BackgroundLetter letter="D" side="left" />
       <div className="section-shell">
-        <p className="eyebrow mb-4">
-          04 / {t.services.eyebrow}
-        </p>
-        <h2 className="font-display text-3xl tracking-tight sm:text-4xl">
-          {t.services.title}
-        </h2>
+        <SectionHeader
+          index="05"
+          size="md"
+          eyebrow={t.services.eyebrow}
+          title={t.services.title}
+        />
         <div className="mt-9 grid gap-8 md:grid-cols-3">
           {t.services.items.map(({ title, body }, index) => (
             <div key={title}>
