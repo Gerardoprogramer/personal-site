@@ -1,6 +1,6 @@
 'use client';
 
-import { FaGithub, FaLinkedin, FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { socials } from "@/content/portfolio";
 import { getProfile } from "@/content/profile";
 import { useTranslation } from "@/lib/i18n/context";
@@ -25,7 +25,7 @@ export const FooterBrand = () => {
                     aria-label={`GitHub · ${t.common.newTab}`}
                     className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent md:size-9"
                 >
-                    <FaGithub className="size-4" strokeWidth={1.5} aria-hidden="true" />
+                    <FaGithub className="size-4" aria-hidden="true" />
                 </a>
                 <a
                     href={socials.linkedin}
@@ -34,14 +34,14 @@ export const FooterBrand = () => {
                     aria-label={`LinkedIn · ${t.common.newTab}`}
                     className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent md:size-9"
                 >
-                    <FaLinkedin className="size-4" strokeWidth={1.5} aria-hidden="true" />
+                    <FaLinkedinIn className="size-4" aria-hidden="true" />
                 </a>
                 <a
                     href={socials.email}
                     aria-label={t.common.sendEmail}
                     className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent md:size-9"
                 >
-                    <FaEnvelope className="size-4" strokeWidth={1.5} aria-hidden="true" />
+                    <FaEnvelope className="size-4" aria-hidden="true" />
                 </a>
                 <a
                     href={socials.whatsapp}
@@ -50,7 +50,7 @@ export const FooterBrand = () => {
                     aria-label={`WhatsApp · ${t.common.newTab}`}
                     className="inline-flex size-11 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-accent hover:text-accent md:size-9"
                 >
-                    <FaWhatsapp className="size-4" strokeWidth={1.5} aria-hidden="true" />
+                    <FaWhatsapp className="size-4" aria-hidden="true" />
                 </a>
             </div>
         </div>

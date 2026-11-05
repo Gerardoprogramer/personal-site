@@ -13,6 +13,7 @@
     "status": "Open to full-time roles and freelance projects"
   },
   "footer": {
+    "statusLabel": "status:",
     "status": "available",
     "builtWith": "built with intent",
     "titleContact": "direct contact",
@@ -70,7 +71,7 @@
     "button": {
       "send": "send message",
       "sent": "message sent",
-      "sending": "Sending…"
+      "sending": "sending…"
     },
     "error": "Your message could not be sent. Try again or email me directly."
   },
