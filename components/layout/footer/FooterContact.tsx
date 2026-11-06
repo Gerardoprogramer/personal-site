@@ -41,7 +41,7 @@ export const FooterContact = () => {
             download={cvFiles[language]}
             className="inline-flex min-h-11 items-center transition-colors hover:text-accent md:min-h-0"
           >
-            {t.footer.descargar} cv (.pdf)
+            {t.footer.descargar} CV (.pdf)
           </a>
         </li>
         <li>

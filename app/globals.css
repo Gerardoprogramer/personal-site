@@ -295,15 +295,6 @@ html:has(dialog[open]) {
   border-color: rgb(242 237 228 / 12%);
   transform: translateY(-1px);
 }
-.social-link-whatsapp {
-  color: #a8d4b6;
-  background: rgb(145 198 164 / 7%);
-}
-.social-link-whatsapp:hover {
-  color: #bfe8cc;
-  background: rgb(145 198 164 / 14%);
-  border-color: rgb(145 198 164 / 30%);
-}
 
 .mobile-dock {
   position: fixed;
