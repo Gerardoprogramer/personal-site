@@ -461,7 +461,9 @@ html:has(dialog[open]) {
     gap: 0.875rem;
   }
 }
-@media (min-width: 1120px) {
+/* Desktop navigation breakpoint. Keep in sync with the max-width query below
+   and the matchMedia query in components/layout/Header.tsx. */
+@media (min-width: 1024px) {
   .site-header {
     top: 1.25rem;
     padding-inline: 1.5rem;
@@ -529,7 +531,7 @@ html:has(dialog[open]) {
 html:has(.cookie-banner) {
   scroll-padding-bottom: calc(1rem + 10.75rem + 0.5rem);
 }
-@media (max-width: 1119px) {
+@media (max-width: 1023px) {
   body {
     padding-bottom: calc(5.75rem + env(safe-area-inset-bottom));
   }

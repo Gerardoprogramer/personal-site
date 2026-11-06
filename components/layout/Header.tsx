@@ -45,7 +45,8 @@ export function Header() {
   );
 
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1120px)");
+    // Same breakpoint as the desktop navigation in app/globals.css.
+    const desktop = window.matchMedia("(min-width: 1024px)");
     const closeOnDesktop = () => {
       if (desktop.matches) menu.current?.close();
     };
