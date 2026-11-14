@@ -156,6 +156,7 @@
     "viewProjects": "View projects",
     "talk": "Get in touch",
     "availability": "Open to roles and projects",
+    "proof": "3 deployed projects · Libra: 707 automated tests in CI, 0 failures",
     "cvLabel": "View résumé (PDF, opens in a new tab)"
   },
   "projectsSection": {

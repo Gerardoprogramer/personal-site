@@ -29,7 +29,12 @@ export function Hero() {
             {t.hero.titleLine2}
           </span>
         </h1>
-        <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+        {/* Figures checked on 2026-11-14: live demos of Libra, Obsidian Library
+            and Selvática; Libra CI run 43528652160 (684 + 23 unique tests). */}
+        <p className="mt-6 font-mono-tech text-sm text-muted-foreground">
+          {t.hero.proof}
+        </p>
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           {t.hero.intro}
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
