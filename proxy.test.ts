@@ -95,8 +95,6 @@ describe("proxy: redirects of table 4.1", () => {
   const negotiated: [string, string, string][] = [
     ["/", "/es", "/en"],
     ["/?lang=fr", "/es", "/en"],
-    ["/privacidad", "/es/privacidad", "/en/privacy"],
-    ["/proyectos/libra", "/es/proyectos/libra", "/en/projects/libra"],
   ];
 
   it.each(negotiated)("%s: 307 by cookie, then Accept-Language, then es", (from, es, en) => {
@@ -114,6 +112,27 @@ describe("proxy: redirects of table 4.1", () => {
       expect(location(response)).toBe(to);
       expect(response.headers.get("cache-control")).toBe("private, no-store");
       expect(response.headers.get("vary")).toBe("Cookie, Accept-Language");
+      expect(response.cookies.get("language")).toBeUndefined();
+    }
+  });
+
+  it.each([
+    ["/privacidad", "/es/privacidad"],
+    ["/privacidad?lang=fr", "/es/privacidad"],
+    ["/proyectos/libra", "/es/proyectos/libra"],
+    ["/proyectos/selvatica?lang=", "/es/proyectos/selvatica"],
+  ])("%s: 307 to %s for every visitor, no Vary, no cookie", (from, to) => {
+    for (const headers of [
+      {},
+      { cookie: "language=en" },
+      { acceptLanguage: "en-US,en;q=0.9" },
+      { cookie: "language=en", acceptLanguage: "en" },
+    ]) {
+      const response = proxy(request(from, headers));
+      expect(response.status).toBe(307);
+      expect(location(response)).toBe(to);
+      expect(response.headers.get("cache-control")).toBe("private, no-store");
+      expect(response.headers.get("vary")).toBeNull();
       expect(response.cookies.get("language")).toBeUndefined();
     }
   });

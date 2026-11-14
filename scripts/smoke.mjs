@@ -35,18 +35,20 @@ const REDIRECTS = [
   ...SLUGS.flatMap((slug) => [
     [`/proyectos/${slug}?lang=es`, {}, `/es/proyectos/${slug}`, false],
     [`/proyectos/${slug}?lang=en`, {}, `/en/projects/${slug}`, false],
-    [`/proyectos/${slug}`, {}, `/es/proyectos/${slug}`, true],
-    [`/proyectos/${slug}`, { cookie: "language=en" }, `/en/projects/${slug}`, true],
+    // Without ?lang=: always Spanish, whatever the visitor sends.
+    [`/proyectos/${slug}`, {}, `/es/proyectos/${slug}`, false],
+    [`/proyectos/${slug}`, { cookie: "language=en" }, `/es/proyectos/${slug}`, false],
   ]),
-  // Without ?lang=: cookie, then Accept-Language, then /es.
+  ["/privacidad", {}, "/es/privacidad", false],
+  ["/privacidad", { "accept-language": "en" }, "/es/privacidad", false],
+  ["/privacidad?lang=fr", { cookie: "language=en" }, "/es/privacidad", false],
+  // / without ?lang=: cookie, then Accept-Language, then /es.
   ["/", {}, "/es", true],
   ["/", { cookie: "language=en" }, "/en", true],
   ["/", { cookie: "language=es", "accept-language": "en" }, "/es", true],
   ["/", { "accept-language": "en-US,en;q=0.9" }, "/en", true],
   ["/", { "accept-language": "fr-FR,fr;q=0.9" }, "/es", true],
   ["/?lang=fr", { "accept-language": "en" }, "/en", true],
-  ["/privacidad", {}, "/es/privacidad", true],
-  ["/privacidad", { "accept-language": "en" }, "/en/privacy", true],
   // Other parameters stay, lang goes.
   ["/?utm_source=cv&lang=en", {}, "/en?utm_source=cv", false],
   ["/proyectos/libra?lang=es&utm_medium=pdf", {}, "/es/proyectos/libra?utm_medium=pdf", false],
@@ -142,6 +144,16 @@ async function run() {
       check(
         /\bCookie\b/i.test(vary) && /\bAccept-Language\b/i.test(vary),
         `${label}: Vary ${vary}`,
+      );
+    } else {
+      // Same redirect for every visitor: no Vary on the cookie or language,
+      // and a cookie only when the URL carries a valid ?lang=.
+      const vary = response.headers.get("vary") ?? "";
+      check(!/\b(Cookie|Accept-Language)\b/i.test(vary), `${label}: unexpected Vary ${vary}`);
+      const hasLang = /[?&]lang=(es|en)(&|$)/.test(path);
+      check(
+        hasLang || !response.headers.get("set-cookie"),
+        `${label}: Set-Cookie without a valid ?lang=`,
       );
     }
     if (!location) continue;

@@ -24,9 +24,11 @@ export function proxy(request: NextRequest) {
         );
         // No CDN may reuse one visitor's redirect for another.
         response.headers.set("Cache-Control", "private, no-store");
+        // Only the redirect of / depends on the cookie and Accept-Language.
+        // The others are the same for every visitor, so they send no Vary.
         if (redirect.negotiated) {
             response.headers.set("Vary", "Cookie, Accept-Language");
-        } else if (redirect.lang !== cookieLang) {
+        } else if (isLanguage(langParam) && langParam !== cookieLang) {
             // An explicit ?lang= still stores the choice, as in stage 1, so
             // the next visit to / goes to the same language.
             response.cookies.set(LANGUAGE_COOKIE, redirect.lang, {

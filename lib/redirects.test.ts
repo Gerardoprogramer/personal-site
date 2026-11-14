@@ -75,27 +75,17 @@ describe("legacyRedirect: table 4.1 with ?lang=", () => {
   });
 });
 
-describe("legacyRedirect: without ?lang=", () => {
-  const paths: [string, string, string][] = [
-    ["/", "/es", "/en"],
-    ["/privacidad", "/es/privacidad", "/en/privacy"],
-    ...PROJECT_SLUGS.map((slug): [string, string, string] => [
-      `/proyectos/${slug}`,
-      `/es/proyectos/${slug}`,
-      `/en/projects/${slug}`,
-    ]),
-  ];
-
-  it.each(paths)("%s: cookie, then Accept-Language, then es", (from, es, en) => {
-    expect(redirectOf(from, "en", "es")).toMatchObject({ location: en, negotiated: true });
-    expect(redirectOf(from, "es", "en")).toMatchObject({ location: es, negotiated: true });
-    expect(redirectOf(from, undefined, "en-US,en;q=0.9")).toMatchObject({ location: en });
-    expect(redirectOf(from, "fr", "en")).toMatchObject({ location: en });
-    expect(redirectOf(from, undefined, "fr")).toMatchObject({ location: es });
-    expect(redirectOf(from)).toMatchObject({ location: es, negotiated: true });
+describe("legacyRedirect: / without ?lang= negotiates", () => {
+  it("uses the cookie, then Accept-Language, then es", () => {
+    expect(redirectOf("/", "en", "es")).toMatchObject({ location: "/en", negotiated: true });
+    expect(redirectOf("/", "es", "en")).toMatchObject({ location: "/es", negotiated: true });
+    expect(redirectOf("/", undefined, "en-US,en;q=0.9")).toMatchObject({ location: "/en" });
+    expect(redirectOf("/", "fr", "en")).toMatchObject({ location: "/en" });
+    expect(redirectOf("/", undefined, "fr")).toMatchObject({ location: "/es" });
+    expect(redirectOf("/")).toMatchObject({ location: "/es", negotiated: true });
   });
 
-  it.each(["/?lang=fr", "/?lang=", "/?lang=EN", "/privacidad?lang=de"])(
+  it.each(["/?lang=fr", "/?lang=", "/?lang=EN"])(
     "%s: an invalid ?lang= counts as missing",
     (from) => {
       const result = redirectOf(from, "en");
@@ -104,6 +94,34 @@ describe("legacyRedirect: without ?lang=", () => {
       expect(result?.location).not.toContain("lang=");
     },
   );
+});
+
+describe("legacyRedirect: other pages without ?lang= always go to Spanish", () => {
+  const paths: [string, string][] = [
+    ["/privacidad", "/es/privacidad"],
+    ["/privacidad?lang=de", "/es/privacidad"],
+    ["/privacidad?lang=", "/es/privacidad"],
+    ...PROJECT_SLUGS.flatMap((slug): [string, string][] => [
+      [`/proyectos/${slug}`, `/es/proyectos/${slug}`],
+      [`/proyectos/${slug}?lang=EN`, `/es/proyectos/${slug}`],
+    ]),
+  ];
+
+  it.each(paths)("%s -> %s whatever the cookie and Accept-Language", (from, to) => {
+    for (const [cookie, acceptLanguage] of [
+      [undefined, undefined],
+      ["en", undefined],
+      [undefined, "en-US,en;q=0.9"],
+      ["en", "en"],
+      ["fr", "fr"],
+    ]) {
+      expect(redirectOf(from, cookie, acceptLanguage)).toEqual({
+        location: to,
+        lang: "es",
+        negotiated: false,
+      });
+    }
+  });
 });
 
 describe("legacyRedirect: query", () => {
@@ -115,8 +133,9 @@ describe("legacyRedirect: query", () => {
       "/es/proyectos/libra?ref=cv",
     );
     expect(redirectOf("/privacidad?utm_campaign=x", "en")?.location).toBe(
-      "/en/privacy?utm_campaign=x",
+      "/es/privacidad?utm_campaign=x",
     );
+    expect(redirectOf("/?utm_campaign=x", "en")?.location).toBe("/en?utm_campaign=x");
   });
 
   it("drops a repeated lang", () => {

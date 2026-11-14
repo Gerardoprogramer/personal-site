@@ -73,6 +73,10 @@ export type LegacyRedirect = {
 // Where an old URL redirects to, or null if it does not redirect. Drops every
 // `lang` parameter and keeps the rest of the query (utm_*, etc.). An invalid
 // ?lang= counts as missing.
+//
+// Only / negotiates the language. A case study or the privacy page without a
+// valid ?lang= always goes to Spanish, the x-default of the old URLs, so its
+// redirect is the same for every visitor and can become permanent in stage 3.
 export function legacyRedirect(input: {
   pathname: string;
   search: string;
@@ -86,10 +90,12 @@ export function legacyRedirect(input: {
   const requested = params.get("lang");
   params.delete("lang");
 
-  const negotiated = !isLanguage(requested);
+  const negotiated = !isLanguage(requested) && route.page === "home";
   const lang = isLanguage(requested)
     ? requested
-    : negotiateLanguage(input.cookie, input.acceptLanguage);
+    : negotiated
+      ? negotiateLanguage(input.cookie, input.acceptLanguage)
+      : DEFAULT_LANGUAGE;
 
   const query = params.toString();
   return {
