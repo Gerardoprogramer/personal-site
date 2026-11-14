@@ -9,9 +9,9 @@ const { SITE_URL } = await import("@/content/profile");
 const { languageAlternates, localizedUrl } = await import("./seo");
 const { default: sitemap } = await import("@/app/sitemap");
 const { default: robots } = await import("@/app/robots");
-const privacy = await import("@/app/privacidad/page");
-const project = await import("@/app/proyectos/[slug]/page");
-const notFound = await import("@/app/not-found");
+const privacy = await import("@/app/(legacy)/privacidad/page");
+const project = await import("@/app/(legacy)/proyectos/[slug]/page");
+const notFound = await import("@/app/(legacy)/not-found");
 
 const ORIGIN = "https://www.gerardomartinez.dev";
 
