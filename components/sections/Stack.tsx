@@ -5,7 +5,7 @@ import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 
 // Every technology from the previous Frontend / Backend / Data groups is kept:
-// the first group lists what runs in shipped projects, the second the rest.
+// the first group is the core stack, the second the rest.
 const PRODUCTION = [
   "TypeScript",
   "Next.js",
@@ -13,13 +13,13 @@ const PRODUCTION = [
   "PostgreSQL",
   "NestJS",
   "Spring Boot",
+  "Python",
+  "FastAPI",
 ];
 
 const WORKED_WITH = [
   "Java",
   "Node.js",
-  "Python",
-  "FastAPI",
   "Django",
   "Vue.js",
   "Tailwind CSS",
