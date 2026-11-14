@@ -30,6 +30,8 @@ export function proxy(request: NextRequest) {
     return response;
 }
 
+// /es and /en take the language from the path and are prerendered: the proxy
+// skips them so they never get a Set-Cookie or a per-request header.
 export const config = {
-    matcher: "/((?!_next|api|.*\\..*).*)",
+    matcher: "/((?!_next|api|es(?:/|$)|en(?:/|$)|.*\\..*).*)",
 };
