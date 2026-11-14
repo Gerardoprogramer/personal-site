@@ -6,6 +6,7 @@ import { projectsContent } from "@/lib/i18n/projects.content";
 import { ProjectCaseStudy } from "@/components/projects/ProjectCaseStudy";
 import { languageAlternates, localizedUrl, ogLocale } from "@/lib/seo";
 import { toLanguage } from "@/lib/i18n/lang";
+import { projectJsonLd, serializeJsonLd } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -54,5 +55,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProjectPage({ params }: Props) {
   const project = getProject((await params).slug);
   if (!project) notFound();
-  return <ProjectCaseStudy project={project} />;
+  const language = toLanguage((await headers()).get("x-language"));
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(projectJsonLd(project, language)),
+        }}
+      />
+      <ProjectCaseStudy project={project} />
+    </>
+  );
 }

@@ -1,6 +1,12 @@
 import { SITE_URL, profileStatic } from "@/content/profile";
 import { socials } from "@/content/portfolio";
 import { CORE_STACK } from "@/content/stack";
+import {
+  projectDemo,
+  type Project,
+  type ProjectSlug,
+} from "@/content/projects";
+import { projectsContent } from "@/lib/i18n/projects.content";
 import type { Language } from "@/lib/i18n/lang";
 import { jobTitle } from "@/lib/seo";
 
@@ -33,4 +39,51 @@ export function personJsonLd(lang: Language) {
 // Escapes "<" so the JSON cannot close the surrounding <script> tag.
 export function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
+// How each case study is described in schema.org. Selvática is a website, not
+// an application, so it is a CreativeWork. inLanguage is set only where the
+// page states the product's languages (Libra: "in Spanish and English").
+const projectSchema: Record<
+  ProjectSlug,
+  | { type: "SoftwareApplication"; category: string; inLanguage?: Language[] }
+  | { type: "CreativeWork" }
+> = {
+  libra: {
+    type: "SoftwareApplication",
+    category: "ReferenceApplication",
+    inLanguage: ["es", "en"],
+  },
+  "la-central": { type: "SoftwareApplication", category: "BusinessApplication" },
+  "obsidian-library": {
+    type: "SoftwareApplication",
+    category: "BusinessApplication",
+  },
+  selvatica: { type: "CreativeWork" },
+};
+
+// Name and description come from the case study header (project name and
+// introduction). The demo and repositories are added only when the page links
+// to them.
+export function projectJsonLd(project: Project, lang: Language) {
+  const schema = projectSchema[project.slug];
+  const demo = projectDemo(project, lang);
+  return {
+    "@context": "https://schema.org",
+    "@type": schema.type,
+    name: project.name,
+    description: projectsContent[lang][project.slug].introduction,
+    author: { "@type": "Person", "@id": PERSON_ID, name: profileStatic.name },
+    ...(schema.type === "SoftwareApplication" && {
+      applicationCategory: schema.category,
+      ...(schema.inLanguage && { inLanguage: schema.inLanguage }),
+    }),
+    ...(demo && { url: demo }),
+    ...(project.repositories.length > 0 && {
+      isBasedOn: project.repositories.map((repo) => ({
+        "@type": "SoftwareSourceCode",
+        codeRepository: repo.href,
+      })),
+    }),
+  };
 }

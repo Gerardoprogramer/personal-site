@@ -1,7 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { socials } from "@/content/portfolio";
 import { CORE_STACK } from "@/content/stack";
-import { personJsonLd, serializeJsonLd } from "./structured-data";
+import { projectDemo, projects } from "@/content/projects";
+import { projectsContent } from "@/lib/i18n/projects.content";
+import {
+  PERSON_ID,
+  personJsonLd,
+  projectJsonLd,
+  serializeJsonLd,
+} from "./structured-data";
 
 // Fails on "", [], {}, null or undefined anywhere in the tree.
 function expectNoEmptyValues(value: unknown, path = "$"): void {
@@ -45,5 +52,39 @@ describe("serializeJsonLd", () => {
     const json = serializeJsonLd({ name: "</script>" });
     expect(json).not.toContain("<");
     expect(JSON.parse(json).name).toBe("</script>");
+  });
+});
+
+describe("project JSON-LD", () => {
+  const cases = projects.flatMap((project) =>
+    (["es", "en"] as const).map((lang) => [project.slug, lang, project] as const),
+  );
+
+  it.each(cases)("%s (%s) matches the visible case study", (_slug, lang, project) => {
+    const data = JSON.parse(serializeJsonLd(projectJsonLd(project, lang)));
+    expectNoEmptyValues(data);
+    expect(data.name).toBe(project.name);
+    expect(data.description).toBe(projectsContent[lang][project.slug].introduction);
+    expect(data.author["@id"]).toBe(PERSON_ID);
+    expect(data.author["@id"]).toBe(personJsonLd(lang)["@id"]);
+    expect(data.url).toBe(projectDemo(project, lang));
+    expect(data.isBasedOn?.map((r: { codeRepository: string }) => r.codeRepository)).toEqual(
+      project.repositories.length ? project.repositories.map((r) => r.href) : undefined,
+    );
+  });
+
+  it("describes Selvática as a website, not an application", () => {
+    const selvatica = projects.find((p) => p.slug === "selvatica")!;
+    const data = projectJsonLd(selvatica, "es");
+    expect(data["@type"]).toBe("CreativeWork");
+    expect(data).not.toHaveProperty("applicationCategory");
+  });
+
+  it("states languages only for Libra, whose page names them", () => {
+    for (const project of projects) {
+      const data = projectJsonLd(project, "en");
+      if (project.slug === "libra") expect(data).toHaveProperty("inLanguage", ["es", "en"]);
+      else expect(data).not.toHaveProperty("inLanguage");
+    }
   });
 });
