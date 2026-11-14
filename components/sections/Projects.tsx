@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
-import { projects } from "@/content/projects";
+import { explorationProjects, featuredProjects } from "@/content/projects";
 import { caseLabels, projectsContent } from "@/lib/i18n/projects.content";
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
@@ -29,7 +29,7 @@ export function Projects() {
         </p>
       </div>
       <div className="grid gap-8 md:grid-cols-2">
-        {projects.map((project, index) => {
+        {featuredProjects.map((project, index) => {
           const copy = projectsContent[language][project.slug];
           return (
             <Link
@@ -125,6 +125,64 @@ export function Projects() {
           );
         })}
       </div>
+      {explorationProjects.length > 0 && (
+        <div className="mt-8 border-t border-border pt-8">
+          <h3 className="eyebrow mb-6 text-muted-foreground">
+            {t.projectsSection.explorations}
+          </h3>
+          <ul className="grid gap-6">
+            {explorationProjects.map((project) => {
+              const copy = projectsContent[language][project.slug];
+              return (
+                <li key={project.slug}>
+                  <Link
+                    href={`/proyectos/${project.slug}?lang=${language}`}
+                    className="group grid items-center gap-5 sm:grid-cols-[minmax(0,14rem)_1fr]"
+                  >
+                    {project.cover && (
+                      <div
+                        className="overflow-hidden rounded-lg border border-white/10"
+                        style={{ backgroundColor: project.surface }}
+                      >
+                        <Image
+                          src={project.cover.src}
+                          alt={copy.coverAlt ?? project.name}
+                          width={project.cover.width}
+                          height={project.cover.height}
+                          loading="lazy"
+                          sizes="(max-width: 640px) 90vw, 224px"
+                          className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
+                        />
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <p className="eyebrow mb-2 text-muted-foreground">
+                        {copy.category}
+                      </p>
+                      <p className="font-display text-2xl tracking-tight">
+                        {project.name}
+                      </p>
+                      <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                        {copy.summary}
+                      </p>
+                      <span
+                        className="mt-3 inline-flex min-h-8 items-center gap-2 text-xs"
+                        style={{ color: project.color }}
+                      >
+                        {labels.view}
+                        <FiArrowUpRight
+                          aria-hidden="true"
+                          className="size-4 shrink-0"
+                        />
+                      </span>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }

@@ -160,8 +160,9 @@
     "cvLabel": "Ver currículum (PDF, se abre en otra pestaña)"
   },
   "projectsSection": {
-    "title": "Tres proyectos. Tres enfoques.",
-    "description": "Producto, operación y experiencia visual. Una selección para ver cómo diseño y construyo."
+    "title": "Tres productos. Tres problemas distintos.",
+    "description": "Libra se centra en el contenido y la lectura; La Central, en la operación de un negocio; Obsidian, en las transacciones y los pagos.",
+    "explorations": "Exploraciones"
   },
   "experienceSection": {
     "eyebrow": "Experiencia",

@@ -160,8 +160,9 @@
     "cvLabel": "View résumé (PDF, opens in a new tab)"
   },
   "projectsSection": {
-    "title": "Three projects. Three perspectives.",
-    "description": "Product, operations and visual experience. A selection of how I design and build."
+    "title": "Three products. Three different problems.",
+    "description": "Libra is about content and reading; La Central, about running a business; Obsidian, about transactions and payments.",
+    "explorations": "Explorations"
   },
   "experienceSection": {
     "eyebrow": "Experience",
