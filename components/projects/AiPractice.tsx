@@ -22,7 +22,7 @@ const copy = {
         "Los scripts editoriales que escriben son dry-run por defecto, piden --apply y, en bases remotas, --confirm-database con el destino enmascarado, igual que las migraciones. Tienen pruebas.",
       ],
       [
-        "Verificación y revisión",
+        "Verificación",
         "Cada PR pasa por lint, tipos, formato y pruebas, incluida la integración con Postgres desechable, antes de fusionarse.",
       ],
     ],
@@ -44,7 +44,7 @@ const copy = {
         "Editorial scripts that write are dry runs by default, require --apply and, on remote databases, --confirm-database with the target masked, just like migrations. They have tests.",
       ],
       [
-        "Verification and review",
+        "Verification",
         "Every PR must pass lint, type checks, formatting and tests, including integration against a disposable Postgres, before it is merged.",
       ],
     ],
