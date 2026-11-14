@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { crossLanguageRedirects } from "./lib/redirects";
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -50,6 +51,11 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
+  },
+  // "/en/proyectos/libra" and the like: 307 to the segment of that language.
+  // The old ?lang= URLs redirect in proxy.ts.
+  async redirects() {
+    return crossLanguageRedirects();
   },
 };
 
