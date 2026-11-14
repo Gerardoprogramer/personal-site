@@ -7,6 +7,8 @@ import { useTranslation } from "@/lib/i18n/context";
 export function ProjectFeature({ slug }: { slug: ProjectSlug }) {
   const { language } = useTranslation();
   const es = language === "es";
+  // Libra has no diagram yet; its case study adds the AI practice section.
+  if (slug === "libra") return null;
   if (slug === "obsidian-library") {
     const stages = es
       ? [

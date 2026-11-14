@@ -8,6 +8,7 @@ import { caseLabels, projectsContent } from "@/lib/i18n/projects.content";
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 import { SectionHeader } from "@/components/shared/SectionHeader";
+import { PendingImage } from "@/components/projects/PendingImage";
 
 export function Projects() {
   const { language, t } = useTranslation();
@@ -37,7 +38,7 @@ export function Projects() {
               className={`group block min-w-0 ${index === 0 ? "md:col-span-2" : ""}`}
             >
               <div
-                className={`relative overflow-hidden rounded-xl border border-white/10 p-4 pb-0 sm:p-7 sm:pb-0 ${index === 0 ? "md:px-16 md:pt-10" : ""}`}
+                className={`relative overflow-hidden rounded-xl border border-white/10 p-4 sm:p-7 ${project.cover ? "pb-0 sm:pb-0" : ""} ${index === 0 ? "md:px-16 md:pt-10" : ""}`}
                 style={{ backgroundColor: project.surface }}
               >
                 <div
@@ -46,36 +47,44 @@ export function Projects() {
                 >
                   <span>
                     {String(index + 1).padStart(2, "0")} / {project.name}
+                    {copy.cardLabel && ` · ${copy.cardLabel}`}
                   </span>
                   <FiArrowUpRight
                     aria-hidden="true"
                     className="size-5 shrink-0 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
                   />
                 </div>
-                <div
-                  className={`overflow-hidden rounded-t-lg border border-white/10 bg-background shadow-2xl transition-transform duration-500 group-hover:-translate-y-1 ${index === 0 ? "" : "aspect-1.5/1"}`}
-                  style={
-                    index === 0
-                      ? {
-                          aspectRatio: `${project.imageWidth} / ${project.imageHeight}`,
-                        }
-                      : undefined
-                  }
-                >
-                  <Image
-                    src={project.image}
-                    alt={copy.coverAlt}
-                    width={project.imageWidth}
-                    height={project.imageHeight}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    sizes={
+                {project.cover ? (
+                  <div
+                    className={`overflow-hidden rounded-t-lg border border-white/10 bg-background shadow-2xl transition-transform duration-500 group-hover:-translate-y-1 ${index === 0 ? "" : "aspect-1.5/1"}`}
+                    style={
                       index === 0
-                        ? "(max-width: 768px) 90vw, 1000px"
-                        : "(max-width: 768px) 90vw, 540px"
+                        ? {
+                            aspectRatio: `${project.cover.width} / ${project.cover.height}`,
+                          }
+                        : undefined
                     }
-                    className="h-auto w-full"
+                  >
+                    <Image
+                      src={project.cover.src}
+                      alt={copy.coverAlt ?? project.name}
+                      width={project.cover.width}
+                      height={project.cover.height}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      sizes={
+                        index === 0
+                          ? "(max-width: 768px) 90vw, 1000px"
+                          : "(max-width: 768px) 90vw, 540px"
+                      }
+                      className="h-auto w-full"
+                    />
+                  </div>
+                ) : (
+                  <PendingImage
+                    label={`/projects/${project.slug}-cover.png`}
+                    className="mb-4 sm:mb-7"
                   />
-                </div>
+                )}
               </div>
               <div
                 className={`py-6 ${index === 0 ? "md:grid md:grid-cols-2 md:gap-10" : ""}`}
@@ -94,7 +103,10 @@ export function Projects() {
                   </p>
                   <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
                     <span className="text-muted-foreground">
-                      {project.stack.slice(0, 4).join(" · ")}
+                      {(index === 0
+                        ? project.stack
+                        : project.stack.slice(0, 4)
+                      ).join(" · ")}
                     </span>
                     <span
                       className="inline-flex min-h-8 items-center gap-2"
