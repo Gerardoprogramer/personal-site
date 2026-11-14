@@ -30,6 +30,7 @@ export function SiteShell({
       data-scroll-behavior="smooth"
       className={`${fontVariables} h-full antialiased`}
     >
+      {/* eslint-disable-next-line @next/next/no-head-element -- this is the root layouts' <head>, moved out of app/ so both layouts share it */}
       <head>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
