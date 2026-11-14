@@ -20,7 +20,7 @@
       "role": "Desarrollador Full Stack (contrato de servicios profesionales)",
       "format": "Remoto · Costa Rica",
       "built": [
-        "Desarrollador Full Stack (contrato de servicios profesionales) en una plataforma en producción basada en microservicios. Migré el servicio de cuentas de PHP a FastAPI manteniendo el contrato de respuesta JSON, de modo que el frontend siguió funcionando sin cambios, y separé la migración inicial de la refactorización posterior.",
+        "Plataforma en producción basada en microservicios. Migré el servicio de cuentas de PHP a FastAPI manteniendo el contrato de respuesta JSON, de modo que el frontend siguió funcionando sin cambios, y separé la migración inicial de la refactorización posterior.",
         "Resolví bugs de distinto origen (código, navegador, extensiones) en varios microservicios: primero replicando el error, después buscando la causa raíz, y recién ahí evaluando varias soluciones antes de aplicar la más adecuada.",
         "Construí un componente de tabs configurable con tres variantes de diseño integradas en un mismo componente, con animación en hover con GSAP, siguiendo las especificaciones de Figma."
       ],

@@ -20,7 +20,7 @@
       "role": "Full Stack Developer (professional services contract)",
       "format": "Remote · Costa Rica",
       "built": [
-        "Full Stack Developer (professional services contract) on a production platform built on microservices. I migrated the accounts service from PHP to FastAPI while keeping the JSON response contract, so the frontend kept working unchanged, and kept the initial migration separate from the later refactor.",
+        "Production platform built on microservices. I migrated the accounts service from PHP to FastAPI while keeping the JSON response contract, so the frontend kept working unchanged, and kept the initial migration separate from the later refactor.",
         "Fixed bugs with different root causes (code, browser, extensions) across several microservices: reproducing the issue first, tracing it to its root cause, and only then weighing a few solutions before applying the right one.",
         "Built a configurable tabs component with three design variants integrated into a single component, with GSAP hover animations, following the Figma specs."
       ],
