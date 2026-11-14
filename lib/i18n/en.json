@@ -20,7 +20,7 @@
       "role": "Full Stack Developer (professional services contract)",
       "format": "Remote · Costa Rica",
       "built": [
-        "Migrated the account service from PHP to FastAPI while preserving the JSON response contract and frontend compatibility. Kept the initial migration separate from subsequent refactoring.",
+        "Full Stack Developer (professional services contract) on a production platform built on microservices. I migrated the accounts service from PHP to FastAPI while keeping the JSON response contract, so the frontend kept working unchanged, and kept the initial migration separate from the later refactor.",
         "Fixed bugs with different root causes (code, browser, extensions) across several microservices: reproducing the issue first, tracing it to its root cause, and only then weighing a few solutions before applying the right one.",
         "Built a configurable tabs component with three design variants integrated into a single component, with GSAP hover animations, following the Figma specs."
       ],
@@ -30,7 +30,7 @@
       "role": "Backend Internship (Django)",
       "format": "Internship · Costa Rica",
       "built": [
-        "Built new backend features in Django for an English-teaching platform.",
+        "Backend internship (Django) at an English-learning platform. I built new backend features in Django.",
         "Worked with the team on the database and backend logic for a student rewards and gamification system.",
         "Worked with the frontend team to correctly integrate the new endpoints into the student experience."
       ],
