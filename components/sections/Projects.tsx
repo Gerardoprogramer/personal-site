@@ -11,7 +11,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 import { PendingImage } from "@/components/projects/PendingImage";
 
 export function Projects() {
-  const { language, t } = useTranslation();
+  const { language, t, href } = useTranslation();
   const labels = caseLabels[language];
   return (
     <section id="proyectos" className="section-shell relative isolate pb-24">
@@ -34,7 +34,7 @@ export function Projects() {
           return (
             <Link
               key={project.slug}
-              href={`/proyectos/${project.slug}?lang=${language}`}
+              href={href({ page: "project", slug: project.slug })}
               className={`group block min-w-0 ${index === 0 ? "md:col-span-2" : ""}`}
             >
               <div
@@ -136,7 +136,7 @@ export function Projects() {
               return (
                 <li key={project.slug}>
                   <Link
-                    href={`/proyectos/${project.slug}?lang=${language}`}
+                    href={href({ page: "project", slug: project.slug })}
                     className="group grid items-center gap-5 sm:grid-cols-[minmax(0,14rem)_1fr]"
                   >
                     {project.cover && (

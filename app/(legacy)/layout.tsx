@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import { headers } from "next/headers";
-import { LanguageProvider } from "@/lib/i18n/context";
+import { LegacyLanguageProvider } from "@/lib/i18n/context";
 import { SiteShell } from "@/components/layout/SiteShell";
 import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
@@ -98,7 +98,7 @@ export default async function RootLayout({
     <SiteShell
       lang={initialLang}
       provider={({ children }) => (
-        <LanguageProvider initialLang={initialLang}>{children}</LanguageProvider>
+        <LegacyLanguageProvider initialLang={initialLang}>{children}</LegacyLanguageProvider>
       )}
     >
       {children}

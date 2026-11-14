@@ -47,7 +47,7 @@ function applyConsent(value: ConsentValue) {
 }
 
 export function CookieConsent() {
-  const { t, language } = useTranslation();
+  const { t, href } = useTranslation();
   const consent = useSyncExternalStore(subscribe, getConsent, serverConsent);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export function CookieConsent() {
       <p className="text-sm text-muted-foreground leading-relaxed mb-4">
         {t.cookies.message}{" "}
         <a
-          href={`/privacidad?lang=${language}`}
+          href={href({ page: "privacy" })}
           className="text-accent hover:underline"
         >
           {t.cookies.linkText}

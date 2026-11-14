@@ -11,7 +11,7 @@ import { PendingImage } from "./PendingImage";
 import { AiPractice } from "./AiPractice";
 
 export function ProjectCaseStudy({ project }: { project: Project }) {
-  const { language } = useTranslation();
+  const { language, href } = useTranslation();
   const copy = projectsContent[language][project.slug];
   const labels = caseLabels[language];
   const demo = projectDemo(project, language);
@@ -22,7 +22,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
   return (
     <article className="section-shell pb-20 pt-28 sm:pt-36">
       <Link
-        href={`/?lang=${language}#proyectos`}
+        href={`${href({ page: "home" })}#proyectos`}
         className="button-text text-muted-foreground"
       >
         <FiArrowLeft aria-hidden="true" className="size-4 shrink-0" />
@@ -247,7 +247,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
       )}
       <div className="mt-10 grid gap-8 border-t border-border pt-10 sm:grid-cols-2">
         <Link
-          href={`/proyectos/${next.slug}?lang=${language}`}
+          href={href({ page: "project", slug: next.slug })}
           className="group"
         >
           <p className="eyebrow mb-3 text-muted-foreground">{labels.next}</p>
@@ -258,7 +258,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
         </Link>
         <div className="sm:text-right">
           <p className="mb-3 text-sm text-muted-foreground">{labels.contact}</p>
-          <Link href={`/?lang=${language}#contacto`} className="button-outline">
+          <Link href={`${href({ page: "home" })}#contacto`} className="button-outline">
             {labels.contactAction}
             <FiArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
           </Link>

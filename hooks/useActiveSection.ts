@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/lib/i18n/context";
 
 const SECTION_IDS = [
   "top",
@@ -15,10 +16,11 @@ const SECTION_IDS = [
 
 export function useActiveSection() {
   const pathname = usePathname();
+  const { homePath } = useTranslation();
   const [active, setActive] = useState("top");
 
   useEffect(() => {
-    if (pathname !== "/") return;
+    if (pathname !== homePath) return;
     const sections = SECTION_IDS.map((id) =>
       document.getElementById(id),
     ).filter((section): section is HTMLElement => Boolean(section));
@@ -38,7 +40,7 @@ export function useActiveSection() {
       cancelAnimationFrame(frame);
       observer.disconnect();
     };
-  }, [pathname]);
+  }, [pathname, homePath]);
 
   if (pathname.startsWith("/proyectos/")) return "proyectos";
   return pathname === "/" ? active : null;
