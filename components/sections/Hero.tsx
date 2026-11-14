@@ -57,8 +57,8 @@ export function Hero() {
             {t.common.viewResume}
           </a>
         </div>
-        <p className="mt-5 flex items-center gap-2 font-mono-tech text-xs text-muted-foreground">
-          <span className="size-1.5 rounded-full bg-[#91c6a4]" />
+        <p className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-[#91c6a4]/45 bg-[#91c6a4]/10 px-4 py-2 text-sm font-medium text-foreground">
+          <span aria-hidden="true" className="size-2 rounded-full bg-[#91c6a4]" />
           {t.hero.availability}
         </p>
       </div>
