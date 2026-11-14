@@ -82,10 +82,11 @@ export async function ProjectRoute({
   lang,
 }: ProjectRouteProps & { lang: Language }) {
   const project = await resolve(params, lang);
+  const pageUrl = localizedUrl({ page: "project", slug: project.slug }, lang);
   return (
     <>
       <JsonLd data={personBaseJsonLd()} />
-      <JsonLd data={projectJsonLd(project, lang)} />
+      <JsonLd data={projectJsonLd(project, lang, pageUrl)} />
       <ProjectCaseStudy project={project} />
     </>
   );

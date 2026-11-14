@@ -72,8 +72,14 @@ const projectSchema: Record<
 
 // Name and description come from the case study header (project name and
 // introduction). The demo and repositories are added only when the page links
-// to them.
-export function projectJsonLd(project: Project, lang: Language) {
+// to them. With `pageUrl` (the /es or /en routes), mainEntityOfPage names the
+// case study page itself: its canonical URL and the language it is written in.
+// The product's own inLanguage (Libra) stays as it is.
+export function projectJsonLd(
+  project: Project,
+  lang: Language,
+  pageUrl?: string,
+) {
   const schema = projectSchema[project.slug];
   const demo = projectDemo(project, lang);
   return {
@@ -87,6 +93,9 @@ export function projectJsonLd(project: Project, lang: Language) {
       ...(schema.inLanguage && { inLanguage: schema.inLanguage }),
     }),
     ...(demo && { url: demo }),
+    ...(pageUrl && {
+      mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl, inLanguage: lang },
+    }),
     ...(project.repositories.length > 0 && {
       isBasedOn: project.repositories.map((repo) => ({
         "@type": "SoftwareSourceCode",
