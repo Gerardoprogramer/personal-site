@@ -23,7 +23,7 @@ const copy = {
       ],
       [
         "Verificación y revisión",
-        "Cada PR pasa por lint, tipos, formato y pruebas, incluida la integración con Postgres desechable, y la reviso antes de fusionar.",
+        "Cada PR pasa por lint, tipos, formato y pruebas, incluida la integración con Postgres desechable, antes de fusionarse.",
       ],
     ],
     example:
@@ -45,7 +45,7 @@ const copy = {
       ],
       [
         "Verification and review",
-        "Every PR goes through lint, types, formatting and tests, including integration against a disposable Postgres, and I review it before merging.",
+        "Every PR must pass lint, type checks, formatting and tests, including integration against a disposable Postgres, before it is merged.",
       ],
     ],
     example:
