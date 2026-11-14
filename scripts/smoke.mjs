@@ -1,7 +1,8 @@
 // Smoke test against the production build: starts `next start`, requests the
 // legacy and the /es and /en URLs, and fails on any unexpected status, missing
-// noindex on a 404, redirect, wrong canonical, Set-Cookie on a prerendered
-// page, or a link from one route group into the other.
+// noindex on a 404, redirect on a new page, wrong canonical, Set-Cookie on a
+// prerendered page, link from the new routes into the legacy ones, or legacy
+// redirect that is not a single 307 to the expected page.
 //
 // Usage: pnpm build && node scripts/smoke.mjs
 import { spawn } from "node:child_process";
@@ -21,38 +22,75 @@ const NEW_PAGES = {
   "/en/privacy": `${ORIGIN}/en/privacy`,
 };
 
-// Legacy URLs: same 200 response as before stage 1, canonical on the new URL.
-const LEGACY_PAGES = {
-  "/?lang=es": `${ORIGIN}/es`,
-  "/?lang=en": `${ORIGIN}/en`,
-  "/proyectos/libra?lang=es": `${ORIGIN}/es/proyectos/libra`,
-  "/proyectos/libra?lang=en": `${ORIGIN}/en/projects/libra`,
-  "/privacidad?lang=es": `${ORIGIN}/es/privacidad`,
-  "/privacidad?lang=en": `${ORIGIN}/en/privacy`,
-};
+const SLUGS = ["libra", "la-central", "obsidian-library", "selvatica"];
+
+// Stage 2 redirects (table 4.1): every row must answer 307 with this Location,
+// and the destination must answer 200 without redirecting again.
+// [path, request headers, expected Location, depends on the visitor]
+const REDIRECTS = [
+  ["/?lang=es", {}, "/es", false],
+  ["/?lang=en", {}, "/en", false],
+  ["/privacidad?lang=es", {}, "/es/privacidad", false],
+  ["/privacidad?lang=en", {}, "/en/privacy", false],
+  ...SLUGS.flatMap((slug) => [
+    [`/proyectos/${slug}?lang=es`, {}, `/es/proyectos/${slug}`, false],
+    [`/proyectos/${slug}?lang=en`, {}, `/en/projects/${slug}`, false],
+    [`/proyectos/${slug}`, {}, `/es/proyectos/${slug}`, true],
+    [`/proyectos/${slug}`, { cookie: "language=en" }, `/en/projects/${slug}`, true],
+  ]),
+  // Without ?lang=: cookie, then Accept-Language, then /es.
+  ["/", {}, "/es", true],
+  ["/", { cookie: "language=en" }, "/en", true],
+  ["/", { cookie: "language=es", "accept-language": "en" }, "/es", true],
+  ["/", { "accept-language": "en-US,en;q=0.9" }, "/en", true],
+  ["/", { "accept-language": "fr-FR,fr;q=0.9" }, "/es", true],
+  ["/?lang=fr", { "accept-language": "en" }, "/en", true],
+  ["/privacidad", {}, "/es/privacidad", true],
+  ["/privacidad", { "accept-language": "en" }, "/en/privacy", true],
+  // Other parameters stay, lang goes.
+  ["/?utm_source=cv&lang=en", {}, "/en?utm_source=cv", false],
+  ["/proyectos/libra?lang=es&utm_medium=pdf", {}, "/es/proyectos/libra?utm_medium=pdf", false],
+  // Language crossings (next.config.ts).
+  ["/en/privacidad", {}, "/en/privacy", false],
+  ["/es/privacy", {}, "/es/privacidad", false],
+  ...SLUGS.flatMap((slug) => [
+    [`/en/proyectos/${slug}`, {}, `/en/projects/${slug}`, false],
+    [`/es/projects/${slug}`, {}, `/es/proyectos/${slug}`, false],
+  ]),
+];
 
 // global-not-found is experimental in Next.js 16.4.5: these must stay 404 and
-// noindex if a Next.js update changes it.
+// noindex if a Next.js update changes it. Unknown slugs never redirect.
 const NOT_FOUND = [
   "/foo",
   "/foo/bar",
   "/fr",
   "/es/nope",
   "/en/projects/nope",
-  "/en/proyectos/libra",
-  "/es/privacy",
+  "/en/proyectos/nope",
+  "/es/projects/nope",
   "/proyectos/nope",
+  "/proyectos/nope?lang=en",
 ];
 
 const failures = [];
 let linksChecked = 0;
+let redirectsChecked = 0;
 const check = (ok, message) => {
   if (!ok) failures.push(message);
 };
 
-async function get(path) {
-  const response = await fetch(`${BASE}${path}`, { redirect: "manual" });
+async function get(path, headers = {}) {
+  const response = await fetch(`${BASE}${path}`, { redirect: "manual", headers });
   return { response, html: await response.text() };
+}
+
+// Location as path and query, whether the server sent it absolute or relative.
+function locationOf(response) {
+  const value = response.headers.get("location");
+  if (!value) return null;
+  const url = new URL(value, BASE);
+  return url.origin === BASE ? `${url.pathname}${url.search}` : value;
 }
 
 const canonicalOf = (html) =>
@@ -87,18 +125,33 @@ async function run() {
     }
   }
 
-  for (const [path, canonical] of Object.entries(LEGACY_PAGES)) {
-    const { response, html } = await get(path);
-    check(response.status === 200, `${path}: status ${response.status}`);
-    check(canonicalOf(html) === canonical, `${path}: canonical ${canonicalOf(html)}`);
-    for (const href of pageLinks(html)) {
-      linksChecked++;
-      check(!isNewPath(href), `${path}: links into the /es or /en routes (${href})`);
+  for (const [path, headers, expected, perVisitor] of REDIRECTS) {
+    const label = `${path} ${JSON.stringify(headers)}`;
+    const { response } = await get(path, headers);
+    const location = locationOf(response);
+    check(response.status === 307, `${label}: status ${response.status}, expected 307`);
+    check(location === expected, `${label}: Location ${location}, expected ${expected}`);
+    check(!location?.includes("lang="), `${label}: Location with lang=`);
+    if (perVisitor) {
+      check(
+        /\bno-store\b/.test(response.headers.get("cache-control") ?? "") &&
+          /\bprivate\b/.test(response.headers.get("cache-control") ?? ""),
+        `${label}: Cache-Control ${response.headers.get("cache-control")}`,
+      );
+      const vary = response.headers.get("vary") ?? "";
+      check(
+        /\bCookie\b/i.test(vary) && /\bAccept-Language\b/i.test(vary),
+        `${label}: Vary ${vary}`,
+      );
     }
+    if (!location) continue;
+    redirectsChecked++;
+    const target = await get(location, headers);
+    check(
+      target.response.status === 200,
+      `${label}: destination ${location} answered ${target.response.status}, expected 200 with no further redirect`,
+    );
   }
-
-  const root = await get("/");
-  check(root.response.status === 200, `/: status ${root.response.status}`);
 
   for (const path of NOT_FOUND) {
     const { response, html } = await get(path);
@@ -136,4 +189,6 @@ if (failures.length > 0) {
   console.error(`Smoke test failed:\n- ${failures.join("\n- ")}`);
   process.exit(1);
 }
-console.log(`Smoke test passed (${linksChecked} internal links checked).`);
+console.log(
+  `Smoke test passed (${redirectsChecked} redirects and ${linksChecked} internal links checked).`,
+);

@@ -1,5 +1,6 @@
-import { projects, type ProjectSlug } from "@/content/projects";
-import type { Language } from "@/lib/i18n/lang";
+// Relative imports: next.config.ts loads this file through lib/redirects.ts.
+import { projects, type ProjectSlug } from "../content/projects";
+import type { Language } from "./i18n/lang";
 
 // The site's pages, independent of language. Every internal link, the language
 // switcher, the sitemap and the metadata build their URLs from a RouteKey.
