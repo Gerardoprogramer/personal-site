@@ -179,7 +179,8 @@
   "stack": {
     "eyebrow": "Stack",
     "title": "Herramientas de trabajo",
-    "data": "Datos y herramientas"
+    "production": "Uso en producción",
+    "workedWith": "He trabajado con"
   },
   "services": {
     "eyebrow": "Cómo puedo aportar",

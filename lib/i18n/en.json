@@ -179,7 +179,8 @@
   "stack": {
     "eyebrow": "Stack",
     "title": "Tools I work with",
-    "data": "Data and tooling"
+    "production": "Used in production",
+    "workedWith": "I have worked with"
   },
   "services": {
     "eyebrow": "How I can help",
