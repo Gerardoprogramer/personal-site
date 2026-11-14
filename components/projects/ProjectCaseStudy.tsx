@@ -8,6 +8,7 @@ import { useTranslation } from "@/lib/i18n/context";
 import { ProjectImage } from "./ProjectImage";
 import { ProjectFeature } from "./ProjectFeature";
 import { PendingImage } from "./PendingImage";
+import { AiPractice } from "./AiPractice";
 
 export function ProjectCaseStudy({ project }: { project: Project }) {
   const { language } = useTranslation();
@@ -217,6 +218,7 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
           )}
         </p>
       </section>
+      {project.slug === "libra" && <AiPractice />}
       <section className="grid gap-10 py-12 md:grid-cols-[1fr_1.5fr]">
         <div>
           <h2 className="eyebrow mb-5 text-muted-foreground">{labels.stack}</h2>
