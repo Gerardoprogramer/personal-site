@@ -96,6 +96,8 @@ export const projectsContent: Record<
       introduction:
         "Biblioteca digital bilingüe de literatura clásica: catálogo, lector por capítulos y progreso de lectura que se conserva aunque el texto cambie.",
       status: "Publicado",
+      coverAlt:
+        "Lector de Libra mostrando el capítulo I de Alice's Adventures in Wonderland, de Lewis Carroll",
       challengeBody:
         "Libra es una biblioteca digital en español e inglés para leer literatura clásica. Los textos provienen de Project Gutenberg y son de dominio público en Estados Unidos. Lo construí como un producto completo: catálogo, autores, categorías, lector por capítulos, cuentas, progreso sincronizado y un flujo editorial para incorporar libros sin romper lo ya publicado.",
       decisions: [
@@ -301,6 +303,8 @@ export const projectsContent: Record<
       introduction:
         "Bilingual digital library of classic literature: catalog, chapter reader, and reading progress that survives text edits.",
       status: "Live",
+      coverAlt:
+        "Libra's reader showing chapter I of Alice's Adventures in Wonderland by Lewis Carroll",
       challengeBody:
         "Libra is a digital library in Spanish and English for reading classic literature. The texts come from Project Gutenberg and are in the public domain in the United States. I built it as a complete product: catalog, authors, categories, chapter reader, accounts, synced progress and an editorial workflow for adding books without breaking what is already published.",
       decisions: [
