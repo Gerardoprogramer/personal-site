@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const lang = toLanguage(headersList.get("x-language"));
   const dict = dictionaries[lang].meta;
-  const canonicalUrl = localizedUrl("/", lang);
+  const canonicalUrl = localizedUrl({ page: "home" }, lang);
   const ogImage = defaultOgImage(lang);
 
   return {
@@ -68,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     alternates: {
       canonical: canonicalUrl,
-      languages: languageAlternates("/"),
+      languages: languageAlternates({ page: "home" }),
     },
     icons: {
       icon: {

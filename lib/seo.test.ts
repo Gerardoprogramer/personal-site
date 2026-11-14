@@ -26,11 +26,16 @@ describe("canonical domain", () => {
 });
 
 describe("languageAlternates", () => {
-  it("links both languages and points x-default to Spanish", () => {
-    expect(languageAlternates("/privacidad")).toEqual({
-      es: `${ORIGIN}/privacidad?lang=es`,
-      en: `${ORIGIN}/privacidad?lang=en`,
-      "x-default": `${ORIGIN}/privacidad?lang=es`,
+  it("links the translated paths and points x-default to the site root", () => {
+    expect(languageAlternates({ page: "privacy" })).toEqual({
+      es: `${ORIGIN}/es/privacidad`,
+      en: `${ORIGIN}/en/privacy`,
+      "x-default": `${ORIGIN}/`,
+    });
+    expect(languageAlternates({ page: "project", slug: "libra" })).toEqual({
+      es: `${ORIGIN}/es/proyectos/libra`,
+      en: `${ORIGIN}/en/projects/libra`,
+      "x-default": `${ORIGIN}/`,
     });
   });
 });
@@ -40,19 +45,26 @@ describe("sitemap", () => {
 
   it("lists one canonical URL per page and language", () => {
     expect(entries.map((e) => e.url)).toEqual([
-      `${ORIGIN}/?lang=es`,
-      `${ORIGIN}/?lang=en`,
-      `${ORIGIN}/proyectos/libra?lang=es`,
-      `${ORIGIN}/proyectos/libra?lang=en`,
-      `${ORIGIN}/proyectos/la-central?lang=es`,
-      `${ORIGIN}/proyectos/la-central?lang=en`,
-      `${ORIGIN}/proyectos/obsidian-library?lang=es`,
-      `${ORIGIN}/proyectos/obsidian-library?lang=en`,
-      `${ORIGIN}/proyectos/selvatica?lang=es`,
-      `${ORIGIN}/proyectos/selvatica?lang=en`,
-      `${ORIGIN}/privacidad?lang=es`,
-      `${ORIGIN}/privacidad?lang=en`,
+      `${ORIGIN}/es`,
+      `${ORIGIN}/en`,
+      `${ORIGIN}/es/proyectos/libra`,
+      `${ORIGIN}/en/projects/libra`,
+      `${ORIGIN}/es/proyectos/la-central`,
+      `${ORIGIN}/en/projects/la-central`,
+      `${ORIGIN}/es/proyectos/obsidian-library`,
+      `${ORIGIN}/en/projects/obsidian-library`,
+      `${ORIGIN}/es/proyectos/selvatica`,
+      `${ORIGIN}/en/projects/selvatica`,
+      `${ORIGIN}/es/privacidad`,
+      `${ORIGIN}/en/privacy`,
     ]);
+  });
+
+  it("never lists a ?lang= URL or the site root", () => {
+    for (const entry of entries) {
+      expect(entry.url).not.toContain("lang=");
+      expect(entry.url).not.toBe(`${ORIGIN}/`);
+    }
   });
 
   it("includes every entry inside its own hreflang set", () => {
@@ -60,6 +72,7 @@ describe("sitemap", () => {
       const languages = entry.alternates?.languages ?? {};
       expect(Object.values(languages)).toContain(entry.url);
       expect(Object.keys(languages).sort()).toEqual(["en", "es", "x-default"]);
+      expect(languages["x-default"]).toBe(`${ORIGIN}/`);
     }
   });
 });
@@ -70,14 +83,16 @@ describe("robots.txt", () => {
   });
 });
 
-describe("privacy metadata", () => {
-  it.each(["es", "en"])("has its own canonical and Open Graph in %s", async (lang) => {
+describe("legacy privacy metadata (?lang=)", () => {
+  it.each([
+    ["es", `${ORIGIN}/es/privacidad`],
+    ["en", `${ORIGIN}/en/privacy`],
+  ])("points the canonical at the new URL in %s", async (lang, url) => {
     language = lang;
     const meta = await privacy.generateMetadata();
-    const url = `${ORIGIN}/privacidad?lang=${lang}`;
 
     expect(meta.alternates?.canonical).toBe(url);
-    expect(meta.alternates?.languages).toEqual(languageAlternates("/privacidad"));
+    expect(meta.alternates?.languages).toEqual(languageAlternates({ page: "privacy" }));
     expect(meta.openGraph).toMatchObject({ url, description: meta.description });
     expect(String(meta.openGraph?.title)).toContain(String(meta.title));
     expect(meta.twitter).toMatchObject({ card: "summary_large_image" });
@@ -96,21 +111,25 @@ describe("privacy metadata", () => {
   });
 });
 
-describe("project metadata", () => {
-  it.each(["es", "en"])("uses the canonical URL for %s", async (lang) => {
+describe("legacy project metadata (?lang=)", () => {
+  it.each([
+    ["es", `${ORIGIN}/es/proyectos/la-central`],
+    ["en", `${ORIGIN}/en/projects/la-central`],
+  ])("points the canonical at the new URL in %s", async (lang, url) => {
     language = lang;
     const meta = await project.generateMetadata({
       params: Promise.resolve({ slug: "la-central" }),
     });
-    const url = localizedUrl("/proyectos/la-central", lang as "es" | "en");
+    const route = { page: "project", slug: "la-central" } as const;
 
+    expect(localizedUrl(route, lang as "es" | "en")).toBe(url);
     expect(meta.alternates?.canonical).toBe(url);
-    expect(meta.alternates?.languages).toEqual(languageAlternates("/proyectos/la-central"));
+    expect(meta.alternates?.languages).toEqual(languageAlternates(route));
     expect(meta.openGraph?.url).toBe(url);
   });
 });
 
-describe("not-found metadata", () => {
+describe("legacy not-found metadata", () => {
   it.each(["es", "en"])("is noindex and drops inherited SEO tags in %s", async (lang) => {
     language = lang;
     const meta = await notFound.generateMetadata();
