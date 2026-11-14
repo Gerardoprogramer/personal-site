@@ -32,6 +32,13 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
+  experimental: {
+    // app/global-not-found.tsx renders 404s for URLs that match no route, now
+    // that there are two root layouts ((legacy) and [lang]). Experimental in
+    // Next.js 16.4.5; a smoke test in CI checks that /foo/bar stays a noindex
+    // 404.
+    globalNotFound: true,
+  },
   images: {
     remotePatterns: [
       {

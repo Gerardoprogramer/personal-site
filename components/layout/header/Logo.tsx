@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useTranslation } from "@/lib/i18n/context";
 
 export function Logo() {
-  const { language, t } = useTranslation();
+  const { href, t } = useTranslation();
   return (
     <Link
-      href={`/?lang=${language}#top`}
+      href={`${href({ page: "home" })}#top`}
       aria-label={t.header.logoLabel}
       className="header-brand"
     >

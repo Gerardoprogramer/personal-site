@@ -18,11 +18,11 @@ export const NAV_SECTIONS = [
 export type NavSectionId = (typeof NAV_SECTIONS)[number]["id"];
 
 export function useNavLinks() {
-  const { t, language } = useTranslation();
+  const { t, href, homePath } = useTranslation();
   const pathname = usePathname();
   // On the home page a bare hash is enough; elsewhere link back to the home
   // page in the active language.
-  const home = pathname === "/" ? "" : `/?lang=${language}`;
+  const home = pathname === homePath ? "" : href({ page: "home" });
   const links = NAV_SECTIONS.map(({ id, labelKey }) => ({
     id,
     href: `${home}#${id}`,

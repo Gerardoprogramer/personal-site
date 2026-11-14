@@ -50,3 +50,8 @@ jobs:
 
       - name: Build
         run: pnpm build
+
+      # Starts the build and checks 404s (global-not-found is experimental),
+      # canonicals, Set-Cookie and links between the two route groups.
+      - name: Smoke test
+        run: node scripts/smoke.mjs

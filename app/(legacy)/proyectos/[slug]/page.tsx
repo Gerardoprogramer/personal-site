@@ -17,14 +17,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) notFound();
   const language = toLanguage((await headers()).get("x-language"));
   const copy = projectsContent[language][project.slug];
-  const path = `/proyectos/${project.slug}`;
-  const canonicalUrl = localizedUrl(path, language);
+  const route = { page: "project", slug: project.slug } as const;
+  const canonicalUrl = localizedUrl(route, language);
   return {
     title: project.name,
     description: copy.summary,
     alternates: {
       canonical: canonicalUrl,
-      languages: languageAlternates(path),
+      languages: languageAlternates(route),
     },
     openGraph: {
       type: "article",

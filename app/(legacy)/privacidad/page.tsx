@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const lang = toLanguage(headersList.get("x-language"));
   const dict = dictionaries[lang].privacy;
-  const canonicalUrl = localizedUrl("/privacidad", lang);
+  const canonicalUrl = localizedUrl({ page: "privacy" }, lang);
   const ogImage = defaultOgImage(lang);
 
   return {
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: dict.intro,
     alternates: {
       canonical: canonicalUrl,
-      languages: languageAlternates("/privacidad"),
+      languages: languageAlternates({ page: "privacy" }),
     },
     openGraph: {
       type: "website",

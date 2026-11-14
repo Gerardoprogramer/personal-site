@@ -89,6 +89,17 @@ describe("project JSON-LD", () => {
     expect(data).not.toHaveProperty("applicationCategory");
   });
 
+  it.each([
+    ["es", "https://www.gerardomartinez.dev/es/proyectos/libra"],
+    ["en", "https://www.gerardomartinez.dev/en/projects/libra"],
+  ] as const)("names the %s case study page when given its URL", (lang, url) => {
+    const libra = projects.find((p) => p.slug === "libra")!;
+    const data = projectJsonLd(libra, lang, url);
+    expect(data.mainEntityOfPage).toEqual({ "@type": "WebPage", "@id": url, inLanguage: lang });
+    expect(data).toHaveProperty("inLanguage", ["es", "en"]);
+    expect(projectJsonLd(libra, lang)).not.toHaveProperty("mainEntityOfPage");
+  });
+
   it("states languages only for Libra, whose page names them", () => {
     for (const project of projects) {
       const data = projectJsonLd(project, "en");
