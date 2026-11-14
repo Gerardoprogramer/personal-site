@@ -8,6 +8,7 @@ import { toLanguage } from "@/lib/i18n/lang";
 import { profileStatic } from "@/content/profile";
 import {
   defaultOgImage,
+  defaultOgImageAlt,
   languageAlternates,
   localizedUrl,
   ogLocale,
@@ -41,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: "Gerardo Martínez Monge - Full Stack Developer",
+          alt: defaultOgImageAlt(lang),
         },
       ],
     },

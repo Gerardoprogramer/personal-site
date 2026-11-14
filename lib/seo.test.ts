@@ -82,6 +82,18 @@ describe("privacy metadata", () => {
     expect(String(meta.openGraph?.title)).toContain(String(meta.title));
     expect(meta.twitter).toMatchObject({ card: "summary_large_image" });
   });
+
+  it.each([
+    ["es", "Desarrollador Full Stack", "Developer"],
+    ["en", "Full Stack Developer", "Desarrollador"],
+  ])("describes the Open Graph image in %s only", async (lang, role, other) => {
+    language = lang;
+    const meta = await privacy.generateMetadata();
+    const [image] = [meta.openGraph?.images].flat() as { alt: string }[];
+
+    expect(image.alt).toBe(`Gerardo Martínez Monge - ${role}`);
+    expect(image.alt).not.toContain(other);
+  });
 });
 
 describe("project metadata", () => {
