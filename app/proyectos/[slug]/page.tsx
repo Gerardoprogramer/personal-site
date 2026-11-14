@@ -6,7 +6,8 @@ import { projectsContent } from "@/lib/i18n/projects.content";
 import { ProjectCaseStudy } from "@/components/projects/ProjectCaseStudy";
 import { languageAlternates, localizedUrl, ogLocale } from "@/lib/seo";
 import { toLanguage } from "@/lib/i18n/lang";
-import { projectJsonLd, serializeJsonLd } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { personBaseJsonLd, projectJsonLd } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -58,12 +59,8 @@ export default async function ProjectPage({ params }: Props) {
   const language = toLanguage((await headers()).get("x-language"));
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(projectJsonLd(project, language)),
-        }}
-      />
+      <JsonLd data={personBaseJsonLd()} />
+      <JsonLd data={projectJsonLd(project, language)} />
       <ProjectCaseStudy project={project} />
     </>
   );

@@ -5,6 +5,7 @@ import { projectDemo, projects } from "@/content/projects";
 import { projectsContent } from "@/lib/i18n/projects.content";
 import {
   PERSON_ID,
+  personBaseJsonLd,
   personJsonLd,
   projectJsonLd,
   serializeJsonLd,
@@ -44,6 +45,14 @@ describe("Person JSON-LD", () => {
   it.each(["es", "en"] as const)("is valid JSON without empty values in %s", (lang) => {
     const parsed = JSON.parse(serializeJsonLd(personJsonLd(lang)));
     expectNoEmptyValues(parsed);
+  });
+
+  it("leaves the role and stack out of the version for inner pages", () => {
+    const base = JSON.parse(serializeJsonLd(personBaseJsonLd()));
+    expectNoEmptyValues(base);
+    expect(base).not.toHaveProperty("jobTitle");
+    expect(base).not.toHaveProperty("knowsAbout");
+    expect(base["@id"]).toBe(PERSON_ID);
   });
 });
 

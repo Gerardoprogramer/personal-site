@@ -11,7 +11,6 @@ import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
 import { toLanguage } from "@/lib/i18n/lang";
 import { SITE_URL } from "@/content/profile";
-import { personJsonLd, serializeJsonLd } from "@/lib/structured-data";
 import {
   defaultOgImage,
   defaultOgImageAlt,
@@ -113,7 +112,6 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const headersList = await headers();
   const initialLang = toLanguage(headersList.get("x-language"));
-  const jsonLd = personJsonLd(initialLang);
 
   return (
     <html
@@ -122,12 +120,6 @@ export default async function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: serializeJsonLd(jsonLd),
-          }}
-        />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"

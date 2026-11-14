@@ -6,6 +6,8 @@ import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
 import { toLanguage } from "@/lib/i18n/lang";
 import { profileStatic } from "@/content/profile";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { personBaseJsonLd } from "@/lib/structured-data";
 import {
   defaultOgImage,
   defaultOgImageAlt,
@@ -66,6 +68,7 @@ export default async function PrivacyPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-5 sm:px-6 pb-20 pt-32">
+      <JsonLd data={personBaseJsonLd()} />
       <Link
         href={`/?lang=${lang}`}
         className="font-mono-tech text-xs text-muted-foreground hover:text-accent transition-colors mb-8 inline-flex items-center gap-2"
