@@ -181,8 +181,8 @@
   "stack": {
     "eyebrow": "Stack",
     "title": "Tools I work with",
-    "production": "Used in production",
-    "workedWith": "I have worked with"
+    "production": "Core stack",
+    "workedWith": "Also worked with"
   },
   "services": {
     "eyebrow": "How I can help",
