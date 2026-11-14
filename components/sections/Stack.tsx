@@ -3,32 +3,7 @@
 import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-
-// Every technology from the previous Frontend / Backend / Data groups is kept:
-// the first group is the core stack, the second the rest.
-const PRODUCTION = [
-  "TypeScript",
-  "Next.js",
-  "React",
-  "PostgreSQL",
-  "NestJS",
-  "Spring Boot",
-  "Python",
-  "FastAPI",
-];
-
-const WORKED_WITH = [
-  "Java",
-  "Node.js",
-  "Django",
-  "Vue.js",
-  "Tailwind CSS",
-  "Prisma",
-  "Docker",
-  "Git",
-  "GitHub Actions",
-  "Playwright",
-];
+import { CORE_STACK, WORKED_WITH } from "@/content/stack";
 
 export function Stack() {
   const { t } = useTranslation();
@@ -46,7 +21,7 @@ export function Stack() {
         <div>
           <h3 className="mb-4 text-sm font-medium">{t.stack.production}</h3>
           <ul className="flex flex-wrap gap-2">
-            {PRODUCTION.map((tech) => (
+            {CORE_STACK.map((tech) => (
               <li
                 key={tech}
                 className="rounded-full border border-foreground/30 px-3 py-1.5 text-sm text-foreground"

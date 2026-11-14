@@ -9,10 +9,11 @@ import { LanguageProvider } from "@/lib/i18n/context";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import es from "@/lib/i18n/es.json";
 import en from "@/lib/i18n/en.json";
-import { toLanguage, type Language } from "@/lib/i18n/lang";
-import { SITE_URL, profileStatic } from "@/content/profile";
+import { toLanguage } from "@/lib/i18n/lang";
+import { SITE_URL } from "@/content/profile";
 import {
   defaultOgImage,
+  defaultOgImageAlt,
   languageAlternates,
   localizedUrl,
   ogLocale,
@@ -65,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: "Gerardo Martínez Monge - Full Stack Developer",
+          alt: defaultOgImageAlt(lang),
         },
       ],
     },
@@ -104,43 +105,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-function buildJsonLd(lang: Language) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Gerardo Martínez Monge",
-    url: SITE_URL,
-    jobTitle:
-      lang === "es"
-        ? "Informático Empresarial · Full Stack Developer"
-        : "Full Stack Developer · Business Informatics Engineer",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Liberia",
-      addressCountry: "CR",
-    },
-    email: profileStatic.email,
-    sameAs: [
-      "https://github.com/Gerardoprogramer",
-      "https://www.linkedin.com/in/gerardo-martinez-dev",
-    ],
-    knowsAbout: [
-      "Python",
-      "FastAPI",
-      "Django",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Vue.js",
-      "PostgreSQL",
-      "Java",
-      "Spring Boot",
-      "NestJS",
-      "Docker",
-    ],
-  };
-}
-
 const GA_MEASUREMENT_ID = "G-EYVSL76CFW";
 
 export default async function RootLayout({
@@ -148,7 +112,6 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const headersList = await headers();
   const initialLang = toLanguage(headersList.get("x-language"));
-  const jsonLd = buildJsonLd(initialLang);
 
   return (
     <html
@@ -157,12 +120,6 @@ export default async function RootLayout({
       className={`${inter.variable} ${fraunces.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"

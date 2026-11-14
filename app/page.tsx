@@ -1,4 +1,8 @@
 import dynamic from "next/dynamic";
+import { headers } from "next/headers";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { toLanguage } from "@/lib/i18n/lang";
+import { personJsonLd } from "@/lib/structured-data";
 import { About } from "@/components/sections/About";
 import { Hero } from "@/components/sections/Hero";
 
@@ -18,9 +22,11 @@ const Contact = dynamic(() =>
   import("@/components/sections/Contact").then((mod) => mod.Contact),
 );
 
-export default function Home() {
+export default async function Home() {
+  const lang = toLanguage((await headers()).get("x-language"));
   return (
     <>
+      <JsonLd data={personJsonLd(lang)} />
       <Hero />
       <Projects />
       <Experience />

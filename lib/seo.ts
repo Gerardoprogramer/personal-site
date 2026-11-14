@@ -22,6 +22,16 @@ export function ogLocale(lang: Language) {
   return lang === "es" ? "es_CR" : "en_US";
 }
 
+// Role in the visitor's language, shared by the Open Graph alt text and the
+// Person JSON-LD so neither mixes languages.
+export function jobTitle(lang: Language) {
+  return lang === "es" ? "Desarrollador Full Stack" : "Full Stack Developer";
+}
+
+export function defaultOgImageAlt(lang: Language) {
+  return `Gerardo Martínez Monge - ${jobTitle(lang)}`;
+}
+
 export function defaultOgImage(lang: Language) {
   return `/og-image${lang === "en" ? "-en" : ""}.png?v=portfolio-2`;
 }
