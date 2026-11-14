@@ -38,6 +38,7 @@ export const projects: Project[] = [
     color: "#aebce6",
     surface: "#141927",
     tier: "featured",
+    cover: { src: "/projects/libra-cover.png", width: 1440, height: 900 },
     // Versions from Libra's package.json (next 16.4.3, react 19.2.8).
     stack: [
       "Next.js 16",
