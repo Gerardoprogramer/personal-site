@@ -3,21 +3,33 @@ import type { Language } from "./context";
 
 export interface ProjectContent {
   category: string;
-  tagline: string;
+  // Appended to "NN / Name" on the home card when set.
+  cardLabel?: string;
+  tagline?: string;
   summary: string;
   headline: string;
   introduction: string;
-  role: string;
+  role?: string;
   status: string;
-  coverAlt: string;
-  challenge: string;
+  // Required once the project has a cover image.
+  coverAlt?: string;
+  challenge?: string;
   challengeBody: string;
   decisions: { title: string; body: string }[];
   evidence: { value: string; label: string }[];
   evidenceNote: string;
+  // Itemized checks shown under the evidence figures.
+  evidenceList?: string[];
+  // Where the evidence figures come from (for example, a CI run).
+  evidenceSource?: { label: string; href: string };
   scope: string;
-  closing: string;
+  closing?: string;
 }
+
+// Libra's figures, checked on 2026-11-14 against github.com/Gerardoprogramer/libra
+// at ed3c3bf and its CI run 43528652160 (see the PR that added them).
+const LIBRA_CI_RUN =
+  "https://github.com/Gerardoprogramer/libra/actions/runs/43528652160";
 
 export const caseLabels = {
   es: {
@@ -75,6 +87,66 @@ export const projectsContent: Record<
   Record<ProjectSlug, ProjectContent>
 > = {
   es: {
+    libra: {
+      category: "Proyecto personal · Publicado",
+      cardLabel: "PROYECTO PERSONAL · PUBLICADO",
+      summary:
+        "Biblioteca digital bilingüe de literatura clásica: catálogo, lector por capítulos y progreso de lectura que se conserva aunque el texto cambie.",
+      headline: "Libros clásicos. Lectura que no pierde el lugar.",
+      introduction:
+        "Biblioteca digital bilingüe de literatura clásica: catálogo, lector por capítulos y progreso de lectura que se conserva aunque el texto cambie.",
+      status: "Publicado",
+      challengeBody:
+        "Libra es una biblioteca digital en español e inglés para leer literatura clásica. Los textos provienen de Project Gutenberg y son de dominio público en Estados Unidos. Lo construí como un producto completo: catálogo, autores, categorías, lector por capítulos, cuentas, progreso sincronizado y un flujo editorial para incorporar libros sin romper lo ya publicado.",
+      decisions: [
+        {
+          title: "Un catálogo que crece sin romper a los lectores",
+          body: "Los libros entran desde EPUB mediante un pipeline editorial. Por defecto el importador solo compara con la base y reporta diferencias; escribir exige --apply y, en una base remota, confirmar el identificador con --confirm-database, que se muestra enmascarado. Una edición publicada no se altera con una importación normal y las publicaciones hechas con el script quedan registradas en edition_reviews. (Límite: un cambio manual directo en la base de datos no queda registrado.)",
+        },
+        {
+          title: "El progreso sobrevive a una nueva edición",
+          body: "Si una reimportación reescribe o amplía un capítulo, se conserva el párrafo del lector (o, si ese párrafo cambió, su posición relativa en el capítulo) y el porcentaje se recalcula según las palabras previas.",
+        },
+        {
+          title: "Sincronización con mala conexión",
+          body: "El progreso se guarda en una cola local que se envía al ocultar o desmontar la página, con peticiones keepalive. Sin conexión, un service worker muestra una página de respaldo en el idioma de la URL.",
+        },
+        {
+          title: "Rápido por diseño",
+          body: "Las páginas se prerenderizan con React Server Components y Cache Components. Cuando un script editorial cambia contenido, invalida la caché del sitio mediante un endpoint protegido con secreto compartido.",
+        },
+        {
+          title: "Seguridad con trade-offs explícitos",
+          body: "Cabeceras de seguridad y CSP parcial. La CSP completa se dejó fuera a propósito porque exige nonces por request y volvería dinámicas las páginas; el plan es empezar en modo Report-Only. No hay rate limiting en memoria porque en serverless las instancias no comparten estado; los límites se configuran en el firewall del proveedor. Entradas acotadas y escrituras con sesión y mismo origen.",
+        },
+        {
+          title: "SEO internacional",
+          body: "Rutas /es y /en con next-intl, canonical y hreflang por página, JSON-LD de libro y búsqueda insensible a acentos con paginación en servidor.",
+        },
+      ],
+      evidence: [
+        { value: "707", label: "pruebas automatizadas ejecutadas en CI, 0 fallos" },
+        { value: "759", label: "pruebas automatizadas definidas" },
+        {
+          value: "132/137",
+          label: "commits sin merge con la convención semántica",
+        },
+      ],
+      evidenceNote: "Cifras del 14 de noviembre de 2026.",
+      evidenceList: [
+        "En CI se ejecutan 707 pruebas: 684 en el job principal más 23 de integración, sin contar dos veces la del arnés, con 0 fallos. Las 52 restantes solo corren en local: 51 dependen de archivos EPUB que no se versionan y 1 comprueba el entorno de procesamiento de imágenes aprobado.",
+        "Las pruebas de integración corren contra un Postgres desechable en CI.",
+        "Historial: 132 de 137 commits sin merge siguen la convención semántica.",
+        "Secret scanning y push protection activos; análisis del historial con gitleaks sin hallazgos.",
+        "Scripts editoriales y migraciones: dry-run por defecto (excepciones documentadas: db:studio, sin guarda, y db:seed, que solo escribe en una base local y rechaza las remotas).",
+      ],
+      evidenceSource: {
+        label: "Ver el último run de CI",
+        href: LIBRA_CI_RUN,
+      },
+      scope:
+        "No hay lectura sin conexión: solo la página de respaldo. La CSP completa está pendiente. Los backups dependen del proveedor y no están documentados en el repositorio. El estado de derechos de las portadas extraídas de los EPUB está pendiente de documentar.",
+    },
     "obsidian-library": {
       category: "Proyecto personal · Aplicación web",
       tagline: "Del catálogo al préstamo, con cada operación conectada.",
@@ -220,6 +292,66 @@ export const projectsContent: Record<
     },
   },
   en: {
+    libra: {
+      category: "Personal project · Live",
+      cardLabel: "PERSONAL PROJECT · LIVE",
+      summary:
+        "Bilingual digital library of classic literature: catalog, chapter reader, and reading progress that survives text edits.",
+      headline: "Classic books. Reading that keeps your place.",
+      introduction:
+        "Bilingual digital library of classic literature: catalog, chapter reader, and reading progress that survives text edits.",
+      status: "Live",
+      challengeBody:
+        "Libra is a digital library in Spanish and English for reading classic literature. The texts come from Project Gutenberg and are in the public domain in the United States. I built it as a complete product: catalog, authors, categories, chapter reader, accounts, synced progress and an editorial workflow for adding books without breaking what is already published.",
+      decisions: [
+        {
+          title: "A catalog that grows without breaking readers",
+          body: "Books come in from EPUB through an editorial pipeline. By default the importer only compares against the database and reports differences; writing requires --apply and, on a remote database, confirming its identifier with --confirm-database, which is shown masked. A published edition is not altered by a normal import, and publications made with the script are recorded in edition_reviews. (Limit: a direct manual change to the database is not recorded.)",
+        },
+        {
+          title: "Progress survives a new edition",
+          body: "If a reimport rewrites or extends a chapter, the reader’s paragraph is kept (or, if that paragraph changed, its relative position in the chapter) and the percentage is recalculated from the preceding words.",
+        },
+        {
+          title: "Syncing on a poor connection",
+          body: "Progress is stored in a local queue that is sent when the page is hidden or unmounted, with keepalive requests. Offline, a service worker shows a fallback page in the URL’s language.",
+        },
+        {
+          title: "Fast by design",
+          body: "Pages are prerendered with React Server Components and Cache Components. When an editorial script changes content, it invalidates the site cache through an endpoint protected by a shared secret.",
+        },
+        {
+          title: "Security with explicit trade-offs",
+          body: "Security headers and a partial CSP. The full CSP was left out on purpose because it requires per-request nonces and would make pages dynamic; the plan is to start in Report-Only mode. There is no in-memory rate limiting because serverless instances do not share state; limits are configured in the provider’s firewall. Bounded inputs, and writes require a session and the same origin.",
+        },
+        {
+          title: "International SEO",
+          body: "/es and /en routes with next-intl, canonical and hreflang per page, Book JSON-LD and accent-insensitive search with server-side pagination.",
+        },
+      ],
+      evidence: [
+        { value: "707", label: "automated tests run in CI, 0 failures" },
+        { value: "759", label: "automated tests defined" },
+        {
+          value: "132/137",
+          label: "non-merge commits following the semantic convention",
+        },
+      ],
+      evidenceNote: "Figures as of November 14, 2026.",
+      evidenceList: [
+        "CI runs 707 tests: 684 in the main job plus 23 integration tests, without counting the harness test twice, with 0 failures. The remaining 52 run only locally: 51 depend on EPUB files that are not versioned and 1 checks the approved image-processing environment.",
+        "Integration tests run against a disposable Postgres in CI.",
+        "History: 132 of 137 non-merge commits follow the semantic convention.",
+        "Secret scanning and push protection enabled; gitleaks history scan with no findings.",
+        "Editorial scripts and migrations: dry run by default (documented exceptions: db:studio, which has no guard, and db:seed, which only writes to a local database and refuses remote ones).",
+      ],
+      evidenceSource: {
+        label: "View the latest CI run",
+        href: LIBRA_CI_RUN,
+      },
+      scope:
+        "There is no offline reading: only the fallback page. The full CSP is pending. Backups depend on the provider and are not documented in the repository. The rights status of the covers extracted from EPUBs is still to be documented.",
+    },
     "obsidian-library": {
       category: "Personal project · Web application",
       tagline: "From the catalog to the loan, with every operation connected.",

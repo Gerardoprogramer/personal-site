@@ -20,7 +20,7 @@
       "role": "Desarrollador Full Stack (contrato de servicios profesionales)",
       "format": "Remoto · Costa Rica",
       "built": [
-        "Migré el servicio de cuentas de PHP a FastAPI manteniendo el contrato de respuesta JSON para conservar la compatibilidad con el frontend. Separé la migración inicial de la refactorización posterior.",
+        "Plataforma en producción basada en microservicios. Migré el servicio de cuentas de PHP a FastAPI manteniendo el contrato de respuesta JSON, de modo que el frontend siguió funcionando sin cambios, y separé la migración inicial de la refactorización posterior.",
         "Resolví bugs de distinto origen (código, navegador, extensiones) en varios microservicios: primero replicando el error, después buscando la causa raíz, y recién ahí evaluando varias soluciones antes de aplicar la más adecuada.",
         "Construí un componente de tabs configurable con tres variantes de diseño integradas en un mismo componente, con animación en hover con GSAP, siguiendo las especificaciones de Figma."
       ],
@@ -30,7 +30,7 @@
       "role": "Pasantía Backend (Django)",
       "format": "Pasantía · Costa Rica",
       "built": [
-        "Desarrollé nuevas funcionalidades backend en Django para una plataforma de enseñanza de inglés.",
+        "Pasantía Backend (Django) en una plataforma de enseñanza de inglés. Desarrollé nuevas funcionalidades backend en Django.",
         "Diseñé junto al equipo la base de datos y la lógica de un sistema de gamificación con recompensas para estudiantes.",
         "Trabajé junto al equipo de frontend para integrar correctamente los endpoints nuevos en la experiencia del estudiante."
       ],
@@ -71,7 +71,7 @@
     "error": "No se pudo enviar. Intenta de nuevo o escríbeme por correo."
   },
   "meta": {
-    "title": "Gerardo Martínez Monge | Informático Empresarial · Full Stack Developer",
+    "title": "Gerardo Martínez Monge | Desarrollador Full Stack",
     "description": "Gerardo Martínez Monge, desarrollador full stack en Costa Rica. Aplicaciones web, ERP y experiencias digitales con Next.js, Java, Spring Boot y NestJS. Explora Obsidian Library, La Central y Selvática.",
     "ogDescription": "Del problema real al software que lo resuelve. Tres proyectos: Obsidian Library, La Central y Selvática.",
     "twitterDescription": "Del problema real al software que lo resuelve. Tres proyectos: Obsidian Library, La Central y Selvática.",
@@ -156,11 +156,13 @@
     "viewProjects": "Ver proyectos",
     "talk": "Hablemos",
     "availability": "Disponible para empleo y proyectos",
+    "proof": "3 proyectos desplegados · Libra: 707 pruebas automatizadas en CI, 0 fallos",
     "cvLabel": "Ver currículum (PDF, se abre en otra pestaña)"
   },
   "projectsSection": {
-    "title": "Tres proyectos. Tres enfoques.",
-    "description": "Producto, operación y experiencia visual. Una selección para ver cómo diseño y construyo."
+    "title": "Tres productos. Tres problemas distintos.",
+    "description": "Libra se centra en el contenido y la lectura; La Central, en la operación de un negocio; Obsidian, en las transacciones y los pagos.",
+    "explorations": "Exploraciones"
   },
   "experienceSection": {
     "eyebrow": "Experiencia",
@@ -179,7 +181,8 @@
   "stack": {
     "eyebrow": "Stack",
     "title": "Herramientas de trabajo",
-    "data": "Datos y herramientas"
+    "production": "Mi núcleo",
+    "workedWith": "También he trabajado con"
   },
   "services": {
     "eyebrow": "Cómo puedo aportar",

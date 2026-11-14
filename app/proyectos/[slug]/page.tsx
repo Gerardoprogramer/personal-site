@@ -30,20 +30,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: copy.summary,
       url: canonicalUrl,
       locale: ogLocale(language),
-      images: [
-        {
-          url: project.image,
-          width: project.imageWidth,
-          height: project.imageHeight,
-          alt: copy.coverAlt,
-        },
-      ],
+      // Without a cover the site's default Open Graph image applies.
+      ...(project.cover && {
+        images: [
+          {
+            url: project.cover.src,
+            width: project.cover.width,
+            height: project.cover.height,
+            alt: copy.coverAlt ?? project.name,
+          },
+        ],
+      }),
     },
     twitter: {
       card: "summary_large_image",
       title: project.name,
       description: copy.summary,
-      images: [project.image],
+      ...(project.cover && { images: [project.cover.src] }),
     },
   };
 }

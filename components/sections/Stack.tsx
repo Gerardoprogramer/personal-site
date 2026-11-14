@@ -4,23 +4,34 @@ import { useTranslation } from "@/lib/i18n/context";
 import { BackgroundLetter } from "@/components/shared/BackgroundLetter";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 
+// Every technology from the previous Frontend / Backend / Data groups is kept:
+// the first group is the core stack, the second the rest.
+const PRODUCTION = [
+  "TypeScript",
+  "Next.js",
+  "React",
+  "PostgreSQL",
+  "NestJS",
+  "Spring Boot",
+  "Python",
+  "FastAPI",
+];
+
+const WORKED_WITH = [
+  "Java",
+  "Node.js",
+  "Django",
+  "Vue.js",
+  "Tailwind CSS",
+  "Prisma",
+  "Docker",
+  "Git",
+  "GitHub Actions",
+  "Playwright",
+];
+
 export function Stack() {
   const { t } = useTranslation();
-  const groups = [
-    {
-      title: "Frontend",
-      items: "TypeScript · React · Next.js · Tailwind CSS · Vue.js",
-    },
-    {
-      title: "Backend",
-      items:
-        "Java · Spring Boot · Node.js · NestJS · Python · FastAPI · Django",
-    },
-    {
-      title: t.stack.data,
-      items: "PostgreSQL · Prisma · Docker · Git · GitHub Actions · Playwright",
-    },
-  ];
   return (
     <section id="stack" className="section-shell relative isolate pb-20">
       <BackgroundLetter letter="R" size="compact" />
@@ -31,15 +42,26 @@ export function Stack() {
         title={t.stack.title}
         className="mb-6"
       />
-      <div className="grid gap-6 border-y border-border py-7 md:grid-cols-3">
-        {groups.map((group) => (
-          <div key={group.title}>
-            <h3 className="mb-3 text-sm font-medium">{group.title}</h3>
-            <p className="text-sm leading-7 text-muted-foreground">
-              {group.items}
-            </p>
-          </div>
-        ))}
+      <div className="grid gap-8 border-y border-border py-7 md:grid-cols-2 md:gap-12">
+        <div>
+          <h3 className="mb-4 text-sm font-medium">{t.stack.production}</h3>
+          <ul className="flex flex-wrap gap-2">
+            {PRODUCTION.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-full border border-foreground/30 px-3 py-1.5 text-sm text-foreground"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="mb-4 text-sm font-medium">{t.stack.workedWith}</h3>
+          <p className="text-sm leading-7 text-muted-foreground">
+            {WORKED_WITH.join(" · ")}
+          </p>
+        </div>
       </div>
     </section>
   );

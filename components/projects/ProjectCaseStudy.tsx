@@ -2,16 +2,19 @@
 
 import Link from "next/link";
 import { FiArrowLeft, FiArrowUpRight } from "react-icons/fi";
-import { projects, type Project } from "@/content/projects";
+import { projectDemo, projects, type Project } from "@/content/projects";
 import { projectsContent, caseLabels } from "@/lib/i18n/projects.content";
 import { useTranslation } from "@/lib/i18n/context";
 import { ProjectImage } from "./ProjectImage";
 import { ProjectFeature } from "./ProjectFeature";
+import { PendingImage } from "./PendingImage";
+import { AiPractice } from "./AiPractice";
 
 export function ProjectCaseStudy({ project }: { project: Project }) {
   const { language } = useTranslation();
   const copy = projectsContent[language][project.slug];
   const labels = caseLabels[language];
+  const demo = projectDemo(project, language);
   const next =
     projects[
       (projects.findIndex((p) => p.slug === project.slug) + 1) % projects.length
@@ -38,11 +41,11 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
         <p className="mt-7 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
           {copy.introduction}
         </p>
-        {(project.demo || project.repositories.length > 0) && (
+        {(demo || project.repositories.length > 0) && (
           <div className="mt-7 flex flex-wrap gap-3">
-            {project.demo && (
+            {demo && (
               <a
-                href={project.demo}
+                href={demo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button-primary"
@@ -72,29 +75,39 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
           </div>
         )}
       </header>
-      <ProjectImage
-        src={project.image}
-        alt={copy.coverAlt}
-        width={project.imageWidth}
-        height={project.imageHeight}
-        eager
-        caption={
-          project.slug === "obsidian-library"
-            ? language === "es"
-              ? "Página de presentación · Captura de la demo publicada."
-              : "Landing page · Screenshot of the live demo."
-            : project.slug === "la-central"
+      {project.cover ? (
+        <ProjectImage
+          src={project.cover.src}
+          alt={copy.coverAlt ?? project.name}
+          width={project.cover.width}
+          height={project.cover.height}
+          eager
+          caption={
+            project.slug === "obsidian-library"
               ? language === "es"
-                ? "Punto de venta · Datos de demostración. Venta por gramos y por presentación."
-                : "Point of sale · Demonstration data. Weighted products and pack pricing."
-              : `${project.name} · ${labels.screen}`
-        }
-      />
+                ? "Página de presentación · Captura de la demo publicada."
+                : "Landing page · Screenshot of the live demo."
+              : project.slug === "la-central"
+                ? language === "es"
+                  ? "Punto de venta · Datos de demostración. Venta por gramos y por presentación."
+                  : "Point of sale · Demonstration data. Weighted products and pack pricing."
+                : `${project.name} · ${labels.screen}`
+          }
+        />
+      ) : (
+        <PendingImage
+          label={`${project.name} · /projects/${project.slug}-cover.png`}
+        />
+      )}
       <dl className="mt-8 grid gap-6 border-b border-border pb-8 sm:grid-cols-[1.3fr_1fr_auto]">
-        <div>
-          <dt className="eyebrow mb-2 text-muted-foreground">{labels.role}</dt>
-          <dd className="max-w-sm text-sm leading-relaxed">{copy.role}</dd>
-        </div>
+        {copy.role && (
+          <div>
+            <dt className="eyebrow mb-2 text-muted-foreground">
+              {labels.role}
+            </dt>
+            <dd className="max-w-sm text-sm leading-relaxed">{copy.role}</dd>
+          </div>
+        )}
         <div>
           <dt className="eyebrow mb-2 text-muted-foreground">
             {labels.status}
@@ -111,9 +124,11 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
           <p className="eyebrow mb-4" style={{ color: project.color }}>
             {labels.challenge}
           </p>
-          <h2 className="font-display text-3xl sm:text-4xl">
-            {copy.challenge}
-          </h2>
+          {copy.challenge && (
+            <h2 className="font-display text-3xl sm:text-4xl">
+              {copy.challenge}
+            </h2>
+          )}
         </div>
         <p className="text-base leading-8 text-muted-foreground">
           {copy.challengeBody}
@@ -178,10 +193,32 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
             </div>
           ))}
         </div>
+        {copy.evidenceList && (
+          <ul className="mt-10 max-w-3xl list-disc space-y-3 pl-5 text-sm leading-relaxed text-muted-foreground marker:text-border">
+            {copy.evidenceList.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        )}
         <p className="mt-8 max-w-3xl text-xs leading-relaxed text-muted-foreground">
           {copy.evidenceNote}
+          {copy.evidenceSource && (
+            <>
+              {" "}
+              <a
+                href={copy.evidenceSource.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-foreground underline underline-offset-4 hover:text-accent"
+              >
+                {copy.evidenceSource.label}
+                <FiArrowUpRight aria-hidden="true" className="size-3.5 shrink-0" />
+              </a>
+            </>
+          )}
         </p>
       </section>
+      {project.slug === "libra" && <AiPractice />}
       <section className="grid gap-10 py-12 md:grid-cols-[1fr_1.5fr]">
         <div>
           <h2 className="eyebrow mb-5 text-muted-foreground">{labels.stack}</h2>
@@ -203,9 +240,11 @@ export function ProjectCaseStudy({ project }: { project: Project }) {
           </p>
         </div>
       </section>
-      <p className="max-w-3xl py-8 font-display text-2xl leading-relaxed sm:text-3xl">
-        {copy.closing}
-      </p>
+      {copy.closing && (
+        <p className="max-w-3xl py-8 font-display text-2xl leading-relaxed sm:text-3xl">
+          {copy.closing}
+        </p>
+      )}
       <div className="mt-10 grid gap-8 border-t border-border pt-10 sm:grid-cols-2">
         <Link
           href={`/proyectos/${next.slug}?lang=${language}`}
