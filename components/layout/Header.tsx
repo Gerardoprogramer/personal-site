@@ -15,7 +15,8 @@ import {
 import type { IconType } from "react-icons";
 import { useTranslation } from "@/lib/i18n/context";
 import { useActiveSection } from "@/hooks/useActiveSection";
-import { useNavLinks, type NavSectionId } from "@/hooks/use-nav-links";
+import { useNavLinks } from "@/hooks/use-nav-links";
+import type { NavSectionId } from "@/lib/sections";
 import { LanguageSwitcher } from "./header/LanguageSwitcher";
 import { SocialLinks } from "./header/SocialLinks";
 import { Logo } from "./header/Logo";
