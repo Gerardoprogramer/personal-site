@@ -2,24 +2,29 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 import { useTranslation } from "@/lib/i18n/context";
+import {
+  CONSENT_KEY,
+  analyticsCommands,
+  analyticsScriptSrc,
+  parseConsent,
+  shouldLoadAnalytics,
+  type ConsentValue,
+} from "@/lib/analytics";
 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
   }
 }
 
-const CONSENT_KEY = "cookie-consent";
-
-type ConsentValue = "granted" | "denied";
-
 const CONSENT_EVENT = "portfolio-consent-change";
 let memoryConsent: ConsentValue | null = null;
+let analyticsLoaded = false;
 
 function getConsent(): ConsentValue | null {
   try {
-    const stored = localStorage.getItem(CONSENT_KEY);
-    return stored === "granted" || stored === "denied" ? stored : null;
+    return parseConsent(localStorage.getItem(CONSENT_KEY));
   } catch {
     return memoryConsent;
   }
@@ -38,11 +43,31 @@ function serverConsent() {
   return undefined;
 }
 
+// Adds Google Analytics to the page, once. Until this runs the page makes no
+// request to Google: gtag.js is not in the HTML.
+function loadAnalytics() {
+  if (analyticsLoaded) return;
+  analyticsLoaded = true;
+  const dataLayer = (window.dataLayer = window.dataLayer ?? []);
+  window.gtag = function gtag() {
+    // gtag.js reads each queued command as an `arguments` object, not an array.
+    // eslint-disable-next-line prefer-rest-params
+    dataLayer.push(arguments);
+  };
+  for (const command of analyticsCommands(new Date())) window.gtag(...command);
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = analyticsScriptSrc();
+  document.head.appendChild(script);
+}
+
+// Accepted (now or on an earlier visit): load Analytics. Rejected in another
+// tab after it was loaded here: withdraw the consent it was given.
 function applyConsent(value: ConsentValue) {
-  if (typeof window.gtag === "function") {
-    window.gtag("consent", "update", {
-      analytics_storage: value,
-    });
+  if (shouldLoadAnalytics(value)) {
+    loadAnalytics();
+  } else if (typeof window.gtag === "function") {
+    window.gtag("consent", "update", { analytics_storage: "denied" });
   }
 }
 

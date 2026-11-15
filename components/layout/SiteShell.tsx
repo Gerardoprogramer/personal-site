@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Script from "next/script";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/layout/CookieConsent";
@@ -10,11 +9,10 @@ import en from "@/lib/i18n/en.json";
 
 const dictionaries = { es, en };
 
-const GA_MEASUREMENT_ID = "G-EYVSL76CFW";
-
-// The <html> document shared by every root layout: fonts, Google Analytics
-// (denied until the visitor accepts cookies), header, footer and the cookie
-// banner. Each layout passes its own language provider.
+// The <html> document shared by every root layout: fonts, header, footer and
+// the cookie banner. Google Analytics is not in the document: CookieConsent
+// adds it only after the visitor accepts. Each layout passes its own language
+// provider.
 export function SiteShell({
   lang,
   provider: Provider,
@@ -30,28 +28,6 @@ export function SiteShell({
       data-scroll-behavior="smooth"
       className={`${fontVariables} h-full antialiased`}
     >
-      {/* eslint-disable-next-line @next/next/no-head-element -- this is the root layouts' <head>, moved out of app/ so both layouts share it */}
-      <head>
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-              analytics_storage: 'denied',
-              ad_storage: 'denied',
-              ad_user_data: 'denied',
-              ad_personalization: 'denied',
-              wait_for_update: 500
-            });
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}');
-          `}
-        </Script>
-      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Provider>
           <a
