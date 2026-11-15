@@ -200,6 +200,11 @@ export const Contact = () => {
           >
             {status === "error" ? t.contact.error : t.contact.help}
           </div>
+          {/* Announces a sent message to screen readers. Sighted visitors see
+              the same text on the button. */}
+          <p className="sr-only" role="status">
+            {status === "sent" ? t.contact.button.sent : ""}
+          </p>
 
           <div className="mt-6 flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
             <a
