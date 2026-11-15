@@ -7,8 +7,12 @@ import ContactEmail from "@/emails/ContactEmail";
 
 const MAX_BODY_BYTES = 10_000;
 
+// The name goes into the email subject, so it must be a single line: no
+// control characters (carriage return, line feed, tab, NUL and the like).
+const NO_CONTROL_CHARACTERS = /^\P{Cc}*$/u;
+
 const contactSchema = z.object({
-    name: z.string().trim().min(2).max(100),
+    name: z.string().trim().min(2).max(100).regex(NO_CONTROL_CHARACTERS),
     email: z.string().trim().max(254).pipe(z.email()),
     intent: z.enum(["servicio", "posicion", "otro"]),
     message: z.string().trim().min(10).max(2000),

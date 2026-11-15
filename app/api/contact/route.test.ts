@@ -76,6 +76,27 @@ describe("POST /api/contact", () => {
     expect(send).not.toHaveBeenCalled();
   });
 
+  it.each([
+    ["a line feed", "Ada\nBcc: x@example.com"],
+    ["a carriage return", "Ada\r\nBcc: x@example.com"],
+    ["a tab", "Ada\tLovelace"],
+    ["a NUL", "Ada\u0000Lovelace"],
+    ["a C1 control character", "Ada\u0085Lovelace"],
+  ])("rejects a name with %s", async (_label, name) => {
+    const res = await POST(request({ ...validBody, name }));
+
+    expect(res.status).toBe(400);
+    expect(await res.json()).toEqual({ error: "Datos inválidos" });
+    expect(send).not.toHaveBeenCalled();
+  });
+
+  it("still accepts names with accents, spaces, hyphens and apostrophes", async () => {
+    for (const name of ["José Ángel Ñandú", "Anne-Marie O'Neil", "  Ada Lovelace  "]) {
+      expect((await POST(request({ ...validBody, name }))).status, name).toBe(200);
+    }
+    expect(send).toHaveBeenCalledTimes(3);
+  });
+
   it("rejects malformed JSON and oversized bodies", async () => {
     expect((await POST(request("{oops"))).status).toBe(400);
     expect((await POST(request("a".repeat(20_000)))).status).toBe(413);
