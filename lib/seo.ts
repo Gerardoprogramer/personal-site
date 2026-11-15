@@ -3,7 +3,6 @@ import type { Language } from "@/lib/i18n/lang";
 import { pathFor, type RouteKey } from "@/lib/routes";
 
 export { LANGUAGES } from "@/lib/routes";
-export const DEFAULT_LANGUAGE: Language = "es";
 
 // Absolute, canonical URL of a page in one language: its /es or /en path. The
 // legacy ?lang= pages use it too, so their canonical is the new URL.

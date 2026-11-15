@@ -2,10 +2,13 @@
 // legacy and the /es and /en URLs, and fails on any unexpected status, missing
 // noindex on a 404, redirect on a new page, wrong canonical, Set-Cookie on a
 // prerendered page, link from the new routes into the legacy ones, or legacy
-// redirect that is not a single 307 to the expected page.
+// redirect that is not a single 307 to the expected page. It also checks that
+// sitemap.xml lists exactly the pages it visited.
 //
 // Usage: pnpm build && node scripts/smoke.mjs
+// If port 3100 is taken: SMOKE_PORT=3187 node scripts/smoke.mjs
 import { spawn } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
@@ -13,16 +16,28 @@ const PORT = process.env.SMOKE_PORT ?? "3100";
 const BASE = `http://localhost:${PORT}`;
 const ORIGIN = "https://www.gerardomartinez.dev";
 
-const NEW_PAGES = {
-  "/es": `${ORIGIN}/es`,
-  "/en": `${ORIGIN}/en`,
-  "/es/proyectos/libra": `${ORIGIN}/es/proyectos/libra`,
-  "/en/projects/libra": `${ORIGIN}/en/projects/libra`,
-  "/es/privacidad": `${ORIGIN}/es/privacidad`,
-  "/en/privacy": `${ORIGIN}/en/privacy`,
-};
+// The project slugs, read from content/projects.ts so a new project is covered
+// without editing this file. Read as text: Node cannot import the TypeScript
+// file with its "@/" alias.
+const SLUGS = [
+  ...readFileSync(new URL("../content/projects.ts", import.meta.url), "utf8")
+    .matchAll(/^\s+slug: "([^"]+)",/gm),
+].map((match) => match[1]);
+if (SLUGS.length === 0) {
+  throw new Error("No project slugs found in content/projects.ts");
+}
 
-const SLUGS = ["libra", "la-central", "obsidian-library", "selvatica"];
+// Every page of the site, path -> canonical URL: the home page, each case
+// study and the privacy policy, in both languages.
+const NEW_PAGES = Object.fromEntries(
+  [
+    "/es",
+    "/en",
+    ...SLUGS.flatMap((slug) => [`/es/proyectos/${slug}`, `/en/projects/${slug}`]),
+    "/es/privacidad",
+    "/en/privacy",
+  ].map((path) => [path, `${ORIGIN}${path}`]),
+);
 
 // Stage 2 redirects (table 4.1): every row must answer 307 with this Location,
 // and the destination must answer 200 without redirecting again.
@@ -127,6 +142,22 @@ async function run() {
     }
   }
 
+  // The sitemap lists exactly the pages above: none missing, none extra.
+  const sitemap = await get("/sitemap.xml");
+  check(sitemap.response.status === 200, `/sitemap.xml: status ${sitemap.response.status}`);
+  const listed = [...sitemap.html.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const expectedUrls = Object.values(NEW_PAGES);
+  for (const url of expectedUrls) {
+    check(listed.includes(url), `/sitemap.xml: ${url} is missing`);
+  }
+  for (const url of listed) {
+    check(expectedUrls.includes(url), `/sitemap.xml: unexpected ${url}`);
+  }
+  check(
+    new Set(listed).size === listed.length,
+    `/sitemap.xml: a URL is listed more than once`,
+  );
+
   for (const [path, headers, expected, perVisitor] of REDIRECTS) {
     const label = `${path} ${JSON.stringify(headers)}`;
     const { response } = await get(path, headers);
@@ -172,12 +203,27 @@ async function run() {
   }
 }
 
+// If our server stopped (for example, the port is taken), another server may
+// be answering on that port: do not test it by mistake.
+function assertServerRunning() {
+  if (server.exitCode !== null) {
+    throw new Error(
+      `next start exited with code ${server.exitCode}. Is port ${PORT} in use? Try SMOKE_PORT=<port>.`,
+    );
+  }
+}
+
 async function waitForServer() {
   for (let i = 0; i < 60; i++) {
+    assertServerRunning();
     try {
       await fetch(`${BASE}/robots.txt`);
+      // Give a server that failed to bind the port time to exit.
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      assertServerRunning();
       return;
-    } catch {
+    } catch (error) {
+      if (server.exitCode !== null) throw error;
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
   }
@@ -193,6 +239,7 @@ const server = spawn(
 try {
   await waitForServer();
   await run();
+  assertServerRunning();
 } finally {
   server.kill();
 }
@@ -202,5 +249,5 @@ if (failures.length > 0) {
   process.exit(1);
 }
 console.log(
-  `Smoke test passed (${redirectsChecked} redirects and ${linksChecked} internal links checked).`,
+  `Smoke test passed (${Object.keys(NEW_PAGES).length} pages, ${redirectsChecked} redirects and ${linksChecked} internal links checked).`,
 );
