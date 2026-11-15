@@ -5,7 +5,6 @@ export interface ProjectContent {
   category: string;
   // Appended to "NN / Name" on the home card when set.
   cardLabel?: string;
-  tagline?: string;
   summary: string;
   headline: string;
   introduction: string;
@@ -34,11 +33,9 @@ const LIBRA_CI_RUN =
 export const caseLabels = {
   es: {
     back: "Todos los proyectos",
-    read: "Explorar el proyecto",
     demo: "Abrir demo",
     code: "Código",
     role: "Mi participación",
-    context: "Contexto",
     status: "Estado",
     year: "Año",
     challenge: "El punto de partida",
@@ -52,17 +49,14 @@ export const caseLabels = {
     screen: "Captura de la aplicación",
     inspect: "Ampliar captura",
     close: "Cerrar imagen",
-    of: "de",
     selected: "Selección de proyectos",
     view: "Ver proyecto",
   },
   en: {
     back: "All projects",
-    read: "Explore the project",
     demo: "Open demo",
     code: "Code",
     role: "My contribution",
-    context: "Context",
     status: "Status",
     year: "Year",
     challenge: "The starting point",
@@ -76,7 +70,6 @@ export const caseLabels = {
     screen: "Application screenshot",
     inspect: "Enlarge screenshot",
     close: "Close image",
-    of: "of",
     selected: "Selected projects",
     view: "View project",
   },
@@ -151,7 +144,6 @@ export const projectsContent: Record<
     },
     "obsidian-library": {
       category: "Proyecto personal · Aplicación web",
-      tagline: "Del catálogo al préstamo, con cada operación conectada.",
       summary:
         "Una biblioteca para lectores y administradores: catálogo, préstamos, reservas y membresías con pagos mediante Stripe.",
       headline: "Una biblioteca. Todo un producto detrás.",
@@ -200,7 +192,6 @@ export const projectsContent: Record<
     },
     "la-central": {
       category: "Desarrollo a medida · ERP + POS",
-      tagline: "La operación de un minisúper, conectada de principio a fin.",
       summary:
         "Ventas, inventario, caja, compras y fiado en una instalación local compartida por varias cajas.",
       headline: "Software a la medida de un negocio real.",
@@ -249,7 +240,6 @@ export const projectsContent: Record<
     },
     selvatica: {
       category: "Proyecto personal · Experiencia web",
-      tagline: "Una experiencia digital construida alrededor del paisaje.",
       summary:
         "Hospitalidad conceptual inspirada en Arenal: composición editorial, imágenes y movimiento que cambian con el dispositivo.",
       headline: "El paisaje marca el ritmo.",
@@ -358,7 +348,6 @@ export const projectsContent: Record<
     },
     "obsidian-library": {
       category: "Personal project · Web application",
-      tagline: "From the catalog to the loan, with every operation connected.",
       summary:
         "A library for readers and administrators: a catalog, loans, reservations and memberships with Stripe payments.",
       headline: "A library. A whole product behind it.",
@@ -407,7 +396,6 @@ export const projectsContent: Record<
     },
     "la-central": {
       category: "Custom software · ERP + POS",
-      tagline: "The daily operation of a grocery store, connected end to end.",
       summary:
         "Sales, inventory, cash management, purchasing and customer credit in one local installation shared by multiple registers.",
       headline: "Software shaped around a real business.",
@@ -456,7 +444,6 @@ export const projectsContent: Record<
     },
     selvatica: {
       category: "Personal project · Web experience",
-      tagline: "A digital experience built around the landscape.",
       summary:
         "A hospitality concept inspired by Arenal: editorial composition, imagery and motion adapted to each device.",
       headline: "The landscape sets the pace.",

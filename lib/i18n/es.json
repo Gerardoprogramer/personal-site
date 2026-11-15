@@ -1,7 +1,6 @@
 {
   "nav": {
-    "languageSwitcher": "Selector de idioma",
-    "disponible": "Disponible"
+    "languageSwitcher": "Selector de idioma"
   },
   "profile": {
     "role": "Informático Empresarial · Full Stack",
@@ -96,12 +95,12 @@
   },
   "privacy": {
     "title": "Política de privacidad",
-    "lastUpdated": "Última actualización: julio 2026",
+    "lastUpdated": "Última actualización: 15 de noviembre de 2026",
     "intro": "Este sitio es mi portfolio personal. Esta página explica qué información se recolecta cuando lo visitás y cómo la uso.",
     "sections": [
       {
         "heading": "Qué datos se recolectan",
-        "body": "Uso Google Analytics para entender cómo se usa este sitio: qué páginas se visitan, cuánto tiempo se pasa en cada una, desde qué país o dispositivo entrás, y de qué sitio venís (por ejemplo LinkedIn o Google). No recolecto tu nombre, correo, ni ningún dato que te identifique directamente, salvo que me lo envíes vos mismo a través del formulario de contacto."
+        "body": "Google Analytics solo se carga si aceptás en el aviso de cookies. Antes de que elijas, y si rechazás, este sitio no lo carga. Si aceptás, lo uso para entender cómo se usa este sitio: qué páginas se visitan, cuánto tiempo se pasa en cada una, desde qué país o dispositivo entrás, y de qué sitio venís (por ejemplo LinkedIn o Google). No recolecto tu nombre, correo, ni ningún dato que te identifique directamente, salvo que me lo envíes vos mismo a través del formulario de contacto."
       },
       {
         "heading": "Cómo se usa esta información",
@@ -109,11 +108,11 @@
       },
       {
         "heading": "Formulario de contacto",
-        "body": "Si completás el formulario de contacto, el nombre, correo y mensaje que enviás se usan exclusivamente para responderte. No se agregan a ninguna lista de correo ni se usan para otro fin."
+        "body": "Si completás el formulario de contacto, el nombre, el correo, el motivo y el mensaje que enviás me llegan por correo electrónico a través de Resend, el servicio que uso para enviarlo. Se usan exclusivamente para responderte. No se agregan a ninguna lista de correo ni se usan para otro fin. Para frenar los envíos automáticos, el servidor mantiene tu dirección IP en memoria de forma temporal y limita los envíos a 5 cada 10 minutos. Este sitio no tiene base de datos propia."
       },
       {
-        "heading": "Cookies",
-        "body": "Este sitio usa una cookie técnica para recordar tu elección sobre Analytics (aceptar o rechazar), y las cookies propias de Google Analytics si diste tu consentimiento. Podés cambiar tu decisión en cualquier momento desde el enlace de \"preferencias de cookies\" en el pie de página."
+        "heading": "Cookies y almacenamiento local",
+        "body": "Este sitio escribe una sola cookie propia, \"language\", que recuerda durante un año el idioma que elegiste (es o en) para abrir el sitio en ese idioma la próxima vez. Se escribe cuando cambiás de idioma con el selector o abrís un enlace que indica el idioma. Tu elección sobre Analytics (aceptar o rechazar) no se guarda en una cookie, sino en el almacenamiento local de tu navegador, donde permanece hasta que la cambies o borres los datos del sitio. Google Analytics usa sus propias cookies solo si diste tu consentimiento. Podés cambiar tu decisión en cualquier momento desde el enlace de \"preferencias de cookies\" en el pie de página."
       },
       {
         "heading": "Tus derechos",

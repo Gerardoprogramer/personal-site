@@ -4,7 +4,9 @@ Bilingual personal portfolio built with **Next.js 16**, **React 19**, **TypeScri
 
 The site presents selected software projects as detailed case studies, together with professional experience, technical background, services, and contact information.
 
-**Live site:** https://gerardomartinez.dev
+**Live site:** https://www.gerardomartinez.dev
+
+For the decisions behind the code (routes, the migration from `?lang=`, i18n, SEO, security, measurements), see [docs/architecture.md](docs/architecture.md).
 
 ---
 
@@ -25,26 +27,13 @@ The portfolio is available in both **Spanish and English**.
 
 ## Featured Projects
 
-### Obsidian Library
+### Libra
 
-A full-stack library management platform for readers and administrators.
+A bilingual digital library of classic literature: catalog, chapter reader, and reading progress that is kept even when the text changes.
 
-Key areas include:
+**Stack:** Next.js 16, React 19, TypeScript, PostgreSQL, Drizzle, Cloudflare R2
 
-- book catalog;
-- loans and returns;
-- reservations;
-- wishlists and reviews;
-- fines;
-- membership plans;
-- Stripe payments;
-- administrative workflows;
-- authentication and authorization.
-
-**Frontend:** Next.js, TypeScript, React Query  
-**Backend:** Java 21, Spring Boot, PostgreSQL
-
-**Live demo:** https://library.gerardomartinez.dev
+**Live demo:** https://www.alyvenor.com/en
 
 ---
 
@@ -67,6 +56,29 @@ It covers:
 **Stack:** React, TypeScript, NestJS, Prisma, PostgreSQL, Docker
 
 The project is designed for local deployment and does not depend on Internet connectivity for daily operation.
+
+---
+
+### Obsidian Library
+
+A full-stack library management platform for readers and administrators.
+
+Key areas include:
+
+- book catalog;
+- loans and returns;
+- reservations;
+- wishlists and reviews;
+- fines;
+- membership plans;
+- Stripe payments;
+- administrative workflows;
+- authentication and authorization.
+
+**Frontend:** Next.js, TypeScript, React Query  
+**Backend:** Java 21, Spring Boot, PostgreSQL
+
+**Live demo:** https://library.gerardomartinez.dev
 
 ---
 
@@ -100,7 +112,8 @@ The project explores:
 | Validation | Zod |
 | Email | Resend + React Email |
 | Internationalization | Custom ES / EN implementation |
-| Analytics | Google Analytics with consent management |
+| Analytics | Google Analytics, loaded only after consent |
+| Tests | Vitest, plus a smoke test against the production build |
 | Deployment | Vercel |
 
 ---
@@ -109,91 +122,73 @@ The project explores:
 
 The project uses the **Next.js App Router**.
 
-Main areas are separated by responsibility:
-
 ```text
 app/
-├── api/
-│   └── contact/          # Contact form API
-├── proyectos/
-│   └── [slug]/           # Dynamic project case studies
-├── privacidad/           # Privacy policy
-├── layout.tsx            # Global metadata and layout
+├── [lang]/                   # The site: /es and /en, prerendered
+│   ├── layout.tsx            # Root layout and site metadata
+│   ├── page.tsx              # Home page
+│   ├── proyectos/[slug]/     # Case studies in Spanish
+│   ├── projects/[slug]/      # Case studies in English
+│   ├── privacidad/           # Privacy policy in Spanish
+│   └── privacy/              # Privacy policy in English
+├── (legacy)/                 # Old ?lang= routes. Temporary, see docs/architecture.md
+├── api/contact/              # Contact form API
+├── global-not-found.tsx      # 404 for URLs that match no route
 ├── robots.ts
 └── sitemap.ts
 
 components/
-├── layout/               # Header, footer and cookie consent
-├── projects/             # Project case study components
-├── sections/             # Homepage sections
-└── shared/               # Reusable UI elements
+├── layout/                   # Header, footer, cookie consent
+├── pages/                    # Page logic shared by the two language folders
+├── projects/                 # Case study components
+├── sections/                 # Home page sections
+├── seo/                      # JSON-LD
+└── shared/                   # Reusable UI elements
 
-content/
-├── projects.ts           # Project metadata
-└── Experience.tsx        # Professional experience data
-
+content/                      # Data without language: projects, profile, stack
 lib/
-└── i18n/
-    ├── context.tsx
-    ├── es.json
-    ├── en.json
-    └── projects.content.ts
-
-emails/
-└── ContactEmail.tsx
+├── routes.ts                 # Every URL of the site comes from here
+├── redirects.ts              # Old URLs -> /es and /en
+├── seo.ts, structured-data.ts
+├── sections.ts               # Home sections and the active-section rule
+├── analytics.ts              # When Google Analytics may load
+└── i18n/                     # es.json, en.json, projects.content.ts
+proxy.ts                      # Redirects the old URLs (Next.js 16 "proxy")
+scripts/smoke.mjs             # Smoke test against the production build
 ```
-
-Project metadata and translated project narratives are intentionally separated from presentation components.
-
-This makes it possible to update content without embedding large amounts of copy directly inside UI components.
 
 ---
 
-## Internationalization
+## Routes and languages
 
-The portfolio supports:
+The language is part of the path, and the path segments are translated. Project slugs are proper names and stay the same.
 
-```text
-Spanish
-English
-```
+| Page | Spanish | English |
+| --- | --- | --- |
+| Home | `/es` | `/en` |
+| Case study | `/es/proyectos/<slug>` | `/en/projects/<slug>` |
+| Privacy policy | `/es/privacidad` | `/en/privacy` |
 
-Language selection can be provided through:
+All 12 pages (home, 4 case studies and the privacy policy, in 2 languages) are prerendered.
 
-```text
-?lang=es
-?lang=en
-```
+### Redirects
 
-The selected language is persisted with a cookie.
+The site used to choose the language with `?lang=es` or `?lang=en`. Those URLs still work: they redirect, with a temporary **307**, to the new path.
 
-The Next.js proxy resolves the active language and forwards it internally through the:
+| Old URL | Goes to |
+| --- | --- |
+| `/?lang=en` | `/en` |
+| `/proyectos/libra?lang=en` | `/en/projects/libra` |
+| `/privacidad?lang=en` | `/en/privacy` |
+| `/proyectos/libra`, `/privacidad` (no `lang`) | the Spanish page |
+| `/` | `/es` or `/en`: the `language` cookie, then `Accept-Language`, then Spanish |
+| `/en/proyectos/libra` (segment of the other language) | `/en/projects/libra` |
 
-```text
-x-language
-```
-
-request header.
-
-This allows server-generated metadata and client-rendered content to stay aligned with the selected language.
+The language switcher stores the choice in a `language` cookie for one year, so `/` opens in the same language next time.
 
 ---
 
 ## Project Case Studies
-
-Each selected project has its own dynamic route:
-
-```text
-/proyectos/[slug]
-```
-
-Examples:
-
-```text
-/proyectos/obsidian-library
-/proyectos/la-central
-/proyectos/selvatica
-```
 
 Each case study can include:
 
@@ -206,7 +201,29 @@ Each case study can include:
 - source repositories;
 - live demo links.
 
-Project pages also generate their own metadata based on the selected language.
+### Adding a project
+
+1. `content/projects.ts`: add the slug to `ProjectSlug` and the entry to `projects`. The order of the array is the order of the cards and of "next project".
+2. `lib/i18n/projects.content.ts`: write the case study in `es` and `en`.
+3. `lib/structured-data.ts`: choose its schema.org type in `projectSchema`.
+4. `components/projects/ProjectFeature.tsx`: add a `case` for the slug (return `null` if it has no feature block).
+5. `public/projects/`: add the cover and set its real width and height in `content/projects.ts`.
+6. `components/projects/ProjectCaseStudy.tsx`: add a caption for the cover if the generic one does not fit.
+7. Update the text that counts projects: `hero.proof` and `projectsSection` in `lib/i18n/es.json` and `en.json`, and the `meta` descriptions.
+8. Update the lists in `lib/routes.test.ts`, `lib/seo.test.ts` and `lib/routes-metadata.test.ts`.
+
+Routes, sitemap, redirects and static generation follow `content/projects.ts` on their own.
+
+What catches a missed step:
+
+| If you forget… | …this fails |
+| --- | --- |
+| steps 2, 3 or 4 | `pnpm exec tsc --noEmit` |
+| a translation, an optional field in one language, or a list of a different length | `lib/i18n/parity.test.ts` |
+| the cover file, or its declared size | `content/public-files.test.ts` |
+| step 8 | the tests themselves |
+
+The smoke test needs no edit: it reads the slugs from `content/projects.ts` and checks the new pages and the sitemap. Steps 6 and 7 have no automatic check.
 
 ---
 
@@ -214,19 +231,13 @@ Project pages also generate their own metadata based on the selected language.
 
 The portfolio includes:
 
-- dynamic metadata;
-- canonical URLs;
-- language alternates;
-- Open Graph metadata;
-- Twitter cards;
-- per-project metadata;
-- sitemap generation;
+- a canonical URL per page (its own `/es` or `/en` URL);
+- language alternates (`es`, `en` and `x-default`, which is the site root);
+- Open Graph metadata and Twitter cards;
+- per-project metadata and Open Graph previews using the project images;
+- a sitemap with the 12 pages;
 - `robots.txt`;
-- structured data using JSON-LD.
-
-The main site publishes a `Person` schema containing professional and technical information.
-
-Project pages generate individual Open Graph previews using their project images.
+- structured data using JSON-LD: a `Person` on every page, and a `SoftwareApplication` or `CreativeWork` on each case study.
 
 ---
 
@@ -254,19 +265,13 @@ Automated accessibility scores are treated as supporting evidence rather than a 
 
 The site integrates **Google Analytics** with consent management.
 
-Analytics storage defaults to:
-
-```text
-denied
-```
-
-until the visitor explicitly accepts analytics cookies.
+Google Analytics is not part of the page. It is loaded only after the visitor accepts it in the cookie banner; before a choice, and after a rejection, the site makes no request to Google. The choice is kept in the browser's local storage.
 
 The portfolio also includes a privacy policy explaining:
 
 - analytics usage;
 - contact form data;
-- cookies;
+- cookies and local storage;
 - data handling;
 - user rights.
 
@@ -284,23 +289,14 @@ The server validates incoming data with **Zod** before sending the message throu
 
 Validation includes:
 
-- name length;
+- name length, and no control characters;
 - valid email address;
 - contact intent;
 - message length.
 
-A hidden honeypot field is also used to reject basic automated submissions.
+The handler also checks the request `Origin`, limits each IP address to 5 submissions every 10 minutes (in memory, per server instance), and uses a hidden honeypot field to reject basic automated submissions.
 
 Email delivery uses **React Email** for the message template.
-
-Required environment configuration includes:
-
-```env
-CONTACT_TO_EMAIL=your@email.com
-RESEND_API_KEY=your_resend_key
-```
-
-Environment files are excluded from version control.
 
 ---
 
@@ -324,8 +320,8 @@ Screenshots associated with La Central use demonstration data.
 
 ### Requirements
 
-- Node.js 20.9+
-- pnpm
+- Node.js 22 (the version CI uses)
+- pnpm 10
 
 Clone the repository:
 
@@ -339,6 +335,17 @@ Install dependencies:
 ```bash
 pnpm install
 ```
+
+### Environment variables
+
+The contact form needs two variables. Their names are in [`.env.example`](.env.example); put the values in a `.env.local` file, which git ignores.
+
+| Variable | Used for |
+| --- | --- |
+| `RESEND_API_KEY` | Sending the contact email through Resend |
+| `CONTACT_TO_EMAIL` | The inbox that receives it |
+
+The rest of the site works without them.
 
 Start development:
 
@@ -361,14 +368,22 @@ Before publishing changes:
 ```bash
 pnpm lint
 pnpm exec tsc --noEmit
+pnpm test
 pnpm build
+node scripts/smoke.mjs
 ```
 
 These checks validate:
 
-- ESLint rules;
+- ESLint rules, with no warnings allowed;
 - TypeScript types;
-- production compilation.
+- unit tests (Vitest): routes, redirects, metadata, sitemap, JSON-LD, the contact API, translation parity, referenced files and content figures;
+- production compilation;
+- the smoke test: it starts the production build and checks the 12 pages (status, canonical, hreflang, internal links), the sitemap, every redirect and the 404 pages.
+
+The smoke test uses port 3100. If it is taken: `SMOKE_PORT=3187 node scripts/smoke.mjs`.
+
+CI runs the same steps on every pull request, plus `pnpm audit --audit-level=high`.
 
 ---
 
@@ -376,7 +391,7 @@ These checks validate:
 
 The portfolio is deployed with **Vercel** using the custom domain:
 
-https://gerardomartinez.dev
+https://www.gerardomartinez.dev
 
 The application uses environment variables for external services such as Resend.
 
@@ -408,5 +423,5 @@ Full Stack Developer · Business Informatics
 
 Costa Rica
 
-- Portfolio: https://gerardomartinez.dev
+- Portfolio: https://www.gerardomartinez.dev
 - GitHub: https://github.com/Gerardoprogramer
