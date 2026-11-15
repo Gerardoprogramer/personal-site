@@ -95,10 +95,13 @@ export function CookieConsent() {
   return (
     <div
       className="cookie-banner fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-xl surface-card p-4 sm:p-5 shadow-2xl"
-      role="dialog"
-      aria-label={t.cookies.message}
+      role="region"
+      aria-labelledby="cookie-banner-title"
     >
-      <p className="font-mono-tech text-xs text-primary mb-2 tracking-wide uppercase">
+      <p
+        id="cookie-banner-title"
+        className="font-mono-tech text-xs text-primary mb-2 tracking-wide uppercase"
+      >
         cookies
       </p>
       <p className="text-sm text-muted-foreground leading-relaxed mb-4">
