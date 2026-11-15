@@ -33,6 +33,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
+  // No "X-Powered-By: Next.js" header.
+  poweredByHeader: false,
   experimental: {
     // app/global-not-found.tsx renders 404s for URLs that match no route, now
     // that there are two root layouts ((legacy) and [lang]). Experimental in
