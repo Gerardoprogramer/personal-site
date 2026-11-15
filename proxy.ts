@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { LANGUAGE_COOKIE, legacyRedirect } from "@/lib/redirects";
+import { languageCookieAttributes } from "@/lib/language-cookie";
 import { isLanguage } from "@/lib/routes";
 import { toLanguage } from "@/lib/i18n/lang";
 
@@ -7,6 +8,7 @@ export function proxy(request: NextRequest) {
     const { pathname, search } = request.nextUrl;
     const langParam = request.nextUrl.searchParams.get("lang");
     const cookieLang = request.cookies.get(LANGUAGE_COOKIE)?.value;
+    const cookieAttributes = languageCookieAttributes(request.nextUrl.protocol);
 
     const redirect = legacyRedirect({
         pathname,
@@ -31,10 +33,7 @@ export function proxy(request: NextRequest) {
         } else if (isLanguage(langParam) && langParam !== cookieLang) {
             // An explicit ?lang= still stores the choice, as in stage 1, so
             // the next visit to / goes to the same language.
-            response.cookies.set(LANGUAGE_COOKIE, redirect.lang, {
-                path: "/",
-                maxAge: 31536000,
-            });
+            response.cookies.set(LANGUAGE_COOKIE, redirect.lang, cookieAttributes);
         }
         return response;
     }
@@ -50,7 +49,7 @@ export function proxy(request: NextRequest) {
     const response = NextResponse.next({ request: { headers: requestHeaders } });
 
     if (isLanguage(langParam) && langParam !== cookieLang) {
-        response.cookies.set(LANGUAGE_COOKIE, langParam, { path: "/", maxAge: 31536000 });
+        response.cookies.set(LANGUAGE_COOKIE, langParam, cookieAttributes);
     }
 
     return response;
