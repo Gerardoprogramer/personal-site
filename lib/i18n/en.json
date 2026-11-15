@@ -96,12 +96,12 @@
   },
   "privacy": {
     "title": "Privacy Policy",
-    "lastUpdated": "Last updated: July 2026",
+    "lastUpdated": "Last updated: November 15, 2026",
     "intro": "This site is my personal portfolio. This page explains what information is collected when you visit it and how I use it.",
     "sections": [
       {
         "heading": "What data is collected",
-        "body": "I use Google Analytics to understand how this site is used: which pages are visited, how much time is spent on each, what country or device you're browsing from, and where you came from (e.g. LinkedIn or Google). I don't collect your name, email, or any directly identifying information, unless you send it to me yourself through the contact form."
+        "body": "Google Analytics loads only if you accept it in the cookie notice. Before you choose, and if you reject it, this site does not load it. If you accept, I use it to understand how this site is used: which pages are visited, how much time is spent on each, what country or device you're browsing from, and where you came from (e.g. LinkedIn or Google). I don't collect your name, email, or any directly identifying information, unless you send it to me yourself through the contact form."
       },
       {
         "heading": "How this information is used",
@@ -109,11 +109,11 @@
       },
       {
         "heading": "Contact form",
-        "body": "If you fill out the contact form, the name, email, and message you send are used exclusively to reply to you. They are not added to any mailing list or used for any other purpose."
+        "body": "If you fill out the contact form, the name, email, reason and message you send reach me by email through Resend, the service I use to send it. They are used exclusively to reply to you. They are not added to any mailing list or used for any other purpose. To slow down automated submissions, the server keeps your IP address in memory temporarily and limits submissions to 5 every 10 minutes. This site has no database of its own."
       },
       {
-        "heading": "Cookies",
-        "body": "This site uses a technical cookie to remember your choice about Analytics (accept or reject), and Google Analytics' own cookies if you gave your consent. You can change your decision at any time from the \"cookie preferences\" link in the footer."
+        "heading": "Cookies and local storage",
+        "body": "This site writes a single cookie of its own, \"language\", which remembers for one year the language you chose (es or en) so the site opens in that language next time. It is written when you switch language with the selector or open a link that states the language. Your choice about Analytics (accept or reject) is not stored in a cookie but in your browser's local storage, where it stays until you change it or clear the site's data. Google Analytics uses its own cookies only if you gave your consent. You can change your decision at any time from the \"cookie preferences\" link in the footer."
       },
       {
         "heading": "Your rights",
