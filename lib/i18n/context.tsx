@@ -6,6 +6,7 @@ import es from "./es.json";
 import en from "./en.json";
 import type { Language } from "./lang";
 import { legacyPathFor, pathFor, type RouteKey } from "@/lib/routes";
+import { languageCookieString } from "@/lib/language-cookie";
 
 export type { Language };
 export type Translations = typeof es;
@@ -31,7 +32,7 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
 function writeLanguageCookie(lang: Language) {
-  document.cookie = `language=${lang}; path=/; max-age=31536000`;
+  document.cookie = languageCookieString(lang, window.location.protocol);
 }
 
 function useDocumentLanguage(language: Language) {

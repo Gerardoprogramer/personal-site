@@ -86,6 +86,28 @@ describe("proxy: redirects of table 4.1", () => {
     expect(response.cookies.get("language")?.value).toBe(to.slice(1, 3));
   });
 
+  it("stores the cookie for one year with SameSite=Lax, and Secure over HTTPS", () => {
+    for (const path of ["/?lang=en", "/proyectos/nope?lang=en"]) {
+      expect(proxy(request(path)).cookies.get("language"), path).toMatchObject({
+        value: "en",
+        path: "/",
+        maxAge: 31536000,
+        sameSite: "lax",
+        secure: true,
+      });
+    }
+  });
+
+  it("leaves Secure out over plain HTTP, so the cookie works on localhost", () => {
+    for (const path of ["/?lang=en", "/proyectos/nope?lang=en"]) {
+      const response = proxy(new NextRequest(`http://localhost:3000${path}`));
+      const cookie = response.cookies.get("language");
+      expect(cookie, path).toMatchObject({ value: "en", sameSite: "lax", maxAge: 31536000 });
+      expect(cookie?.secure, path).toBeFalsy();
+      expect(response.headers.get("set-cookie"), path).not.toMatch(/secure/i);
+    }
+  });
+
   it("does not rewrite a cookie that already matches ?lang=", () => {
     const response = proxy(request("/?lang=en", { cookie: "language=en" }));
     expect(location(response)).toBe("/en");

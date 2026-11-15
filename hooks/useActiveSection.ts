@@ -2,25 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useTranslation } from "@/lib/i18n/context";
-
-const SECTION_IDS = [
-  "top",
-  "proyectos",
-  "experiencia",
-  "sobre-mi",
-  "stack",
-  "servicios",
-  "contacto",
-];
+import {
+  SECTION_IDS,
+  TOP_SECTION,
+  getActiveSection,
+  sectionPage,
+} from "@/lib/sections";
 
 export function useActiveSection() {
   const pathname = usePathname();
-  const { homePath } = useTranslation();
-  const [active, setActive] = useState("top");
+  const [active, setActive] = useState(TOP_SECTION);
+  const onHome = sectionPage(pathname) === "home";
 
   useEffect(() => {
-    if (pathname !== homePath) return;
+    if (!onHome) return;
     const sections = SECTION_IDS.map((id) =>
       document.getElementById(id),
     ).filter((section): section is HTMLElement => Boolean(section));
@@ -29,7 +24,7 @@ export function useActiveSection() {
       const current = sections.findLast(
         (section) => section.getBoundingClientRect().top <= readingLine,
       );
-      setActive(current?.id ?? "top");
+      setActive(current?.id ?? TOP_SECTION);
     };
     const observer = new IntersectionObserver(update, {
       rootMargin: "-35% 0px -64% 0px",
@@ -40,8 +35,7 @@ export function useActiveSection() {
       cancelAnimationFrame(frame);
       observer.disconnect();
     };
-  }, [pathname, homePath]);
+  }, [onHome]);
 
-  if (pathname.startsWith("/proyectos/")) return "proyectos";
-  return pathname === "/" ? active : null;
+  return getActiveSection(pathname, active);
 }
