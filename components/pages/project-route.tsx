@@ -56,6 +56,7 @@ export async function projectMetadata(
       url: canonicalUrl,
       locale: ogLocale(lang),
       alternateLocale: ogLocale(otherLanguage(lang)),
+      siteName: "Gerardo Martínez Monge",
       // Without a cover the site's default Open Graph image applies.
       ...(project.cover && {
         images: [
