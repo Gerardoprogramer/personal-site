@@ -45,15 +45,21 @@ describe.each(languages)("Libra figures (%s)", (lang) => {
     expect(conventional).toBeLessThanOrEqual(total);
   });
 
-  it("the hero line states the same number of tests run in CI", () => {
+  it("the hero line rounds the tests run in CI down to the hundred", () => {
+    // "más de 700 pruebas" / "700+ automated tests": a round figure that stays
+    // true while the exact count in the case study grows.
     const proof = dictionaries[lang].hero.proof;
-    expect(numbersIn(proof)).toContain(run);
+    const round = Math.floor(run / 100) * 100;
+    const claim = lang === "es" ? `más de ${round} pruebas` : `${round}+ automated tests`;
+    expect(proof).toContain(claim);
+    expect(run).toBeGreaterThan(round);
+    expect(numbersIn(proof)).not.toContain(run);
     expect(numbersIn(proof)).not.toContain(defined);
   });
 
   it("the breakdown under the figures adds up", () => {
     const [tests, , history] = libra.evidenceList ?? [];
-    // "CI runs 707 tests: 684 in the main job plus 23 integration tests, …
+    // "CI runs 718 tests: 695 in the main job plus 23 integration tests, …
     // with 0 failures. The remaining 52 run only locally: 51 … and 1 …"
     const [inCi, mainJob, integration, failures, localOnly, epub, environment] =
       numbersIn(tests);
@@ -62,7 +68,7 @@ describe.each(languages)("Libra figures (%s)", (lang) => {
     expect(failures).toBe(0);
     expect(run + localOnly).toBe(defined);
     expect(epub + environment).toBe(localOnly);
-    // "History: 132 of 137 non-merge commits follow the semantic convention."
+    // "History: 136 of 141 non-merge commits follow the semantic convention."
     expect(numbersIn(history)).toEqual([conventional, total]);
   });
 });
@@ -78,9 +84,10 @@ describe("Libra figures across languages and files", () => {
 
   it("the AI section counts commits out of the same total", () => {
     const { total } = figures("es");
-    // "al menos 45 de 137 commits" / "at least 45 of Libra’s 137 commits"
-    const spanish = aiPractice.match(/al menos (\d+) de (\d+) commits/);
-    const english = aiPractice.match(/at least (\d+) of Libra’s (\d+) commits/);
+    // "al menos 45 de 141 commits sin merge" / "at least 45 of Libra’s 141
+    // non-merge commits"
+    const spanish = aiPractice.match(/al menos (\d+) de (\d+) commits sin merge/);
+    const english = aiPractice.match(/at least (\d+) of Libra’s (\d+) non-merge commits/);
     expect(spanish, "Spanish sentence not found").not.toBeNull();
     expect(english, "English sentence not found").not.toBeNull();
     expect(Number(spanish![2])).toBe(total);

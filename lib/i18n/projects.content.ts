@@ -25,10 +25,19 @@ export interface ProjectContent {
   closing?: string;
 }
 
-// Libra's figures, checked on 2026-11-14 against github.com/Gerardoprogramer/libra
-// at ed3c3bf and its CI run 43528652160 (see the PR that added them).
+// Libra's figures, checked on 2026-11-18 against github.com/Gerardoprogramer/libra
+// at af9291d and its CI run 43719700014 of 2026-11-15, the latest on master:
+// main job tests 770, pass 695, fail 0; integration job tests 24, pass 24.
+// Commits counted with the GitHub API: 141 non-merge (the root commit
+// included), 136 conventional, 45 with an AI Co-authored-by trailer.
 const LIBRA_CI_RUN =
-  "https://github.com/Gerardoprogramer/libra/actions/runs/43528652160";
+  "https://github.com/Gerardoprogramer/libra/actions/runs/43719700014";
+
+// Selvática's Lighthouse table (Performance 93, Accessibility 100, Best
+// Practices 100, SEO 100), pinned to the commit checked on 2026-11-18
+// (README.md lines 119-128 at ea31dc2) so the link keeps showing these scores.
+const SELVATICA_LIGHTHOUSE =
+  "https://github.com/Gerardoprogramer/selvatica/blob/ea31dc2/README.md#lighthouse";
 
 export const caseLabels = {
   es: {
@@ -120,23 +129,24 @@ export const projectsContent: Record<
         },
       ],
       evidence: [
-        { value: "707", label: "pruebas automatizadas ejecutadas en CI, 0 fallos" },
-        { value: "759", label: "pruebas automatizadas definidas" },
+        { value: "718", label: "pruebas automatizadas ejecutadas en CI, 0 fallos" },
+        { value: "770", label: "pruebas automatizadas definidas" },
         {
-          value: "132/137",
+          value: "136/141",
           label: "commits sin merge con la convención semántica",
         },
       ],
-      evidenceNote: "Cifras del 14 de noviembre de 2026.",
+      evidenceNote:
+        "Cifras calculadas el 18 de noviembre de 2026 sobre el run de CI del 15 de noviembre.",
       evidenceList: [
-        "En CI se ejecutan 707 pruebas: 684 en el job principal más 23 de integración, sin contar dos veces la del arnés, con 0 fallos. Las 52 restantes solo corren en local: 51 dependen de archivos EPUB que no se versionan y 1 comprueba el entorno de procesamiento de imágenes aprobado.",
+        "En CI se ejecutan 718 pruebas: 695 en el job principal más 23 de integración, sin contar dos veces la del arnés, con 0 fallos. Las 52 restantes solo corren en local: 51 dependen de archivos EPUB que no se versionan y 1 comprueba el entorno de procesamiento de imágenes aprobado.",
         "Las pruebas de integración corren contra un Postgres desechable en CI.",
-        "Historial: 132 de 137 commits sin merge siguen la convención semántica.",
-        "Secret scanning y push protection activos; análisis del historial con gitleaks sin hallazgos.",
+        "Historial: 136 de 141 commits sin merge siguen la convención semántica.",
+        "Secret scanning y push protection activos (configuración del repositorio, no visible desde fuera); análisis del historial con gitleaks sin hallazgos (análisis manual, sin registro público).",
         "Scripts editoriales y migraciones: dry-run por defecto (excepciones documentadas: db:studio, sin guarda, y db:seed, que solo escribe en una base local y rechaza las remotas).",
       ],
       evidenceSource: {
-        label: "Ver el último run de CI",
+        label: "Ver el run de CI de estas cifras",
         href: LIBRA_CI_RUN,
       },
       scope:
@@ -277,6 +287,10 @@ export const projectsContent: Record<
       ],
       evidenceNote:
         "Puntuaciones recogidas en el README del proyecto. El rendimiento depende de las condiciones de medición; el resultado automatizado de accesibilidad no sustituye la comprobación manual.",
+      evidenceSource: {
+        label: "Ver las puntuaciones en el README",
+        href: SELVATICA_LIGHTHOUSE,
+      },
       scope:
         "Proyecto conceptual publicado como demo. No representa un alojamiento ni un operador turístico real. El formulario prepara una consulta por WhatsApp; no confirma reservas ni procesa pagos.",
       closing:
@@ -324,23 +338,24 @@ export const projectsContent: Record<
         },
       ],
       evidence: [
-        { value: "707", label: "automated tests run in CI, 0 failures" },
-        { value: "759", label: "automated tests defined" },
+        { value: "718", label: "automated tests run in CI, 0 failures" },
+        { value: "770", label: "automated tests defined" },
         {
-          value: "132/137",
+          value: "136/141",
           label: "non-merge commits following the semantic convention",
         },
       ],
-      evidenceNote: "Figures as of November 14, 2026.",
+      evidenceNote:
+        "Figures calculated on November 18, 2026 from the CI run of November 15.",
       evidenceList: [
-        "CI runs 707 tests: 684 in the main job plus 23 integration tests, without counting the harness test twice, with 0 failures. The remaining 52 run only locally: 51 depend on EPUB files that are not versioned and 1 checks the approved image-processing environment.",
+        "CI runs 718 tests: 695 in the main job plus 23 integration tests, without counting the harness test twice, with 0 failures. The remaining 52 run only locally: 51 depend on EPUB files that are not versioned and 1 checks the approved image-processing environment.",
         "Integration tests run against a disposable Postgres in CI.",
-        "History: 132 of 137 non-merge commits follow the semantic convention.",
-        "Secret scanning and push protection enabled; gitleaks history scan with no findings.",
+        "History: 136 of 141 non-merge commits follow the semantic convention.",
+        "Secret scanning and push protection enabled (repository setting, not publicly visible); gitleaks history scan with no findings (manual scan, no public record).",
         "Editorial scripts and migrations: dry run by default (documented exceptions: db:studio, which has no guard, and db:seed, which only writes to a local database and refuses remote ones).",
       ],
       evidenceSource: {
-        label: "View the latest CI run",
+        label: "See the CI run behind these figures",
         href: LIBRA_CI_RUN,
       },
       scope:
@@ -481,6 +496,10 @@ export const projectsContent: Record<
       ],
       evidenceNote:
         "Scores documented in the project README. Performance depends on measurement conditions; an automated accessibility score does not replace manual checks.",
+      evidenceSource: {
+        label: "See the scores in the README",
+        href: SELVATICA_LIGHTHOUSE,
+      },
       scope:
         "A conceptual project published as a demo. It does not represent a real accommodation or tourism operator. The form prepares a WhatsApp inquiry; it does not confirm reservations or process payments.",
       closing:

@@ -155,7 +155,7 @@
     "viewProjects": "Ver proyectos",
     "talk": "Hablemos",
     "availability": "Disponible para empleo y proyectos",
-    "proof": "3 proyectos desplegados · Libra: 707 pruebas automatizadas en CI, 0 fallos",
+    "proof": "3 proyectos desplegados · Libra: más de 700 pruebas automatizadas en CI",
     "cvLabel": "Ver currículum (PDF, se abre en otra pestaña)"
   },
   "projectsSection": {
@@ -174,7 +174,8 @@
     "titleLine2": "Construir con criterio.",
     "paragraphs": [
       "Mi formación en Informática Empresarial conecta dos cosas que me interesan: cómo funciona un negocio y cómo el software puede ayudarlo. Me gusta seguir el problema completo, desde lo que necesita una persona hasta los datos y las reglas que sostienen la solución.",
-      "Trabajo desde Liberia, Costa Rica. Leo bastante, disfruto pulir las interfaces y presto atención a lo que sucede cuando una operación falla. Busco aportar esa mirada en un equipo o en un proyecto a medida."
+      "Trabajo desde Liberia, Costa Rica. Leo bastante, disfruto pulir las interfaces y presto atención a lo que sucede cuando una operación falla. Busco aportar esa mirada en un equipo o en un proyecto a medida.",
+      "Bachiller en Informática Empresarial por la Universidad de Costa Rica (2025). Busco oportunidades en Costa Rica y en equipos remotos."
     ]
   },
   "stack": {

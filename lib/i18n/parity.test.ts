@@ -82,7 +82,7 @@ function emptyStrings(value: unknown): string[] {
     .map(([path]) => path);
 }
 
-// Figures ("707", "132/137") and URLs carry no language.
+// Figures ("718", "136/141") and URLs carry no language.
 function isLanguageNeutral(text: string) {
   return !/\p{L}/u.test(text) || /^https?:\/\//.test(text);
 }

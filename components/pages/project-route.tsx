@@ -51,7 +51,8 @@ export async function projectMetadata(
     },
     openGraph: {
       type: "article",
-      title: `${project.name} | Gerardo Martínez`,
+      // Same suffix as the <title> template in app/[lang]/layout.tsx.
+      title: `${project.name} | Gerardo Martínez Monge`,
       description: copy.summary,
       url: canonicalUrl,
       locale: ogLocale(lang),

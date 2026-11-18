@@ -155,7 +155,7 @@
     "viewProjects": "View projects",
     "talk": "Get in touch",
     "availability": "Open to roles and projects",
-    "proof": "3 deployed projects · Libra: 707 automated tests in CI, 0 failures",
+    "proof": "3 deployed projects · Libra: 700+ automated tests in CI",
     "cvLabel": "View résumé (PDF, opens in a new tab)"
   },
   "projectsSection": {
@@ -174,7 +174,8 @@
     "titleLine2": "Build with purpose.",
     "paragraphs": [
       "My background in Business Informatics connects two things I care about: how a business works and how software can help. I like following the whole problem, from a person’s needs to the data and rules that support the solution.",
-      "I work from Liberia, Costa Rica. I read a lot, enjoy refining interfaces and pay attention to what happens when an operation fails. I’m looking to bring that approach to a team or a custom project."
+      "I work from Liberia, Costa Rica. I read a lot, enjoy refining interfaces and pay attention to what happens when an operation fails. I’m looking to bring that approach to a team or a custom project.",
+      "Bachelor’s degree in Business Informatics from the University of Costa Rica (2025). Open to opportunities in Costa Rica and in remote teams."
     ]
   },
   "stack": {
