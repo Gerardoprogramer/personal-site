@@ -3,15 +3,16 @@
 import { useTranslation } from "@/lib/i18n/context";
 
 // "How I work with AI", shown in Libra's case study. Figures checked on
-// 2026-11-14 against Libra's history (ed3c3bf): 45 of 137 non-merge commits
-// carry a Co-authored-by trailer from Claude or GitHub Copilot. The three
+// 2026-11-18 with the GitHub API against Libra's master (af9291d): 45 of 141
+// non-merge commits carry a Co-authored-by trailer from Claude (41) or
+// GitHub Copilot (4). The three
 // write scripts of the example were fixed in d710d4a, 2c6a201 and eb81cf5.
 const copy = {
   es: {
     eyebrow: "Proceso",
     title: "Cómo trabajo con IA",
     intro:
-      "Uso asistentes de IA para programar (Claude y GitHub Copilot) y lo declaro: al menos 45 de 137 commits de Libra llevan coautoría de IA. Lo que me importa es que cada cambio se pueda verificar:",
+      "Uso asistentes de IA para programar (Claude y GitHub Copilot) y lo declaro: al menos 45 de 141 commits sin merge de Libra llevan coautoría de IA. Lo que me importa es que cada cambio se pueda verificar:",
     steps: [
       [
         "Contexto versionado",
@@ -33,7 +34,7 @@ const copy = {
     eyebrow: "Process",
     title: "How I work with AI",
     intro:
-      "I use AI coding assistants (Claude and GitHub Copilot) and I disclose it: at least 45 of Libra’s 137 commits are co-authored by AI. What matters to me is that every change can be verified:",
+      "I use AI coding assistants (Claude and GitHub Copilot) and I disclose it: at least 45 of Libra’s 141 non-merge commits are co-authored by AI. What matters to me is that every change can be verified:",
     steps: [
       [
         "Versioned context",

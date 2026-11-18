@@ -29,8 +29,10 @@ export function Hero() {
             {t.hero.titleLine2}
           </span>
         </h1>
-        {/* Figures checked on 2026-11-14: live demos of Libra, Obsidian Library
-            and Selvática; Libra CI run 43528652160 (684 + 23 unique tests). */}
+        {/* Live demos of Libra, Obsidian Library and Selvática (checked on
+            2026-11-14). The tests figure is rounded down to the hundred: Libra
+            CI run 43719700014 of 2026-11-15 ran 718 (695 + 23 unique tests);
+            content/libra-figures.test.ts keeps both figures in step. */}
         <p className="mt-6 font-mono-tech text-sm text-muted-foreground">
           {t.hero.proof}
         </p>
