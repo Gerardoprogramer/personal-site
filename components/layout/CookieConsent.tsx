@@ -165,7 +165,7 @@ export function CookieConsent() {
           {t.cookies.message}{" "}
           <a
             href={href({ page: "privacy" })}
-            className="text-accent hover:underline"
+            className="text-accent underline underline-offset-2"
           >
             {t.cookies.linkText}
           </a>
