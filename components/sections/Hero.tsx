@@ -57,7 +57,12 @@ export function Hero() {
             {t.common.viewResume}
           </a>
         </div>
-        <p className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-[#91c6a4]/45 bg-[#91c6a4]/10 px-4 py-2 text-sm font-medium text-foreground">
+        {/* The cookie banner waits until this line, the last of the hero's
+            actions, has scrolled out of view (lib/consent-banner.ts). */}
+        <p
+          data-consent-anchor
+          className="mt-6 inline-flex items-center gap-2.5 rounded-full border border-[#91c6a4]/45 bg-[#91c6a4]/10 px-4 py-2 text-sm font-medium text-foreground"
+        >
           <span aria-hidden="true" className="size-2 rounded-full bg-[#91c6a4]" />
           {t.hero.availability}
         </p>
