@@ -33,6 +33,12 @@ export interface ProjectContent {
 const LIBRA_CI_RUN =
   "https://github.com/Gerardoprogramer/libra/actions/runs/43719700014";
 
+// Selvática's Lighthouse table (Performance 93, Accessibility 100, Best
+// Practices 100, SEO 100), pinned to the commit checked on 2026-11-18
+// (README.md lines 119-128 at ea31dc2) so the link keeps showing these scores.
+const SELVATICA_LIGHTHOUSE =
+  "https://github.com/Gerardoprogramer/selvatica/blob/ea31dc2/README.md#lighthouse";
+
 export const caseLabels = {
   es: {
     back: "Todos los proyectos",
@@ -281,6 +287,10 @@ export const projectsContent: Record<
       ],
       evidenceNote:
         "Puntuaciones recogidas en el README del proyecto. El rendimiento depende de las condiciones de medición; el resultado automatizado de accesibilidad no sustituye la comprobación manual.",
+      evidenceSource: {
+        label: "Ver las puntuaciones en el README",
+        href: SELVATICA_LIGHTHOUSE,
+      },
       scope:
         "Proyecto conceptual publicado como demo. No representa un alojamiento ni un operador turístico real. El formulario prepara una consulta por WhatsApp; no confirma reservas ni procesa pagos.",
       closing:
@@ -486,6 +496,10 @@ export const projectsContent: Record<
       ],
       evidenceNote:
         "Scores documented in the project README. Performance depends on measurement conditions; an automated accessibility score does not replace manual checks.",
+      evidenceSource: {
+        label: "See the scores in the README",
+        href: SELVATICA_LIGHTHOUSE,
+      },
       scope:
         "A conceptual project published as a demo. It does not represent a real accommodation or tourism operator. The form prepares a WhatsApp inquiry; it does not confirm reservations or process payments.",
       closing:
