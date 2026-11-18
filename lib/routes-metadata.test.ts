@@ -82,6 +82,16 @@ describe("case study metadata", () => {
     });
   });
 
+  it.each([
+    [esProject, "es"],
+    [enProject, "en"],
+  ] as const)("%#: og:title ends like the <title> template in /%s", async (page, lang) => {
+    const meta = await page.generateMetadata(params({ lang, slug: "libra" }));
+    const layoutMeta = await layout.generateMetadata(params({ lang }));
+    const template = (layoutMeta.title as { template: string }).template;
+    expect(meta.openGraph?.title).toBe(template.replace("%s", String(meta.title)));
+  });
+
   it("is a 404 in the other language's folder or for an unknown slug", async () => {
     await expect(
       esProject.generateMetadata(params({ lang: "en", slug: "libra" })),
