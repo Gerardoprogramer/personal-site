@@ -1,7 +1,13 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
 import { useTranslation } from "@/lib/i18n/context";
+import {
+  CONSENT_ANCHOR_SELECTOR,
+  anchorPassed,
+  shouldShowBanner,
+} from "@/lib/consent-banner";
 import {
   CONSENT_KEY,
   analyticsCommands,
@@ -43,6 +49,38 @@ function serverConsent() {
   return undefined;
 }
 
+// Whether the hero's actions have scrolled out of view, or the page has no
+// hero. Once true it stays true for the rest of the visit, so the banner does
+// not come and go with scrolling.
+let anchorWasPassed = false;
+
+function subscribeAnchor(callback: () => void) {
+  if (anchorWasPassed) return () => {};
+  const anchor = document.querySelector(CONSENT_ANCHOR_SELECTOR);
+  if (!anchor) {
+    anchorWasPassed = true;
+    callback();
+    return () => {};
+  }
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some(anchorPassed)) {
+      anchorWasPassed = true;
+      observer.disconnect();
+      callback();
+    }
+  });
+  observer.observe(anchor);
+  return () => observer.disconnect();
+}
+
+function getAnchorPassed() {
+  return anchorWasPassed;
+}
+
+function serverAnchorPassed() {
+  return false;
+}
+
 // Adds Google Analytics to the page, once. Until this runs the page makes no
 // request to Google: gtag.js is not in the HTML.
 function loadAnalytics() {
@@ -74,6 +112,20 @@ function applyConsent(value: ConsentValue) {
 export function CookieConsent() {
   const { t, href } = useTranslation();
   const consent = useSyncExternalStore(subscribe, getConsent, serverConsent);
+  // A new page may or may not have a hero: look for the anchor again.
+  const pathname = usePathname();
+  const subscribeToAnchor = useCallback(
+    (callback: () => void) => {
+      void pathname;
+      return subscribeAnchor(callback);
+    },
+    [pathname],
+  );
+  const passed = useSyncExternalStore(
+    subscribeToAnchor,
+    getAnchorPassed,
+    serverAnchorPassed,
+  );
 
   useEffect(() => {
     if (consent) applyConsent(consent);
@@ -90,44 +142,50 @@ export function CookieConsent() {
     window.dispatchEvent(new Event(CONSENT_EVENT));
   };
 
-  if (consent !== null) return null;
+  if (!shouldShowBanner(consent, passed)) return null;
 
   return (
-    <div
-      className="cookie-banner fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-xl surface-card p-4 sm:p-5 shadow-2xl"
-      role="region"
-      aria-labelledby="cookie-banner-title"
-    >
-      <p
-        id="cookie-banner-title"
-        className="font-mono-tech text-xs text-primary mb-2 tracking-wide uppercase"
+    <>
+      {/* Space at the end of the page while the banner is shown, so the
+          footer can scroll clear of it. It is added below everything else,
+          so nothing on screen moves; it goes away with the banner. */}
+      <div aria-hidden="true" className="cookie-banner-space" />
+      <div
+        className="cookie-banner fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-xl surface-card p-4 sm:p-5 shadow-2xl"
+        role="region"
+        aria-labelledby="cookie-banner-title"
       >
-        cookies
-      </p>
-      <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-        {t.cookies.message}{" "}
-        <a
-          href={href({ page: "privacy" })}
-          className="text-accent hover:underline"
+        <p
+          id="cookie-banner-title"
+          className="font-mono-tech text-xs text-primary mb-2 tracking-wide uppercase"
         >
-          {t.cookies.linkText}
-        </a>
-        .
-      </p>
-      <div className="flex gap-2 justify-end">
-        <button
-          onClick={() => handleChoice("denied")}
-          className="min-h-11 text-sm px-3.5 py-1.5 rounded-md border border-border text-foreground/80 hover:bg-secondary hover:text-foreground transition-colors font-mono-tech"
-        >
-          {t.cookies.reject}
-        </button>
-        <button
-          onClick={() => handleChoice("granted")}
-          className="min-h-11 text-sm px-3.5 py-1.5 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity font-mono-tech shadow-(--shadow-glow)"
-        >
-          {t.cookies.accept}
-        </button>
+          cookies
+        </p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          {t.cookies.message}{" "}
+          <a
+            href={href({ page: "privacy" })}
+            className="text-accent hover:underline"
+          >
+            {t.cookies.linkText}
+          </a>
+          .
+        </p>
+        <div className="flex gap-2 justify-end">
+          <button
+            onClick={() => handleChoice("denied")}
+            className="min-h-11 text-sm px-3.5 py-1.5 rounded-md border border-border text-foreground/80 hover:bg-secondary hover:text-foreground transition-colors font-mono-tech"
+          >
+            {t.cookies.reject}
+          </button>
+          <button
+            onClick={() => handleChoice("granted")}
+            className="min-h-11 text-sm px-3.5 py-1.5 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity font-mono-tech shadow-(--shadow-glow)"
+          >
+            {t.cookies.accept}
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -531,12 +531,23 @@ html:has(dialog[open]) {
 html:has(.cookie-banner) {
   scroll-padding-bottom: calc(1rem + 10.75rem + 0.5rem);
 }
+/* Rendered after the footer while the banner is shown: the banner's height
+   plus its offset, so the end of the page can scroll clear of it. On narrow
+   screens the body's padding already clears the dock below the banner. */
+.cookie-banner-space {
+  flex-shrink: 0;
+  height: calc(1rem + 10.75rem);
+}
 @media (max-width: 1023px) {
   body {
     padding-bottom: calc(5.75rem + env(safe-area-inset-bottom));
   }
   .cookie-banner {
     bottom: calc(5.75rem + env(safe-area-inset-bottom));
+  }
+  /* The body's padding already holds the dock and the banner's offset. */
+  .cookie-banner-space {
+    height: 10.75rem;
   }
   html:has(.cookie-banner) {
     scroll-padding-bottom: calc(
@@ -557,6 +568,9 @@ html:has(.cookie-banner) {
     scroll-padding-bottom: calc(
       5.75rem + env(safe-area-inset-bottom) + 13.125rem + 0.5rem
     );
+  }
+  .cookie-banner-space {
+    height: 13.125rem;
   }
 }
 @media (max-width: 359px) {
