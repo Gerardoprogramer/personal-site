@@ -142,7 +142,7 @@ export const projectsContent: Record<
         "En CI se ejecutan 718 pruebas: 695 en el job principal más 23 de integración, sin contar dos veces la del arnés, con 0 fallos. Las 52 restantes solo corren en local: 51 dependen de archivos EPUB que no se versionan y 1 comprueba el entorno de procesamiento de imágenes aprobado.",
         "Las pruebas de integración corren contra un Postgres desechable en CI.",
         "Historial: 136 de 141 commits sin merge siguen la convención semántica.",
-        "Secret scanning y push protection activos; análisis del historial con gitleaks sin hallazgos.",
+        "Secret scanning y push protection activos (configuración del repositorio, no visible desde fuera); análisis del historial con gitleaks sin hallazgos (análisis manual, sin registro público).",
         "Scripts editoriales y migraciones: dry-run por defecto (excepciones documentadas: db:studio, sin guarda, y db:seed, que solo escribe en una base local y rechaza las remotas).",
       ],
       evidenceSource: {
@@ -351,7 +351,7 @@ export const projectsContent: Record<
         "CI runs 718 tests: 695 in the main job plus 23 integration tests, without counting the harness test twice, with 0 failures. The remaining 52 run only locally: 51 depend on EPUB files that are not versioned and 1 checks the approved image-processing environment.",
         "Integration tests run against a disposable Postgres in CI.",
         "History: 136 of 141 non-merge commits follow the semantic convention.",
-        "Secret scanning and push protection enabled; gitleaks history scan with no findings.",
+        "Secret scanning and push protection enabled (repository setting, not publicly visible); gitleaks history scan with no findings (manual scan, no public record).",
         "Editorial scripts and migrations: dry run by default (documented exceptions: db:studio, which has no guard, and db:seed, which only writes to a local database and refuses remote ones).",
       ],
       evidenceSource: {
