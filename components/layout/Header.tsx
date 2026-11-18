@@ -10,7 +10,7 @@ import {
   FiMenu,
   FiUser,
   FiX,
-  FiDownload,
+  FiFileText,
 } from "react-icons/fi";
 import type { IconType } from "react-icons";
 import { useTranslation } from "@/lib/i18n/context";
@@ -184,9 +184,10 @@ export function Header() {
               href={cvHref(language)}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t.hero.cvLabel}
               className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs text-muted-foreground hover:text-foreground"
             >
-              <FiDownload aria-hidden="true" />
+              <FiFileText aria-hidden="true" />
               {t.common.viewResume}
             </a>
           </div>
