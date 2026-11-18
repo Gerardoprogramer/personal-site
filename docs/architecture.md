@@ -13,7 +13,7 @@ Its identity is fixed. Changes to the code must leave these as they are:
 - dark, editorial theme;
 - serif headline, monospaced labels;
 - large decorative letters behind the sections;
-- the headline "Del problema real al software que lo resuelve";
+- the headline "Del problema real al software que lo resuelve", its second line in the accent color (one color, no gradient);
 - a sober, honest tone: every case study has a "Current scope" section that says what is missing;
 - both languages, with the same content;
 - the case study structure.
@@ -90,7 +90,7 @@ Text lives in these places:
 
 - A project is one entry in `content/projects.ts` plus its text in `lib/i18n/projects.content.ts`. The README lists the steps to add one and the check that catches each missed step.
 - `ProjectFeature.tsx` has one `case` per slug, and a missing one fails type-checking.
-- Libra's figures (tests run in CI, tests defined, commits) are written by hand in the hero line, the case study and the AI section. They are static and dated 2026-11-14 (PR #21). `content/libra-figures.test.ts` checks that they agree with each other; it cannot check that they are still current.
+- Libra's figures (tests run in CI, tests defined, commits) are written by hand in the case study and the AI section. They are static: first dated 2026-11-14 (PR #21), recalculated on 2026-11-18 from CI run 43719700014 of 2026-11-15 (718 run, 770 defined, 136 of 141 conventional commits, 45 with AI co-authorship). The case study links that run. The hero line rounds the tests run down to the hundred ("más de 700" / "700+") so it does not go stale with every run. `content/libra-figures.test.ts` checks that the figures agree with each other and that the hero's round figure matches the exact one; it cannot check that they are still current.
 
 ## 7. SEO
 
